@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PublicationStatus {
+  DRAFT
+  ONGOING
+  COMPLETED
+}
+
+model Book {
+  id          String            @id @default(cuid())
+  slug        String            @unique
+  title       String
+  thaiTitle   String
+  subtitle    String
+  description String            @db.Text
+  cover       String?
+  status      PublicationStatus @default(DRAFT)
+  order       Int
+  chapters    Chapter[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([order])
+}
+
+model Chapter {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  orderText String
+  sortOrder Int
+  pov       String
+  excerpt   String   @db.Text
+  content   Json
+  published Boolean  @default(false)
+  bookId    String
+  book      Book     @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([bookId, sortOrder])
+  @@index([published])
+}
+
+model Character {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  thaiName  String
+  title     String
+  summary   String   @db.Text
+  keyName   String
+  eye       String
+  domain    String
+  army      String
+  powers    Json
+  accent    String
+  symbol    String
+  house     House?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model House {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  thaiName    String
+  emblem      String
+  emblemName  String
+  motto       String
+  accent      String
+  description String    @db.Text
+  keyName     String
+  domain      String
+  rulerId     String    @unique
+  ruler       Character @relation(fields: [rulerId], references: [id], onDelete: Restrict)
+  city        City?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model City {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  name         String
+  thaiName     String
+  title        String
+  description  String   @db.Text
+  atmosphere   String   @db.Text
+  architecture String   @db.Text
+  landmark     String
+  accent       String
+  symbol       String
+  emblem       String?
+  houseId      String?  @unique
+  house        House?   @relation(fields: [houseId], references: [id], onDelete: SetNull)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Era {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  thaiName    String?
+  ruler       String?
+  detail      String   @db.Text
+  description String?  @db.Text
+  legacy      String?  @db.Text
+  sortOrder   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+}
+
+model LoreEntry {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  term         String
+  thaiName     String?
+  category     String?
+  meaning      String   @db.Text
+  description  String?  @db.Text
+  origin       String?  @db.Text
+  significance String?  @db.Text
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

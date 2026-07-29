@@ -21,6 +21,13 @@ export function AdminNav() {
         </Link>
 
         <Link
+          href="/admin/chapters/new"
+          className="rounded-xl border border-amber-200/20 bg-amber-200/5 px-4 py-3 text-sm text-amber-100 transition hover:bg-amber-200/10"
+        >
+          เพิ่มตอนใหม่
+        </Link>
+
+        <Link
           href="/"
           className="rounded-xl border border-white/10 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white"
         >

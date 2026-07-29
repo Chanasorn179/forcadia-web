@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin-auth";
+import { DeleteChapterForm } from "@/components/admin/delete-chapter-form";
 
 type Props = {
   params: Promise<{
@@ -54,13 +55,9 @@ export default async function EditChapterPage({
 
       <p className="section-kicker mt-8">Edit Chapter</p>
 
-      <h1 className="mt-3 text-4xl font-semibold">
-        {chapter.title}
-      </h1>
+      <h1 className="mt-3 text-4xl font-semibold">{chapter.title}</h1>
 
-      <p className="mt-2 text-slate-500">
-        {chapter.book.title}
-      </p>
+      <p className="mt-2 text-slate-500">{chapter.book.title}</p>
 
       {query.saved && (
         <div className="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-300/5 p-4 text-emerald-200">
@@ -155,9 +152,7 @@ export default async function EditChapterPage({
             className="h-5 w-5 accent-amber-300"
           />
 
-          <span className="text-slate-300">
-            เผยแพร่ตอนนี้
-          </span>
+          <span className="text-slate-300">เผยแพร่ตอนนี้</span>
         </label>
 
         <div className="flex flex-wrap gap-3">
@@ -175,8 +170,17 @@ export default async function EditChapterPage({
           >
             เปิดหน้าตอน
           </Link>
+
+          <Link
+            href={`/admin/chapters/${chapter.id}/preview`}
+            className="rounded-full border border-white/10 px-6 py-3 text-slate-300 transition hover:bg-white/5"
+          >
+            Preview
+          </Link>
         </div>
       </form>
+
+      <DeleteChapterForm chapterId={chapter.id} chapterTitle={chapter.title} />
     </>
   );
 }

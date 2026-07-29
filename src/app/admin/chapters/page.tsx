@@ -2,8 +2,20 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin-auth";
 
-export default async function AdminChaptersPage() {
+type Props = {
+  searchParams: Promise<{
+    created?: string;
+    deleted?: string;
+    error?: string;
+  }>;
+};
+
+export default async function AdminChaptersPage({
+  searchParams,
+}: Props) {
   await requireAdmin();
+
+  const query = await searchParams;
 
   const chapters = await prisma.chapter.findMany({
     orderBy: [
@@ -21,24 +33,55 @@ export default async function AdminChaptersPage() {
 
   return (
     <>
-      <p className="section-kicker">Content Management</p>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p className="section-kicker">Content Management</p>
 
-      <h1 className="mt-3 text-4xl font-semibold">จัดการตอนนิยาย</h1>
+          <h1 className="mt-3 text-4xl font-semibold">
+            จัดการตอนนิยาย
+          </h1>
 
-      <p className="mt-3 text-slate-400">
-        แก้ไขข้อมูลและสถานะเผยแพร่ของตอนในฐานข้อมูล
-      </p>
+          <p className="mt-3 text-slate-400">
+            เพิ่ม แก้ไข ตรวจตัวอย่าง และจัดการสถานะเผยแพร่
+          </p>
+        </div>
+
+        <Link
+          href="/admin/chapters/new"
+          className="rounded-full border border-amber-200/30 bg-amber-200/10 px-5 py-3 text-sm font-semibold text-amber-100 transition hover:bg-amber-200/20"
+        >
+          + เพิ่มตอนใหม่
+        </Link>
+      </div>
+
+      {query.created && (
+        <div className="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-300/5 p-4 text-emerald-200">
+          เพิ่มตอนใหม่เรียบร้อยแล้ว
+        </div>
+      )}
+
+      {query.deleted && (
+        <div className="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-300/5 p-4 text-emerald-200">
+          ลบตอนเรียบร้อยแล้ว
+        </div>
+      )}
+
+      {query.error && (
+        <div className="mt-6 rounded-2xl border border-rose-300/20 bg-rose-300/5 p-4 text-rose-200">
+          ไม่สามารถทำรายการได้ กรุณาลองอีกครั้ง
+        </div>
+      )}
 
       <div className="mt-8 overflow-hidden rounded-3xl border border-white/10">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-760px text-left">
+          <table className="w-full min-w-[860px] text-left">
             <thead className="bg-white/5 text-xs uppercase tracking-[0.16em] text-slate-500">
               <tr>
                 <th className="px-5 py-4">ลำดับ</th>
                 <th className="px-5 py-4">ชื่อตอน</th>
                 <th className="px-5 py-4">หนังสือ</th>
                 <th className="px-5 py-4">POV</th>
-                <th className="px-5 py-4">สถานะ</th>
+                <th className="w-40 px-5 py-4">สถานะ</th>
                 <th className="px-5 py-4 text-right">จัดการ</th>
               </tr>
             </thead>
@@ -50,42 +93,59 @@ export default async function AdminChaptersPage() {
                     {chapter.orderText}
                   </td>
 
-                  <td className="px-5 py-4 text-amber-100">{chapter.title}</td>
+                  <td className="px-5 py-4 text-amber-100">
+                    {chapter.title}
+                  </td>
 
                   <td className="px-5 py-4 text-slate-400">
                     {chapter.book.title}
                   </td>
 
-                  <td className="px-5 py-4 text-slate-400">{chapter.pov}</td>
+                  <td className="px-5 py-4 text-slate-400">
+                    {chapter.pov}
+                  </td>
 
                   <td className="px-5 py-4">
                     <span
                       className={[
-                        "inline-flex min-w-24 items-center justify-center whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-semibold",
+                        "inline-flex min-w-28 items-center justify-center whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-semibold",
                         chapter.published
                           ? "border-emerald-300/25 bg-emerald-300/10 text-emerald-200"
                           : "border-slate-300/15 bg-white/5 text-slate-400",
                       ].join(" ")}
                     >
                       <span
+                        aria-hidden="true"
                         className={[
                           "mr-2 h-2 w-2 rounded-full",
-                          chapter.published ? "bg-emerald-300" : "bg-slate-500",
+                          chapter.published
+                            ? "bg-emerald-300"
+                            : "bg-slate-500",
                         ].join(" ")}
-                        aria-hidden="true"
                       />
 
-                      {chapter.published ? "เผยแพร่แล้ว" : "ฉบับร่าง"}
+                      {chapter.published
+                        ? "เผยแพร่แล้ว"
+                        : "ฉบับร่าง"}
                     </span>
                   </td>
 
-                  <td className="px-5 py-4 text-right">
-                    <Link
-                      href={`/admin/chapters/${chapter.id}`}
-                      className="text-sm text-amber-200 transition hover:text-amber-100"
-                    >
-                      แก้ไข →
-                    </Link>
+                  <td className="px-5 py-4">
+                    <div className="flex justify-end gap-4">
+                      <Link
+                        href={`/admin/chapters/${chapter.id}/preview`}
+                        className="text-sm text-slate-300 transition hover:text-white"
+                      >
+                        Preview
+                      </Link>
+
+                      <Link
+                        href={`/admin/chapters/${chapter.id}`}
+                        className="text-sm text-amber-200 transition hover:text-amber-100"
+                      >
+                        แก้ไข →
+                      </Link>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -95,7 +155,7 @@ export default async function AdminChaptersPage() {
 
         {chapters.length === 0 && (
           <div className="p-10 text-center text-slate-500">
-            ยังไม่มีตอนในฐานข้อมูล ให้รัน Prisma seed ก่อน
+            ยังไม่มีตอนในฐานข้อมูล
           </div>
         )}
       </div>

@@ -74,7 +74,7 @@ export default async function AdminChaptersPage({
 
       <div className="mt-8 overflow-hidden rounded-3xl border border-white/10">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[860px] text-left">
+          <table className="w-full min-w-860px text-left">
             <thead className="bg-white/5 text-xs uppercase tracking-[0.16em] text-slate-500">
               <tr>
                 <th className="px-5 py-4">ลำดับ</th>

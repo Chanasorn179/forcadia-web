@@ -1,14 +1,31 @@
 import { redirect } from "next/navigation";
-import { books } from "@/data/books";
+import { prisma } from "@/lib/prisma";
 
-export default function ReadPage() {
-  const firstBook = books
-    .slice()
-    .sort((a, b) => a.order - b.order)[0];
+export const dynamic = "force-dynamic";
 
-  if (!firstBook) {
+export default async function ReadPage() {
+  const firstChapter = await prisma.chapter.findFirst({
+    where: {
+      published: true,
+    },
+    orderBy: [
+      {
+        book: {
+          order: "asc",
+        },
+      },
+      {
+        sortOrder: "asc",
+      },
+    ],
+    select: {
+      slug: true,
+    },
+  });
+
+  if (!firstChapter) {
     redirect("/books");
   }
 
-  redirect(`/books/${firstBook.slug}`);
+  redirect(`/read/${firstChapter.slug}`);
 }

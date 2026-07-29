@@ -1,38 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  books,
-  getBookBySlug,
-  getBookChapters,
-} from "@/data/books";
+import { getPublicBookBySlug } from "@/lib/public-content";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{
+    slug: string;
+  }>;
 };
 
 const statusLabels = {
-  draft: "ฉบับร่าง",
-  ongoing: "กำลังเผยแพร่",
-  completed: "จบแล้ว",
+  DRAFT: "ฉบับร่าง",
+  ONGOING: "กำลังเผยแพร่",
+  COMPLETED: "จบแล้ว",
 } as const;
 
-export function generateStaticParams() {
-  return books.map((book) => ({
-    slug: book.slug,
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const book = getBookBySlug(slug);
+  const book = await getPublicBookBySlug(slug);
 
   if (!book) {
-    return {
-      title: "ไม่พบหนังสือ",
-    };
+    return { title: "ไม่พบหนังสือ" };
   }
 
   return {
@@ -41,16 +33,17 @@ export async function generateMetadata({
   };
 }
 
-export default async function BookDetailPage({ params }: Props) {
+export default async function BookDetailPage({
+  params,
+}: Props) {
   const { slug } = await params;
-  const book = getBookBySlug(slug);
+  const book = await getPublicBookBySlug(slug);
 
   if (!book) {
     notFound();
   }
 
-  const bookChapters = getBookChapters(book);
-  const firstChapter = bookChapters[0];
+  const firstChapter = book.chapters[0];
 
   return (
     <main className="container-page py-16 md:py-24">
@@ -68,11 +61,9 @@ export default async function BookDetailPage({ params }: Props) {
             <p className="text-xs uppercase tracking-[0.28em] text-amber-200">
               {book.subtitle}
             </p>
-
             <h1 className="gold-text mt-6 text-4xl font-semibold md:text-5xl">
               {book.title}
             </h1>
-
             <p className="mt-4 text-slate-400">
               {book.thaiTitle}
             </p>
@@ -80,16 +71,15 @@ export default async function BookDetailPage({ params }: Props) {
         </div>
 
         <article className="glass-panel rounded-3xl p-7 md:p-10">
-          <p className="section-kicker">Book {String(book.order).padStart(2, "0")}</p>
-
+          <p className="section-kicker">
+            Book {String(book.order).padStart(2, "0")}
+          </p>
           <h2 className="gold-text mt-4 text-4xl font-semibold md:text-6xl">
             {book.title}
           </h2>
-
           <p className="mt-3 text-xl text-slate-300">
             {book.thaiTitle}
           </p>
-
           <p className="mt-6 text-lg leading-8 text-slate-400">
             {book.description}
           </p>
@@ -100,9 +90,8 @@ export default async function BookDetailPage({ params }: Props) {
             <span className="rounded-full border border-amber-200/20 bg-amber-200/5 px-4 py-2 text-sm text-amber-100">
               {statusLabels[book.status]}
             </span>
-
             <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
-              {bookChapters.length} ตอน
+              {book.chapters.length} ตอนที่เผยแพร่
             </span>
           </div>
 
@@ -119,15 +108,14 @@ export default async function BookDetailPage({ params }: Props) {
 
       <section className="mt-12">
         <p className="section-kicker">Chapter Archive</p>
-
         <h2 className="mt-3 text-2xl font-semibold md:text-4xl">
           สารบัญ
         </h2>
 
         <div className="mt-6 space-y-4">
-          {bookChapters.map((chapter, index) => (
+          {book.chapters.map((chapter, index) => (
             <Link
-              key={chapter.slug}
+              key={chapter.id}
               href={`/read/${chapter.slug}`}
               className="glass-panel card-hover group flex flex-col gap-4 rounded-3xl p-6 md:flex-row md:items-center md:justify-between"
             >
@@ -135,16 +123,13 @@ export default async function BookDetailPage({ params }: Props) {
                 <span className="text-sm text-slate-500">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-
                 <div>
                   <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
-                    {chapter.order}
+                    {chapter.orderText}
                   </p>
-
                   <h3 className="mt-2 text-xl text-amber-100">
                     {chapter.title}
                   </h3>
-
                   <p className="mt-2 line-clamp-2 text-sm leading-7 text-slate-400">
                     {chapter.excerpt}
                   </p>

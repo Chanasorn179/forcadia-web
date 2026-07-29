@@ -3,64 +3,71 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChapterBookmarkButton } from "@/components/chapter-bookmark-button";
 import { NovelReader } from "@/components/novel-reader";
-import { chapters } from "@/data/forcadia";
+import {
+  getChapterNavigation,
+  getPublishedChapterBySlug,
+  parseChapterContent,
+} from "@/lib/public-content";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{
+    slug: string;
+  }>;
 };
 
-export function generateStaticParams() {
-  return chapters.map((chapter) => ({
-    slug: chapter.slug,
-  }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const chapter = chapters.find((item) => item.slug === slug);
+  const chapter = await getPublishedChapterBySlug(slug);
 
   if (!chapter) {
-    return {
-      title: "ไม่พบตอน",
-    };
+    return { title: "ไม่พบตอน" };
   }
 
   return {
-    title: `${chapter.order}: ${chapter.title}`,
+    title: `${chapter.orderText}: ${chapter.title}`,
     description: chapter.excerpt,
   };
 }
 
-export default async function ChapterPage({ params }: Props) {
+export default async function ChapterPage({
+  params,
+}: Props) {
   const { slug } = await params;
-  const chapterIndex = chapters.findIndex((item) => item.slug === slug);
+  const chapter = await getPublishedChapterBySlug(slug);
 
-  if (chapterIndex === -1) {
+  if (!chapter) {
     notFound();
   }
 
-  const chapter = chapters[chapterIndex];
-  const previousChapter = chapters[chapterIndex - 1];
-  const nextChapter = chapters[chapterIndex + 1];
+  const paragraphs = parseChapterContent(chapter.content);
 
-  const navigationChapters = chapters.map((item) => ({
-    slug: item.slug,
-    title: item.title,
-    order: item.order,
-  }));
+  if (paragraphs.length === 0) {
+    notFound();
+  }
+
+  const {
+    previousChapter,
+    nextChapter,
+    allChapters,
+  } = await getChapterNavigation(
+    chapter.bookId,
+    chapter.sortOrder,
+  );
 
   return (
     <main className="container-page pb-28 pt-8 md:pb-20 md:pt-12">
       <div className="mx-auto mb-6 flex max-w-5xl flex-wrap items-center justify-between gap-4">
         <div>
           <Link
-            href="/books"
+            href={`/books/${chapter.book.slug}`}
             className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
           >
             <span aria-hidden="true">←</span>
-            กลับไปห้องสมุด
+            กลับไปสารบัญ {chapter.book.title}
           </Link>
 
           <p className="mt-3 text-sm text-slate-500">
@@ -71,7 +78,7 @@ export default async function ChapterPage({ params }: Props) {
         <ChapterBookmarkButton
           slug={chapter.slug}
           title={chapter.title}
-          order={chapter.order}
+          order={chapter.orderText}
           excerpt={chapter.excerpt}
         />
       </div>
@@ -79,14 +86,14 @@ export default async function ChapterPage({ params }: Props) {
       <NovelReader
         chapterSlug={chapter.slug}
         chapterTitle={chapter.title}
-        chapterOrder={chapter.order}
-        paragraphs={chapter.content}
+        chapterOrder={chapter.orderText}
+        paragraphs={paragraphs}
         previousChapter={
           previousChapter
             ? {
                 slug: previousChapter.slug,
                 title: previousChapter.title,
-                order: previousChapter.order,
+                order: previousChapter.orderText,
               }
             : undefined
         }
@@ -95,11 +102,15 @@ export default async function ChapterPage({ params }: Props) {
             ? {
                 slug: nextChapter.slug,
                 title: nextChapter.title,
-                order: nextChapter.order,
+                order: nextChapter.orderText,
               }
             : undefined
         }
-        allChapters={navigationChapters}
+        allChapters={allChapters.map((item) => ({
+          slug: item.slug,
+          title: item.title,
+          order: item.orderText,
+        }))}
       />
     </main>
   );

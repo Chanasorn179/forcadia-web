@@ -14,6 +14,13 @@ export function AdminNav() {
         </Link>
 
         <Link
+          href="/admin/books"
+          className="rounded-xl border border-white/10 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white"
+        >
+          จัดการหนังสือ
+        </Link>
+
+        <Link
           href="/admin/chapters"
           className="rounded-xl border border-white/10 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white"
         >

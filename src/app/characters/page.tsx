@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { getCharacterArtwork } from "@/data/media";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
@@ -45,16 +47,18 @@ export default async function CharactersPage() {
             className="glass-panel card-hover group rounded-3xl p-6"
           >
             <div className="flex items-start gap-4">
-              <span
-                className="grid h-14 w-14 shrink-0 place-items-center rounded-full border text-2xl"
-                style={{
-                  color: character.accent,
-                  borderColor: `${character.accent}66`,
-                  backgroundColor: `${character.accent}14`,
-                }}
+              <div
+                className="relative h-24 w-20 shrink-0 overflow-hidden rounded-2xl border bg-black/20"
+                style={{ borderColor: `${character.accent}55` }}
               >
-                {character.symbol}
-              </span>
+                <Image
+                  src={getCharacterArtwork(character.slug)}
+                  alt={character.thaiName}
+                  fill
+                  className="object-cover object-top transition duration-500 group-hover:scale-105"
+                  sizes="80px"
+                />
+              </div>
 
               <div className="min-w-0">
                 <h2 className="text-xl text-amber-100">

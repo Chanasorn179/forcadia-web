@@ -74,7 +74,12 @@ export default async function SearchPage({ searchParams }: Props) {
             className="min-h-12 flex-1 rounded-2xl border border-white/10 bg-black/20 px-5 text-slate-100 outline-none transition placeholder:text-slate-600 focus:border-amber-200/40"
           />
 
+          <label htmlFor="search-category" className="sr-only">
+            หมวดหมู่
+          </label>
+
           <select
+            id="search-category"
             name="category"
             defaultValue={selectedCategory}
             className="min-h-12 rounded-2xl border border-white/10 bg-[#0d101b] px-4 text-slate-300 outline-none focus:border-amber-200/40"

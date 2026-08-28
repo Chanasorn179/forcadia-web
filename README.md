@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Forcadia Web
 
-## Getting Started
+เว็บไซต์อ่านนิยายแฟนตาซีภาษาไทย **Forcadia: The Shattered Ring** พร้อมสารานุกรมโลก ตัวละคร ตระกูล เมือง เส้นเวลา คลังตำนาน ห้องสมุดส่วนตัว และระบบหลังบ้านสำหรับจัดการเนื้อหา
 
-First, run the development server:
+## Tech stack
+
+- Next.js 16 (App Router) และ React 19
+- TypeScript และ Tailwind CSS 4
+- PostgreSQL
+- Prisma 7
+
+## ความสามารถหลัก
+
+- อ่านหนังสือและตอนที่เผยแพร่แล้วจากฐานข้อมูล
+- ปรับธีม ขนาดตัวอักษร ระยะบรรทัด และความกว้างหน้าอ่าน
+- จำความคืบหน้าและ bookmark ด้วย `localStorage`
+- สำรวจตัวละคร ตระกูล เมือง lore เส้นเวลา และ gallery
+- ค้นหาเนื้อหาภายในจักรวาล Forcadia
+- ระบบ admin สำหรับจัดการหนังสือ ตอน ตัวละคร และตระกูล
+
+## เริ่มต้นใช้งาน
+
+ต้องมี Node.js และ Docker (หรือ PostgreSQL ที่เข้าถึงได้)
+
+1. ติดตั้ง dependencies ด้วย `npm install`
+2. คัดลอก `.env.example` เป็น `.env` และเปลี่ยนค่าตัวอย่างทั้งหมดเป็นค่าที่ปลอดภัย โดย `POSTGRES_PASSWORD` ต้องตรงกับรหัสผ่านใน `DATABASE_URL`
+3. เปิด PostgreSQL ด้วย `docker compose up -d`
+4. รัน `npm run db:migrate` และ `npm run db:seed`
+5. เปิด development server ด้วย `npm run dev`
+
+เปิด <http://localhost:3000> สำหรับเว็บไซต์ และ <http://localhost:3000/admin> สำหรับระบบหลังบ้าน
+
+## Environment variables
+
+| ตัวแปร | การใช้งาน |
+| --- | --- |
+| `POSTGRES_PASSWORD` | รหัสผ่าน PostgreSQL ที่ Docker Compose ใช้ ต้องตรงกับ `DATABASE_URL` |
+| `DATABASE_URL` | PostgreSQL connection string |
+| `ADMIN_PASSWORD` | รหัสผ่านเข้าสู่ระบบ admin |
+| `ADMIN_SESSION_SECRET` | secret สำหรับเซ็น session cookie ควรสุ่มและยาวอย่างน้อย 32 ตัวอักษร |
+
+## คำสั่งสำคัญ
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev            # เปิด development server
+npm run build          # สร้าง production build และตรวจ TypeScript
+npm run start          # เปิด production server หลัง build
+npm run lint           # ตรวจ ESLint
+npm run validate:data  # ตรวจความสอดคล้องของข้อมูลแบบ static
+npm run db:migrate     # สร้าง/รัน migration ใน development
+npm run db:seed        # ใส่ข้อมูลเริ่มต้น
+npm run db:studio      # เปิด Prisma Studio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## โครงสร้างหลัก
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+src/app/          หน้าเว็บ, admin และ route handlers
+src/components/   UI components
+src/data/         ข้อมูลโลกแบบ static
+src/lib/          database, auth, validation และ shared logic
+prisma/           schema, migrations และ seed
+scripts/          utility scripts
+public/images/    รูปภาพที่ใช้ในเว็บไซต์
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ตรวจสอบก่อนส่งงาน
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+npm run validate:data
+npm run build
+```

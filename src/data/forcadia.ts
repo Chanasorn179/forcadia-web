@@ -309,7 +309,7 @@ export const cities: City[] = [
     faction: "The Sacred Council of Eight",
     accent: "#e7c66f",
     symbol: "✦",
-     emblem: "/images/empire/imperial-crest.png",
+    emblem: "/images/crests-presentation/unity-crown.png",
   },
   {
     slug: "lux-aeternum",
@@ -328,7 +328,7 @@ export const cities: City[] = [
     faction: "House Saint-Cross",
     accent: "#e7c66f",
     symbol: "☀",
-    emblem: "/images/houses/saint-cross.webp",
+    emblem: "/images/crests-transparent/saint-cross.png",
   },
   {
     slug: "astra-caelum",
@@ -347,7 +347,7 @@ export const cities: City[] = [
     faction: "House ParadiseSwan",
     accent: "#8ea1ff",
     symbol: "✦",
-    emblem: "/images/houses/paradise-swan.webp",
+    emblem: "/images/crests-transparent/paradise-swan.png",
   },
   {
     slug: "floraven-mortis",
@@ -366,7 +366,7 @@ export const cities: City[] = [
     faction: "House Venom-Veil",
     accent: "#77d58b",
     symbol: "♢",
-    emblem: "/images/houses/venom-veil.webp",
+    emblem: "/images/crests-transparent/venom-veil.png",
   },
   {
     slug: "silentharrow",
@@ -385,7 +385,7 @@ export const cities: City[] = [
     faction: "House Void-Requiem",
     accent: "#b5b2c7",
     symbol: "⌛",
-    emblem: "/images/houses/void-requiem.webp",
+    emblem: "/images/crests-transparent/void-requiem.png",
   },
   {
     slug: "thalassara",
@@ -404,7 +404,7 @@ export const cities: City[] = [
     faction: "House Azure-Song",
     accent: "#67c8e8",
     symbol: "≋",
-    emblem: "/images/houses/azure-song.webp",
+    emblem: "/images/crests-transparent/azure-song.png",
   },
   {
     slug: "aurea-fortuna",
@@ -423,7 +423,7 @@ export const cities: City[] = [
     faction: "House Royal-Flush",
     accent: "#f1a9d4",
     symbol: "◆",
-    emblem: "/images/houses/royal-flush.webp",
+    emblem: "/images/crests-transparent/royal-flush.png",
   },
   {
     slug: "ferrum-vanguard",
@@ -442,7 +442,7 @@ export const cities: City[] = [
     faction: "House Iron-Bastion",
     accent: "#9ca8b4",
     symbol: "⬢",
-    emblem: "/images/houses/iron-bastion.webp",
+    emblem: "/images/crests-transparent/iron-bastion.png",
   },
   {
     slug: "nihil-ruina",
@@ -461,7 +461,7 @@ export const cities: City[] = [
     faction: "House Night-Fall",
     accent: "#a178e8",
     symbol: "◉",
-    emblem: "/images/houses/night-fall.webp",
+    emblem: "/images/crests-transparent/night-fall.png",
   },
 ];
 

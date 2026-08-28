@@ -1,12 +1,48 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif Thai", Georgia, serif;
+}
+
 :root {
+  color-scheme: dark;
   --background: #05070d;
   --foreground: #f5f1e8;
   --gold: #d9b86c;
   --gold-soft: #f4dda5;
+  --muted: #9ca5b8;
   --panel: rgba(15, 19, 31, 0.78);
   --line: rgba(217, 184, 108, 0.22);
+  --focus: #f4dda5;
+  --body-background:
+    radial-gradient(circle at 50% -10%, rgba(68, 76, 130, 0.28), transparent 38%),
+    radial-gradient(circle at 10% 30%, rgba(86, 46, 116, 0.16), transparent 28%),
+    linear-gradient(180deg, #070912 0%, #05070d 50%, #03040a 100%);
+  --header-background: rgba(7, 9, 18, 0.88);
+  --header-line: rgba(255, 255, 255, 0.1);
+  --toggle-background: rgba(255, 255, 255, 0.04);
+  --toggle-color: #f4dda5;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f6f0e4;
+  --foreground: #201a15;
+  --gold: #8b641e;
+  --gold-soft: #704d13;
+  --muted: #5f6470;
+  --panel: rgba(255, 252, 245, 0.84);
+  --line: rgba(122, 83, 24, 0.24);
+  --focus: #795719;
+  --body-background:
+    radial-gradient(circle at 50% -10%, rgba(220, 191, 126, 0.3), transparent 38%),
+    radial-gradient(circle at 10% 30%, rgba(151, 122, 178, 0.12), transparent 28%),
+    linear-gradient(180deg, #faf6ed 0%, #f5efe3 55%, #eee5d6 100%);
+  --header-background: rgba(250, 246, 237, 0.9);
+  --header-line: rgba(91, 62, 20, 0.16);
+  --toggle-background: rgba(121, 87, 25, 0.08);
+  --toggle-color: #5b4218;
 }
 
 * {
@@ -19,12 +55,43 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 50% -10%, rgba(68, 76, 130, 0.28), transparent 38%),
-    radial-gradient(circle at 10% 30%, rgba(86, 46, 116, 0.16), transparent 28%),
-    linear-gradient(180deg, #070912 0%, #05070d 50%, #03040a 100%);
+  background: var(--body-background);
   color: var(--foreground);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "kern" 1;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  transition: background 220ms ease, color 220ms ease;
+}
+
+.site-header {
+  border-color: var(--header-line);
+  background: var(--header-background);
+}
+
+.theme-toggle {
+  border-color: var(--header-line);
+  background: var(--toggle-background);
+  color: var(--toggle-color);
+}
+
+.theme-toggle:hover {
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Noto Serif Thai", Georgia, serif;
+  text-wrap: balance;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 a {
@@ -34,6 +101,29 @@ a {
 
 ::selection {
   background: rgba(217, 184, 108, 0.35);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  border-radius: 999px;
+  background: #f4dda5;
+  color: #070912;
+  padding: 0.7rem 1rem;
+  font-weight: 700;
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 .site-shell {
@@ -46,10 +136,38 @@ a {
 }
 
 .glass-panel {
-  background: linear-gradient(180deg, rgba(20, 24, 39, 0.9), rgba(10, 12, 21, 0.86));
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent 38%),
+    linear-gradient(180deg, rgba(20, 24, 39, 0.94), rgba(9, 11, 20, 0.9));
   border: 1px solid var(--line);
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.34);
   backdrop-filter: blur(16px);
+}
+
+:root[data-theme="light"] .glass-panel {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), transparent 42%),
+    var(--panel);
+  box-shadow: 0 18px 55px rgba(82, 58, 25, 0.12);
+}
+
+:root[data-theme="light"] .text-slate-300,
+:root[data-theme="light"] .text-slate-400 {
+  color: #555660;
+}
+
+:root[data-theme="light"] .text-slate-500 {
+  color: #6c6870;
+}
+
+:root[data-theme="light"] .text-amber-50,
+:root[data-theme="light"] .text-amber-100,
+:root[data-theme="light"] .text-amber-200 {
+  color: #6f4c13;
+}
+
+:root[data-theme="light"] .card-hover:hover {
+  background: rgba(255, 249, 237, 0.96);
 }
 
 .gold-text {
@@ -64,6 +182,7 @@ a {
   text-transform: uppercase;
   color: var(--gold-soft);
   font-size: 0.72rem;
+  font-weight: 700;
 }
 
 .crack-line {
@@ -79,6 +198,149 @@ a {
   transform: translateY(-4px);
   border-color: rgba(244, 221, 165, 0.5);
   background: rgba(25, 30, 48, 0.92);
+}
+
+.link-arrow {
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.link-arrow:hover {
+  color: #f4dda5;
+  transform: translateX(3px);
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 92%);
+}
+
+.world-map {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent 38%),
+    linear-gradient(180deg, rgba(20, 24, 39, 0.96), rgba(8, 10, 18, 0.94));
+}
+
+.world-map-ring-outer {
+  border-color: rgba(217, 184, 108, 0.2);
+}
+
+.world-map-ring-inner {
+  border-color: rgba(217, 184, 108, 0.12);
+}
+
+.world-map-glow {
+  background:
+    radial-gradient(circle at center, rgba(217, 184, 108, 0.15), transparent 20%),
+    radial-gradient(circle at center, rgba(99, 105, 180, 0.12), transparent 60%);
+}
+
+.world-map-emblem {
+  background: #0d101b;
+}
+
+.world-map-node:hover .world-map-emblem {
+  box-shadow: 0 0 28px rgba(253, 230, 138, 0.35);
+}
+
+.world-map-city {
+  color: #fef3c7;
+}
+
+.world-map-ruler {
+  color: #64748b;
+}
+
+.world-map-node:hover .world-map-city {
+  color: white;
+}
+
+.world-map-node:hover .world-map-ruler {
+  color: #cbd5e1;
+}
+
+:root[data-theme="light"] .world-map {
+  border-color: rgba(128, 87, 27, 0.28);
+  background-color: #eee1c8;
+  background-image:
+    radial-gradient(circle at center, rgba(255, 251, 239, 0.95) 0 9%, transparent 31%),
+    linear-gradient(rgba(132, 93, 37, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(132, 93, 37, 0.055) 1px, transparent 1px),
+    radial-gradient(circle at 18% 22%, rgba(141, 99, 41, 0.1), transparent 32%),
+    linear-gradient(145deg, #f8efd9, #e9d7b5);
+  background-size: auto, 42px 42px, 42px 42px, auto, auto;
+  box-shadow:
+    inset 0 0 80px rgba(105, 67, 20, 0.12),
+    0 24px 60px rgba(82, 58, 25, 0.14);
+}
+
+:root[data-theme="light"] .world-map-ring-outer {
+  border-color: rgba(137, 91, 26, 0.34);
+  box-shadow: 0 0 0 1px rgba(255, 250, 232, 0.55);
+}
+
+:root[data-theme="light"] .world-map-ring-inner {
+  border-color: rgba(137, 91, 26, 0.26);
+}
+
+:root[data-theme="light"] .world-map-glow {
+  background:
+    radial-gradient(circle at center, rgba(255, 249, 224, 0.95), transparent 22%),
+    radial-gradient(circle at center, rgba(151, 105, 39, 0.1), transparent 62%);
+}
+
+:root[data-theme="light"] .world-map-emblem {
+  background: #201b1b;
+  box-shadow:
+    0 0 0 4px rgba(255, 248, 226, 0.8),
+    0 8px 22px rgba(76, 49, 17, 0.26);
+}
+
+:root[data-theme="light"] .world-map-node:hover .world-map-emblem {
+  box-shadow:
+    0 0 0 5px rgba(255, 248, 226, 0.92),
+    0 10px 28px rgba(105, 67, 20, 0.38);
+}
+
+:root[data-theme="light"] .world-map-city {
+  color: #63430f;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+:root[data-theme="light"] .world-map-ruler {
+  color: #68606a;
+}
+
+:root[data-theme="light"] .world-map-node:hover .world-map-city {
+  color: #3f2808;
+}
+
+:root[data-theme="light"] .world-map-node:hover .world-map-ruler {
+  color: #443f46;
+}
+
+:root[data-theme="light"] .world-city-card {
+  border-color: rgba(128, 87, 27, 0.2);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.72), transparent 40%),
+    rgba(250, 243, 229, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 @media (max-width: 700px) {
@@ -102,6 +364,8 @@ a {
 
 .prose-novel {
   margin-inline: auto;
+  font-family: "Noto Serif Thai", Georgia, serif;
+  letter-spacing: 0.005em;
 }
 
 .prose-novel p {

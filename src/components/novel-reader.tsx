@@ -79,6 +79,7 @@ export function NovelReader({
   allChapters,
 }: Props) {
   const articleRef = useRef<HTMLDivElement>(null);
+  const contentsButtonRef = useRef<HTMLButtonElement>(null);
 
   const [settings, setSettings] =
     useState<ReaderSettings>(defaultSettings);
@@ -150,6 +151,30 @@ useEffect(() => {
   useEffect(() => {
     localStorage.setItem(settingsKey(), JSON.stringify(settings));
   }, [settings]);
+
+  useEffect(() => {
+    if (!showContents) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    const contentsButton = contentsButtonRef.current;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setShowContents(false);
+      }
+    }
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+      contentsButton?.focus();
+    };
+  }, [showContents]);
 
   useEffect(() => {
     let ticking = false;
@@ -258,15 +283,21 @@ useEffect(() => {
               <button
                 type="button"
                 onClick={() => setShowToolbar((current) => !current)}
-                className="rounded-xl border border-white/10 px-3 py-2 text-sm text-slate-300 transition hover:bg-white/5"
+                aria-expanded={showToolbar}
+                aria-controls="reader-settings"
+                className="min-h-10 rounded-xl border border-white/10 px-3 py-2 text-sm text-slate-300 transition hover:border-white/20 hover:bg-white/5"
               >
                 ตั้งค่าการอ่าน
               </button>
 
               <button
+                ref={contentsButtonRef}
                 type="button"
                 onClick={() => setShowContents(true)}
-                className="rounded-xl border border-white/10 px-3 py-2 text-sm text-slate-300 transition hover:bg-white/5"
+                aria-haspopup="dialog"
+                aria-expanded={showContents}
+                aria-controls="reader-contents"
+                className="min-h-10 rounded-xl border border-white/10 px-3 py-2 text-sm text-slate-300 transition hover:border-white/20 hover:bg-white/5"
               >
                 สารบัญ
               </button>
@@ -283,7 +314,10 @@ useEffect(() => {
           </div>
 
           {showToolbar && (
-            <div className="mt-3 grid gap-3 border-t border-white/10 pt-3 md:grid-cols-4">
+            <div
+              id="reader-settings"
+              className="mt-3 grid gap-3 border-t border-white/10 pt-3 md:grid-cols-4"
+            >
               <div>
                 <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
                   ขนาดตัวอักษร
@@ -417,7 +451,7 @@ useEffect(() => {
 
       <article
         className={[
-          "mx-auto mt-4 rounded-3xl border px-6 py-12 shadow-2xl transition-colors md:px-14 md:py-16",
+          "mx-auto mt-4 mb-24 rounded-3xl border px-6 py-12 shadow-2xl transition-colors md:mb-0 md:px-14 md:py-16",
           themeClasses[settings.theme],
           widthClasses[settings.width],
         ].join(" ")}
@@ -474,7 +508,7 @@ useEffect(() => {
         </nav>
       </article>
 
-      <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
+      <div className="fixed bottom-21 right-4 z-50 flex flex-col gap-3 md:bottom-5 md:right-5">
         <button
           type="button"
           onClick={goToTop}
@@ -485,7 +519,7 @@ useEffect(() => {
         </button>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#080a11]/95 px-3 py-3 backdrop-blur-xl md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#080a11]/95 px-3 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-10px_35px_rgba(0,0,0,0.3)] backdrop-blur-xl md:hidden">
         <div className="mx-auto grid max-w-xl grid-cols-2 gap-3">
           {previousChapter ? (
             <Link
@@ -511,6 +545,7 @@ useEffect(() => {
 
       {showContents && (
         <div
+          id="reader-contents"
           className="fixed inset-0 z-80 bg-black/70 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
@@ -534,6 +569,8 @@ useEffect(() => {
 
               <button
                 type="button"
+                autoFocus
+                aria-label="ปิดสารบัญ"
                 onClick={() => setShowContents(false)}
                 className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-300 hover:bg-white/5"
               >

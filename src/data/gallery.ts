@@ -34,7 +34,7 @@ export const galleryItems: GalleryItem[] = [
     title: house.thaiName,
     subtitle: house.name,
     description: `${house.emblemName} · ${house.motto}`,
-    image: house.emblem,
+    image: `/images/crests-presentation/${house.slug}.png`,
     href: `/houses/${house.slug}`,
     accent: house.accent,
   })),

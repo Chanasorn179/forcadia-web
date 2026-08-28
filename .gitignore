@@ -25,6 +25,7 @@ pnpm-debug.log*
 # operating system
 .DS_Store
 Thumbs.db
+*:Zone.Identifier
 
 # TypeScript
 *.tsbuildinfo

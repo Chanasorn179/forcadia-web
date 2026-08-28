@@ -11,7 +11,7 @@ export type Empire = {
 export const empire: Empire = {
   name: "Empire of Fourcadir",
   thaiName: "จักรวรรดิฟอร์คาเดียร์",
-  crest: "/images/empire/imperial-crest.png",
+  crest: "/images/crests-presentation/unity-crown.png",
   subtitle: "Union of Eight",
   capital: "Fourcadir Central Capital",
   motto: "Empire of Fourcadir · Union of Eight",

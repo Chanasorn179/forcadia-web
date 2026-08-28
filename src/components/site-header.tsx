@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { SearchLink } from "@/components/search-link";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 type NavItem = {
   href: string;
@@ -86,7 +88,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-60 border-b border-white/10 bg-[#070912]/90 backdrop-blur-xl">
+    <header className="site-header sticky top-0 z-60 border-b shadow-[0_10px_40px_rgba(0,0,0,0.22)] backdrop-blur-xl">
       <div className="container-page">
         <div className="flex min-h-18 items-center justify-between gap-4">
           {/* Logo */}
@@ -96,8 +98,14 @@ export function SiteHeader() {
             aria-label="Forcadia Imperial Archive"
             className="flex min-w-0 items-center gap-3"
           >
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-amber-200/30 text-amber-200">
-              ✦
+            <span className="relative grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full border border-amber-200/30 bg-amber-200/5 p-1.5 shadow-[inset_0_0_16px_rgba(217,184,108,0.08)]">
+              <Image
+                src="/images/logos/unity-crown-webmark-gold.svg"
+                alt=""
+                fill
+                className="object-contain p-1.5"
+                sizes="40px"
+              />
             </span>
 
             <span className="min-w-0">
@@ -212,6 +220,7 @@ export function SiteHeader() {
           {/* Right actions */}
           <div className="flex shrink-0 items-center gap-2">
             <SearchLink />
+            <ThemeToggle />
 
             <Link
               href="/read"

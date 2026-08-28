@@ -33,22 +33,22 @@ export default function WorldPage() {
         วัฒนธรรม และความลับของตนเอง
       </p>
 
-      <section className="glass-panel relative mt-12 hidden aspect-8/5 overflow-hidden rounded-4xl md:block">
-        <div className="absolute inset-[8%] rounded-full border border-amber-200/15" />
+      <section className="world-map glass-panel relative mt-12 hidden aspect-8/5 overflow-hidden rounded-4xl md:block">
+        <div className="world-map-ring world-map-ring-outer absolute inset-[8%] rounded-full border" />
 
-        <div className="absolute inset-[18%] rounded-full border border-dashed border-amber-200/10" />
+        <div className="world-map-ring world-map-ring-inner absolute inset-[18%] rounded-full border border-dashed" />
 
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,184,108,0.15),transparent_20%),radial-gradient(circle_at_center,rgba(99,105,180,0.12),transparent_60%)]" />
+        <div className="world-map-glow absolute inset-0" />
 
         {cities.map((city) => (
           <Link
             key={city.slug}
             href={`/world/${city.slug}`}
             aria-label={`ดูรายละเอียด ${city.name}`}
-            className={`group absolute ${positions[city.position]} z-10 w-40 text-center`}
+            className={`world-map-node group absolute ${positions[city.position]} z-10 w-40 text-center`}
           >
             <div
-              className="relative mx-auto h-16 w-16 overflow-hidden rounded-full border bg-[#0d101b] shadow-lg transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110 group-hover:shadow-[0_0_28px_rgba(253,230,138,0.35)]"
+              className="world-map-emblem relative mx-auto h-16 w-16 overflow-hidden rounded-full border shadow-lg transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-110"
               style={{
                 borderColor: `${city.accent}80`,
               }}
@@ -66,11 +66,11 @@ export default function WorldPage() {
               />
             </div>
 
-            <p className="mt-2 text-sm font-semibold text-amber-100 transition group-hover:text-white">
+            <p className="world-map-city mt-2 text-sm font-semibold transition">
               {city.name}
             </p>
 
-            <p className="text-[11px] text-slate-500 transition group-hover:text-slate-300">
+            <p className="world-map-ruler text-[11px] transition">
               {city.ruler}
             </p>
 
@@ -93,7 +93,7 @@ export default function WorldPage() {
           <Link
             key={city.slug}
             href={`/world/${city.slug}`}
-            className="glass-panel card-hover group rounded-3xl p-6"
+            className="world-city-card glass-panel card-hover group rounded-3xl p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div>

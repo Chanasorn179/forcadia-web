@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { GalleryItem } from "@/data/gallery";
 
 type Props = {
@@ -18,6 +18,7 @@ const categoryLabels = {
 type Category = keyof typeof categoryLabels;
 
 export function GalleryGrid({ items }: Props) {
+  const openerRef = useRef<HTMLButtonElement | null>(null);
   const [category, setCategory] = useState<Category>("all");
   const [selectedItem, setSelectedItem] =
     useState<GalleryItem | null>(null);
@@ -33,6 +34,7 @@ export function GalleryGrid({ items }: Props) {
     }
 
     const previousOverflow = document.body.style.overflow;
+    const opener = openerRef.current;
     document.body.style.overflow = "hidden";
 
     function handleKeyDown(event: KeyboardEvent) {
@@ -46,6 +48,7 @@ export function GalleryGrid({ items }: Props) {
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
+      opener?.focus();
     };
   }, [selectedItem]);
 
@@ -57,6 +60,7 @@ export function GalleryGrid({ items }: Props) {
             key={item}
             type="button"
             onClick={() => setCategory(item)}
+            aria-pressed={category === item}
             className={[
               "rounded-full border px-5 py-2 text-sm transition",
               category === item
@@ -70,16 +74,20 @@ export function GalleryGrid({ items }: Props) {
       </div>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredItems.map((item) => (
+        {filteredItems.map((item, index) => (
           <article
             key={item.id}
             className="glass-panel card-hover group overflow-hidden rounded-3xl"
           >
             <button
               type="button"
-              onClick={() => setSelectedItem(item)}
+              onClick={(event) => {
+                openerRef.current = event.currentTarget;
+                setSelectedItem(item);
+              }}
               className="block w-full text-left"
               aria-label={`เปิดภาพ ${item.title}`}
+              aria-haspopup="dialog"
             >
               <div
                 className="relative aspect-square overflow-hidden border-b border-white/10"
@@ -91,6 +99,7 @@ export function GalleryGrid({ items }: Props) {
                   src={item.image}
                   alt={item.title}
                   fill
+                  loading={index === 0 ? "eager" : "lazy"}
                   className="object-contain p-7 transition duration-500 group-hover:scale-105"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
@@ -189,6 +198,7 @@ export function GalleryGrid({ items }: Props) {
 
                 <button
                   type="button"
+                  autoFocus
                   onClick={() => setSelectedItem(null)}
                   className="rounded-full border border-white/10 px-5 py-3 text-sm text-slate-300 transition hover:bg-white/5"
                 >

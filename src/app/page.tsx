@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CharacterCard } from "@/components/character-card";
 import { ContinueReadingCard } from "@/components/continue-reading-card";
@@ -6,38 +7,72 @@ import { chapters, characters, eras } from "@/data/forcadia";
 export default function HomePage() {
   return (
     <main>
-      <section className="relative overflow-hidden border-b border-amber-200/10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(121,133,220,0.20),transparent_28%),radial-gradient(circle_at_50%_70%,rgba(217,184,108,0.10),transparent_34%)]" />
+      <section className="relative isolate overflow-hidden border-b border-amber-200/10">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_72%_35%,rgba(121,133,220,0.20),transparent_27%),radial-gradient(circle_at_25%_70%,rgba(217,184,108,0.11),transparent_34%)]" />
+        <div className="hero-grid absolute inset-0 -z-10 opacity-35" />
 
-        <div className="container-page relative flex min-h-[72vh] items-center py-20">
+        <div className="container-page relative grid min-h-[78vh] items-center gap-12 py-20 lg:grid-cols-[1.08fr_0.92fr] lg:py-24">
           <div className="max-w-4xl">
             <p className="section-kicker">Book I · The Empty Throne</p>
 
-            <h1 className="gold-text mt-6 text-5xl font-semibold leading-tight md:text-7xl lg:text-8xl">
-              Forcadia:
-              <br />
-              The Shattered Ring
+            <h1 className="gold-text mt-6 text-5xl font-semibold leading-[1.04] md:text-7xl xl:text-[5.6rem]">
+              <span className="block">Forcadia:</span>
+              <span className="block">The Shattered</span>
+              <span className="block">Ring</span>
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
+            <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 md:text-xl md:leading-9">
               เมื่อวัฏจักรสองร้อยห้าสิบปีสิ้นสุดลง แต่รัตติกาลปฏิเสธที่จะลาลับ
               บัลลังก์หนึ่งจึงว่างเปล่า และจักรวรรดิทั้งมวลเริ่มแตกร้าว
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-9 flex flex-wrap gap-3">
               <Link
                 href="/read"
-                className="inline-flex items-center justify-center rounded-full border border-amber-300 bg-slate-950 px-9 py-4 text-base font-bold text-amber-300 shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-all duration-200 hover:-translate-y-1 hover:bg-amber-300 hover:text-slate-950"
+                className="group inline-flex min-h-13 items-center justify-center gap-3 rounded-full border border-amber-300 bg-amber-300 px-8 py-3.5 text-base font-bold text-slate-950 shadow-[0_12px_40px_rgba(217,184,108,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-200"
               >
-                เริ่มอ่าน Book I
+                เริ่มอ่าน Book I <span className="transition group-hover:translate-x-1">→</span>
               </Link>
 
               <Link
                 href="/world"
-                className="rounded-full border border-white/20 px-7 py-3 font-semibold text-slate-100 transition hover:bg-white/10"
+                className="inline-flex min-h-13 items-center rounded-full border border-white/15 bg-white/3 px-7 py-3 font-semibold text-slate-100 transition hover:border-white/30 hover:bg-white/8"
               >
                 สำรวจจักรวรรดิ
               </Link>
+            </div>
+
+            <dl className="mt-10 grid max-w-xl grid-cols-3 gap-3 border-t border-white/10 pt-6">
+              {[
+                ["8", "ตระกูลจักรพรรดิ"],
+                ["250", "ปีต่อวัฏจักร"],
+                ["1", "บัลลังก์ว่างเปล่า"],
+              ].map(([value, label]) => (
+                <div key={label}>
+                  <dt className="font-serif text-2xl text-amber-100 md:text-3xl">{value}</dt>
+                  <dd className="mt-1 text-xs leading-5 text-slate-500">{label}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="relative hidden min-h-120 place-items-center lg:grid">
+            <div className="group relative aspect-4/5 w-full max-w-105 overflow-hidden rounded-[2rem] border border-amber-200/20 bg-[#090b14] shadow-[0_35px_100px_rgba(0,0,0,0.48)]">
+              <Image
+                src="/images/portraits/group.png"
+                alt="ผู้ครองอำนาจแห่งจักรวรรดิ Forcadia"
+                fill
+                priority
+                className="object-cover object-top transition duration-1000 group-hover:scale-[1.018]"
+                sizes="(max-width: 1024px) 0px, 420px"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-[#070912] via-transparent to-black/10" />
+              <div className="absolute inset-x-0 bottom-0 p-6">
+                <p className="section-kicker">The Imperial Circle</p>
+                <p className="mt-2 font-serif text-xl text-amber-100">
+                  เจ็ดผู้ครองบัลลังก์ · หนึ่งผู้สาบสูญ
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -54,7 +89,7 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <Link href="/characters" className="text-sm text-amber-200">
+          <Link href="/characters" className="link-arrow text-sm text-amber-200">
             ดูตัวละครทั้งหมด →
           </Link>
         </div>
@@ -118,7 +153,7 @@ export default function HomePage() {
 
             <Link
               href="/timeline"
-              className="mt-8 inline-flex text-sm text-amber-200"
+              className="link-arrow mt-8 inline-flex text-sm text-amber-200"
             >
               เปิดเส้นเวลาทั้งหมด →
             </Link>

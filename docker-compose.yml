@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_USER: forcadia
-      POSTGRES_PASSWORD: Forcadia1234
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
       POSTGRES_DB: forcadia
     ports:
       - "5432:5432"

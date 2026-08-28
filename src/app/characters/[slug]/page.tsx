@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getCharacterArtwork } from "@/data/media";
 import { prisma } from "@/lib/prisma";
 
 type Props = {
@@ -73,25 +75,23 @@ export default async function CharacterDetailPage({
 
       <section className="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div
-          className="glass-panel grid min-h-120 place-items-center rounded-3xl p-8"
+          className="glass-panel relative min-h-120 overflow-hidden rounded-3xl"
           style={{
             background:
               `radial-gradient(circle at center, ${character.accent}22, rgba(7,9,18,0.98) 70%)`,
           }}
         >
-          <div className="text-center">
-            <span
-              className="mx-auto grid h-32 w-32 place-items-center rounded-full border text-6xl"
-              style={{
-                color: character.accent,
-                borderColor: `${character.accent}66`,
-                backgroundColor: `${character.accent}14`,
-              }}
-            >
-              {character.symbol}
-            </span>
-
-            <p className="mt-8 text-sm uppercase tracking-[0.22em] text-slate-500">
+          <Image
+            src={getCharacterArtwork(character.slug)}
+            alt={character.thaiName}
+            fill
+            priority
+            className="object-cover object-top"
+            sizes="(max-width: 1024px) 100vw, 40vw"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-[#070912] via-transparent to-black/10" />
+          <div className="absolute inset-x-0 bottom-0 p-7 text-center">
+            <p className="text-sm uppercase tracking-[0.22em] text-slate-300">
               {character.keyName}
             </p>
           </div>

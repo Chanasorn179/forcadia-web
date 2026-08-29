@@ -188,7 +188,7 @@ export function SiteHeader() {
               {moreOpen && (
                 <div
                   role="menu"
-                  className="absolute right-0 top-[calc(100%+0.75rem)] w-56 overflow-hidden rounded-2xl border border-white/10 bg-[#0b0e18]/98 p-2 shadow-2xl backdrop-blur-xl"
+                  className="more-menu absolute right-0 top-[calc(100%+0.75rem)] w-56 overflow-hidden rounded-2xl border p-2 shadow-2xl backdrop-blur-xl"
                 >
                   {secondaryItems.map((item) => {
                     const active = isActivePath(pathname, item.href);
@@ -201,7 +201,7 @@ export function SiteHeader() {
                         role="menuitem"
                         aria-current={active ? "page" : undefined}
                         className={[
-                          "flex items-center justify-between rounded-xl px-4 py-3 text-sm transition",
+                          "more-menu-link flex items-center justify-between rounded-xl px-4 py-3 text-sm transition",
                           active
                             ? "bg-amber-200/10 text-amber-100"
                             : "text-slate-300 hover:bg-white/5 hover:text-white",

@@ -80,6 +80,24 @@ body {
   background: color-mix(in srgb, var(--gold) 12%, transparent);
 }
 
+.more-menu {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(11, 14, 24, 0.98);
+}
+
+:root[data-theme="light"] .more-menu {
+  border-color: rgba(122, 83, 24, 0.2);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.7), transparent 48%),
+    rgba(255, 250, 240, 0.98);
+  box-shadow: 0 18px 48px rgba(82, 58, 25, 0.18);
+}
+
+:root[data-theme="light"] .more-menu-link:hover {
+  background: rgba(121, 87, 25, 0.08);
+  color: #4f3710;
+}
+
 h1,
 h2,
 h3 {

@@ -23,6 +23,8 @@ const primaryItems: NavItem[] = [
 const secondaryItems: NavItem[] = [
   { href: "/timeline", label: "เส้นเวลา" },
   { href: "/lore", label: "คลังตำนาน" },
+  { href: "/glossary", label: "คำศัพท์" },
+  { href: "/sovereign-keys", label: "กุญแจราชันย์" },
   { href: "/gallery", label: "หอศิลป์" },
   { href: "/library", label: "ชั้นหนังสือ" },
 ];

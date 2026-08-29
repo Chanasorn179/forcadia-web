@@ -39,6 +39,11 @@ export default async function LoreDetailPage({ params }: Props) {
     notFound();
   }
 
+  const relatedEntries = entry.related.flatMap((relatedItem) => {
+    const match = lore.find((item) => item.term === relatedItem);
+    return match ? [match] : [];
+  });
+
   return (
     <main className="container-page py-16 md:py-24">
       <Link
@@ -102,16 +107,46 @@ export default async function LoreDetailPage({ params }: Props) {
           </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
-            {entry.related.map((relatedItem) => (
-              <span
-                key={relatedItem}
-                className="rounded-full border border-white/10 bg-white/3 px-4 py-2 text-sm text-slate-300"
-              >
-                {relatedItem}
-              </span>
-            ))}
+            {entry.related.map((relatedItem) => {
+              const relatedEntry = relatedEntries.find(
+                (item) => item.term === relatedItem,
+              );
+
+              return relatedEntry ? (
+                <Link
+                  key={relatedItem}
+                  href={`/lore/${relatedEntry.slug}`}
+                  className="rounded-full border border-amber-200/20 bg-amber-200/5 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-200/10"
+                >
+                  {relatedItem} →
+                </Link>
+              ) : (
+                <span
+                  key={relatedItem}
+                  className="rounded-full border border-white/10 bg-white/3 px-4 py-2 text-sm text-slate-300"
+                >
+                  {relatedItem}
+                </span>
+              );
+            })}
           </div>
         </section>
+
+        {entry.slug === "sovereign-key" && (
+          <section className="mt-8 rounded-2xl border border-amber-200/20 bg-amber-200/5 p-6">
+            <p className="section-kicker">The Eight Fragments</p>
+            <h2 className="mt-3 text-2xl text-amber-100">กุญแจราชันย์ทั้งแปด</h2>
+            <p className="mt-3 leading-7 text-slate-300">
+              เปิดสารบบเพื่อดูชื่อกุญแจ ผู้ถือครอง ตระกูล และอำนาจที่เชื่อมโยงกัน
+            </p>
+            <Link
+              href="/sovereign-keys"
+              className="mt-5 inline-flex rounded-full border border-amber-200/30 px-5 py-2.5 text-sm font-semibold text-amber-100 transition hover:bg-amber-200/10"
+            >
+              เปิดสารบบกุญแจราชันย์ →
+            </Link>
+          </section>
+        )}
       </article>
     </main>
   );

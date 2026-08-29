@@ -169,6 +169,74 @@ a {
   box-shadow: 0 18px 55px rgba(82, 58, 25, 0.12);
 }
 
+/* Admin pages use many compact dark-mode utility styles. Keep their light-mode
+   treatment scoped here so public cards and the novel reader retain their own
+   visual themes. */
+:root[data-theme="light"] .admin-surface {
+  --admin-control: rgba(255, 253, 248, 0.92);
+  --admin-control-hover: rgba(121, 87, 25, 0.08);
+  --admin-border: rgba(91, 62, 20, 0.2);
+  --admin-text: #29231d;
+  --admin-muted: #625d57;
+}
+
+:root[data-theme="light"] .admin-surface :is(input, textarea, select) {
+  border-color: var(--admin-border) !important;
+  background: var(--admin-control) !important;
+  color: var(--admin-text) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+:root[data-theme="light"] .admin-surface :is(input, textarea)::placeholder {
+  color: #817970;
+}
+
+:root[data-theme="light"] .admin-surface select option {
+  background: #fffaf0;
+  color: var(--admin-text);
+}
+
+:root[data-theme="light"] .admin-surface .border-white\/10,
+:root[data-theme="light"] .admin-surface .border-slate-300\/15 {
+  border-color: var(--admin-border);
+}
+
+:root[data-theme="light"] .admin-surface .bg-black\/10,
+:root[data-theme="light"] .admin-surface .bg-black\/20,
+:root[data-theme="light"] .admin-surface .bg-white\/5,
+:root[data-theme="light"] .admin-surface .bg-\[\#0d101b\] {
+  background: rgba(121, 87, 25, 0.045);
+}
+
+:root[data-theme="light"] .admin-surface .text-slate-100,
+:root[data-theme="light"] .admin-surface .text-slate-200,
+:root[data-theme="light"] .admin-surface .text-white {
+  color: var(--admin-text);
+}
+
+:root[data-theme="light"] .admin-surface .text-slate-300,
+:root[data-theme="light"] .admin-surface .text-slate-400,
+:root[data-theme="light"] .admin-surface .text-slate-500 {
+  color: var(--admin-muted);
+}
+
+:root[data-theme="light"] .admin-surface .hover\:bg-white\/5:hover {
+  background: var(--admin-control-hover);
+}
+
+:root[data-theme="light"] .admin-surface .hover\:text-white:hover {
+  color: #4f3710;
+}
+
+:root[data-theme="light"] .admin-surface .text-rose-100,
+:root[data-theme="light"] .admin-surface .text-rose-200 {
+  color: #9f1239;
+}
+
+:root[data-theme="light"] .admin-surface .bg-rose-300\/10 {
+  background: rgba(190, 18, 60, 0.08);
+}
+
 :root[data-theme="light"] .text-slate-300,
 :root[data-theme="light"] .text-slate-400 {
   color: #555660;

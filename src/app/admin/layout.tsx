@@ -10,11 +10,11 @@ export default async function AdminLayout({
   const authenticated = await isAdminAuthenticated();
 
   if (!authenticated) {
-    return children;
+    return <div className="admin-surface">{children}</div>;
   }
 
   return (
-    <main className="container-page py-10 md:py-14">
+    <main className="admin-surface container-page py-10 md:py-14">
       <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
         <AdminNav />
         <div>{children}</div>

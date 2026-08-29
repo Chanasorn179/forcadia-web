@@ -21,7 +21,7 @@ export function HouseEmblem({
 }: Props) {
   return (
     <div
-      className={`relative overflow-hidden rounded-3xl border bg-black/20 ${sizes[size]}`}
+      className={`house-emblem relative overflow-hidden rounded-3xl border bg-black/20 ${sizes[size]}`}
       style={{
         borderColor: `${accent}55`,
         boxShadow: `0 0 36px ${accent}18`,
@@ -32,7 +32,7 @@ export function HouseEmblem({
         alt={alt}
         fill
         sizes={size === "lg" ? "(max-width: 1024px) 100vw, 40vw" : "180px"}
-        className="object-cover"
+        className="house-emblem-image object-cover"
       />
     </div>
   );

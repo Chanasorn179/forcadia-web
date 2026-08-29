@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getCharacterArtwork } from "@/data/media";
-import { prisma } from "@/lib/prisma";
+import { getPublicCharacters } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "ตัวละคร",
@@ -12,19 +12,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function CharactersPage() {
-  const characters = await prisma.character.findMany({
-    orderBy: {
-      name: "asc",
-    },
-    include: {
-      house: {
-        select: {
-          name: true,
-          slug: true,
-        },
-      },
-    },
-  });
+  const characters = await getPublicCharacters();
 
   return (
     <main className="container-page py-16 md:py-24">
@@ -35,8 +23,7 @@ export default async function CharactersPage() {
       </h1>
 
       <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-        ข้อมูลตัวละครในหน้านี้ดึงจาก PostgreSQL
-        และอัปเดตตาม Admin Dashboard
+        บันทึกผู้ครองอำนาจแห่งจักรวรรดิและตระกูลที่พวกเขาสังกัด
       </p>
 
       <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">

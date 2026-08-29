@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCharacterArtwork } from "@/data/media";
-import { prisma } from "@/lib/prisma";
+import { getPublicCharacterBySlug } from "@/lib/public-content";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -16,13 +16,7 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  const character = await prisma.character.findUnique({
-    where: { slug },
-    select: {
-      name: true,
-      summary: true,
-    },
-  });
+  const character = await getPublicCharacterBySlug(slug);
 
   if (!character) {
     return { title: "ไม่พบตัวละคร" };
@@ -39,20 +33,7 @@ export default async function CharacterDetailPage({
 }: Props) {
   const { slug } = await params;
 
-  const character = await prisma.character.findUnique({
-    where: { slug },
-    include: {
-      house: {
-        select: {
-          slug: true,
-          name: true,
-          thaiName: true,
-          motto: true,
-          emblem: true,
-        },
-      },
-    },
-  });
+  const character = await getPublicCharacterBySlug(slug);
 
   if (!character) {
     notFound();

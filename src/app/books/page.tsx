@@ -20,7 +20,6 @@ export default async function BooksPage() {
       </h1>
       <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
         รวมเรื่องราวที่ได้รับการเผยแพร่จาก Imperial Archive
-        ข้อมูลในหน้านี้ดึงจาก PostgreSQL โดยตรง
       </p>
 
       {books.length > 0 ? (

@@ -6,11 +6,12 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 function createPrismaClient() {
-  const connectionString = process.env.DATABASE_URL;
-
-  if (!connectionString) {
-    throw new Error("DATABASE_URL is not defined.");
-  }
+  // Keep public routes alive when a deployment has not been connected to its
+  // database yet. Queries will fail normally and public-content will serve the
+  // bundled read-only fallback instead.
+  const connectionString =
+    process.env.DATABASE_URL ??
+    "postgresql://unconfigured:unconfigured@127.0.0.1:5432/unconfigured";
 
   const adapter = new PrismaPg({
     connectionString,

@@ -153,6 +153,24 @@ export async function getPublishedChapterBySlug(slug: string) {
   }
 }
 
+export async function getFirstPublishedChapter() {
+  try {
+    return await prisma.chapter.findFirst({
+      where: { published: true },
+      orderBy: [
+        { book: { order: "asc" } },
+        { sortOrder: "asc" },
+      ],
+      select: { slug: true },
+    });
+  } catch (error) {
+    reportFallback("first chapter", error);
+    const firstBook = [...staticBooks].sort((a, b) => a.order - b.order)[0];
+    const firstChapter = firstBook ? getBookChapters(firstBook)[0] : undefined;
+    return firstChapter ? { slug: firstChapter.slug } : null;
+  }
+}
+
 export async function getChapterNavigation(
   bookId: string,
   currentSortOrder: number,

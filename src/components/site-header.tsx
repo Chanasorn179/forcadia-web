@@ -39,25 +39,26 @@ export function SiteHeader() {
   const pathname = usePathname();
   const moreMenuRef = useRef<HTMLDivElement>(null);
 
-  const [moreOpen, setMoreOpen] = useState(false);
+  const [moreOpenAt, setMoreOpenAt] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const moreOpen = moreOpenAt === pathname;
 
   const secondaryActive = secondaryItems.some((item) =>
     isActivePath(pathname, item.href),
   );
 
   function closeMenus() {
-    setMoreOpen(false);
+    setMoreOpenAt(null);
     setMobileOpen(false);
   }
 
   function toggleMoreMenu() {
     setMobileOpen(false);
-    setMoreOpen((current) => !current);
+    setMoreOpenAt((current) => current === pathname ? null : pathname);
   }
 
   function toggleMobileMenu() {
-    setMoreOpen(false);
+    setMoreOpenAt(null);
     setMobileOpen((current) => !current);
   }
 
@@ -67,13 +68,13 @@ export function SiteHeader() {
         moreMenuRef.current &&
         !moreMenuRef.current.contains(event.target as Node)
       ) {
-        setMoreOpen(false);
+        setMoreOpenAt(null);
       }
     }
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setMoreOpen(false);
+        setMoreOpenAt(null);
         setMobileOpen(false);
       }
     }

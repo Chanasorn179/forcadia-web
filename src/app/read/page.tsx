@@ -1,27 +1,10 @@
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { getFirstPublishedChapter } from "@/lib/public-content";
 
 export const dynamic = "force-dynamic";
 
 export default async function ReadPage() {
-  const firstChapter = await prisma.chapter.findFirst({
-    where: {
-      published: true,
-    },
-    orderBy: [
-      {
-        book: {
-          order: "asc",
-        },
-      },
-      {
-        sortOrder: "asc",
-      },
-    ],
-    select: {
-      slug: true,
-    },
-  });
+  const firstChapter = await getFirstPublishedChapter();
 
   if (!firstChapter) {
     redirect("/books");

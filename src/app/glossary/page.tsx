@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { lore } from "@/data/forcadia";
+import { getPublicLoreEntries } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "คำศัพท์แห่ง Forcadia",
   description: "ดัชนีคำศัพท์ ตำนาน กฎ สิ่งประดิษฐ์ และเวทแห่ง Forcadia",
 };
 
-export default function GlossaryPage() {
-  const entries = [...lore].sort((a, b) => a.term.localeCompare(b.term));
+export const dynamic = "force-dynamic";
+
+export default async function GlossaryPage() {
+  const entries = await getPublicLoreEntries();
 
   return (
     <main className="container-page py-16 md:py-24">

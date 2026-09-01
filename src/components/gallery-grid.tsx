@@ -62,7 +62,7 @@ export function GalleryGrid({ items }: Props) {
             onClick={() => setCategory(item)}
             aria-pressed={category === item}
             className={[
-              "rounded-full border px-5 py-2 text-sm transition",
+              "min-h-11 rounded-full border px-5 py-2 text-sm transition",
               category === item
                 ? "border-amber-200/40 bg-amber-200/10 text-amber-100"
                 : "border-white/10 text-slate-400 hover:border-white/20 hover:bg-white/5 hover:text-slate-200",
@@ -133,7 +133,7 @@ export function GalleryGrid({ items }: Props) {
             <div className="border-t border-white/10 px-6 py-4">
               <Link
                 href={item.href}
-                className="inline-flex text-sm text-amber-200 transition hover:translate-x-1"
+                className="inline-flex min-h-11 items-center text-sm text-amber-200 transition hover:translate-x-1"
               >
                 เปิดบันทึกที่เกี่ยวข้อง →
               </Link>

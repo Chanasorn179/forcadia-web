@@ -2,9 +2,43 @@ import Image from "next/image";
 import Link from "next/link";
 import { CharacterCard } from "@/components/character-card";
 import { ContinueReadingCard } from "@/components/continue-reading-card";
-import { chapters, characters, eras } from "@/data/forcadia";
+import { characters as staticCharacters } from "@/data/forcadia";
+import {
+  getPublicCharacters,
+  getPublicEras,
+  getPublishedChapters,
+} from "@/lib/public-content";
 
-export default function HomePage() {
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const [databaseCharacters, chapters, eras] = await Promise.all([
+    getPublicCharacters(),
+    getPublishedChapters(),
+    getPublicEras(),
+  ]);
+  const characters = databaseCharacters.map((character) => {
+    const presentation = staticCharacters.find((item) => item.slug === character.slug);
+
+    return presentation
+      ? {
+          ...presentation,
+          name: character.name,
+          thaiName: character.thaiName,
+          title: character.title,
+          summary: character.summary,
+          key: character.keyName,
+          eye: character.eye,
+          domain: character.domain,
+          army: character.army,
+          powers: Array.isArray(character.powers)
+            ? character.powers.filter((power): power is string => typeof power === "string")
+            : presentation.powers,
+          accent: character.accent,
+          symbol: character.symbol,
+        }
+      : null;
+  }).filter((character): character is (typeof staticCharacters)[number] => Boolean(character));
   return (
     <main>
       <section className="relative isolate overflow-hidden border-b border-amber-200/10">
@@ -117,7 +151,7 @@ export default function HomePage() {
                   className="glass-panel card-hover block rounded-2xl p-5"
                 >
                   <p className="text-xs uppercase tracking-[0.22em] text-amber-200">
-                    {chapter.order}
+                    {chapter.orderText}
                   </p>
 
                   <h3 className="mt-2 text-xl">{chapter.title}</h3>

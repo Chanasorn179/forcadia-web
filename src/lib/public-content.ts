@@ -1,6 +1,12 @@
 import { prisma } from "@/lib/prisma";
 import { books as staticBooks, getBookChapters } from "@/data/books";
-import { chapters as staticChapters, characters as staticCharacters } from "@/data/forcadia";
+import {
+  chapters as staticChapters,
+  characters as staticCharacters,
+  cities as staticCities,
+  eras as staticEras,
+  lore as staticLore,
+} from "@/data/forcadia";
 import { houses as staticHouses } from "@/data/houses";
 
 const statusMap = {
@@ -307,6 +313,185 @@ export async function getPublicCharacterBySlug(slug: string) {
           }
         : null,
     };
+  }
+}
+
+export async function getPublicHouses(): Promise<typeof staticHouses> {
+  try {
+    const houses = await prisma.house.findMany({
+      orderBy: { name: "asc" },
+      include: {
+        ruler: { select: { slug: true, name: true } },
+        city: { select: { name: true, slug: true } },
+      },
+    });
+
+    return houses.map((house) => {
+      const presentation = staticHouses.find((item) => item.slug === house.slug);
+
+      return {
+        slug: house.slug,
+        name: house.name,
+        thaiName: house.thaiName,
+        ruler: house.ruler.name,
+        rulerSlug: house.ruler.slug,
+        city: house.city?.name ?? presentation?.city ?? "ยังไม่กำหนดนคร",
+        citySlug: house.city?.slug ?? presentation?.citySlug ?? "",
+        emblem: house.emblem,
+        emblemName: house.emblemName,
+        motto: house.motto,
+        accent: house.accent,
+        description: house.description,
+        key: house.keyName,
+        domain: house.domain,
+      };
+    });
+  } catch (error) {
+    reportFallback("houses", error);
+    return staticHouses;
+  }
+}
+
+export async function getPublicHouseBySlug(slug: string) {
+  const houses = await getPublicHouses();
+  return houses.find((house) => house.slug === slug) ?? null;
+}
+
+export async function getPublicCities(): Promise<typeof staticCities> {
+  try {
+    const cities = await prisma.city.findMany({
+      orderBy: { name: "asc" },
+      include: {
+        house: {
+          select: {
+            name: true,
+            ruler: { select: { name: true } },
+          },
+        },
+      },
+    });
+
+    return cities.map((city) => {
+      const presentation = staticCities.find((item) => item.slug === city.slug);
+
+      return {
+        slug: city.slug,
+        name: city.name,
+        thaiName: city.thaiName,
+        ruler: city.house?.ruler.name ?? presentation?.ruler ?? "Imperial Council",
+        faction: city.house?.name ?? presentation?.faction ?? "Imperial Capital",
+        title: city.title,
+        description: city.description,
+        atmosphere: city.atmosphere,
+        architecture: city.architecture,
+        landmark: city.landmark,
+        accent: city.accent,
+        symbol: city.symbol,
+        position: presentation?.position ?? "center",
+        emblem:
+          city.emblem ??
+          presentation?.emblem ??
+          "/images/logos/unity-crown-webmark-gold.png",
+      };
+    });
+  } catch (error) {
+    reportFallback("cities", error);
+    return staticCities;
+  }
+}
+
+export async function getPublicCityBySlug(slug: string) {
+  const cities = await getPublicCities();
+  return cities.find((city) => city.slug === slug) ?? null;
+}
+
+export async function getPublicEras(): Promise<typeof staticEras> {
+  try {
+    const eras = await prisma.era.findMany({ orderBy: { sortOrder: "asc" } });
+
+    return eras.map((era, index) => {
+      const presentation = staticEras.find((item) => item.slug === era.slug);
+
+      return {
+        slug: era.slug,
+        name: era.name,
+        thaiName: era.thaiName ?? presentation?.thaiName ?? "",
+        ruler: era.ruler ?? presentation?.ruler ?? "ไม่ปรากฏ",
+        duration: presentation?.duration ?? `ศักราชที่ ${index + 1}`,
+        detail: era.detail,
+        description: era.description ?? presentation?.description ?? era.detail,
+        events: presentation?.events ?? [],
+        legacy: era.legacy ?? presentation?.legacy ?? "",
+        accent: presentation?.accent ?? "#d9b86c",
+        symbol: presentation?.symbol ?? "✦",
+      };
+    });
+  } catch (error) {
+    reportFallback("eras", error);
+    return staticEras;
+  }
+}
+
+export async function getPublicEraBySlug(slug: string) {
+  const eras = await getPublicEras();
+  return eras.find((era) => era.slug === slug) ?? null;
+}
+
+export async function getPublicLoreEntries(): Promise<typeof staticLore> {
+  try {
+    const entries = await prisma.loreEntry.findMany({ orderBy: { term: "asc" } });
+
+    return entries.map((entry) => {
+      const presentation = staticLore.find((item) => item.slug === entry.slug);
+
+      return {
+        slug: entry.slug,
+        term: entry.term,
+        thaiName: entry.thaiName ?? presentation?.thaiName ?? "",
+        category: entry.category ?? presentation?.category ?? "Imperial Codex",
+        meaning: entry.meaning,
+        description: entry.description ?? presentation?.description ?? entry.meaning,
+        origin: entry.origin ?? presentation?.origin ?? "ไม่ปรากฏในบันทึก",
+        significance: entry.significance ?? presentation?.significance ?? entry.meaning,
+        related: presentation?.related ?? [],
+        symbol: presentation?.symbol ?? "✦",
+      };
+    });
+  } catch (error) {
+    reportFallback("lore", error);
+    return staticLore;
+  }
+}
+
+export async function getPublicLoreBySlug(slug: string) {
+  const entries = await getPublicLoreEntries();
+  return entries.find((entry) => entry.slug === slug) ?? null;
+}
+
+export async function getPublishedChapters() {
+  try {
+    return await prisma.chapter.findMany({
+      where: { published: true },
+      orderBy: [{ book: { order: "asc" } }, { sortOrder: "asc" }],
+      include: { book: { select: { slug: true, title: true } } },
+    });
+  } catch (error) {
+    reportFallback("chapters", error);
+    return staticChapters.map((chapter, index) => ({
+      id: chapter.slug,
+      slug: chapter.slug,
+      title: chapter.title,
+      orderText: chapter.order,
+      sortOrder: index,
+      pov: chapter.pov,
+      excerpt: chapter.excerpt,
+      content: chapter.content,
+      published: true,
+      bookId: "static",
+      createdAt: new Date(0),
+      updatedAt: new Date(0),
+      book: { slug: "the-empty-throne", title: "Book I: The Empty Throne" },
+    }));
   }
 }
 

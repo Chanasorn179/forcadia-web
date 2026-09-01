@@ -23,10 +23,10 @@ export function SiteFooter() {
           </div>
         </div>
         <nav aria-label="เมนูส่วนท้าย" className="flex flex-wrap items-start gap-x-6 gap-y-3 text-sm text-slate-400 md:justify-end">
-          <Link className="transition hover:text-amber-100" href="/read">อ่านนิยาย</Link>
-          <Link className="transition hover:text-amber-100" href="/characters">ตัวละคร</Link>
-          <Link className="transition hover:text-amber-100" href="/world">แผนที่โลก</Link>
-          <Link className="transition hover:text-amber-100" href="/lore">คลังตำนาน</Link>
+          <Link className="inline-flex min-h-11 items-center transition hover:text-amber-100" href="/read">อ่านนิยาย</Link>
+          <Link className="inline-flex min-h-11 items-center transition hover:text-amber-100" href="/characters">ตัวละคร</Link>
+          <Link className="inline-flex min-h-11 items-center transition hover:text-amber-100" href="/world">แผนที่โลก</Link>
+          <Link className="inline-flex min-h-11 items-center transition hover:text-amber-100" href="/lore">คลังตำนาน</Link>
         </nav>
       </div>
     </footer>

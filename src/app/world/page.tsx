@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { cities } from "@/data/forcadia";
+import { getPublicCities } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "จักรวรรดิ",
@@ -19,7 +19,10 @@ const positions: Record<string, string> = {
   northwest: "left-[10%] top-[20%]",
 };
 
-export default function WorldPage() {
+export const dynamic = "force-dynamic";
+
+export default async function WorldPage() {
+  const cities = await getPublicCities();
   return (
     <main className="container-page py-16 md:py-24">
       <p className="section-kicker">The Shattered Empire</p>

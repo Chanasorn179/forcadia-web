@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { eras } from "@/data/forcadia";
+import { getPublicEraBySlug } from "@/lib/public-content";
 
 type Props = {
   params: Promise<{
@@ -17,7 +18,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const era = eras.find((item) => item.slug === slug);
+  const era = await getPublicEraBySlug(slug);
 
   if (!era) {
     return {
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function EraDetailPage({ params }: Props) {
   const { slug } = await params;
-  const era = eras.find((item) => item.slug === slug);
+  const era = await getPublicEraBySlug(slug);
 
   if (!era) {
     notFound();

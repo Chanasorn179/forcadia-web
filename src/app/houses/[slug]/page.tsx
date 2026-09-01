@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { HouseEmblem } from "@/components/house-emblem";
 import { RelationCard } from "@/components/relation-card";
 import { houses } from "@/data/houses";
+import { getPublicHouseBySlug } from "@/lib/public-content";
 import {
   getCharacterByHouseSlug,
   getCityByHouseSlug,
@@ -23,7 +24,7 @@ export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const house = houses.find((item) => item.slug === slug);
+  const house = await getPublicHouseBySlug(slug);
 
   if (!house) {
     return {
@@ -39,7 +40,7 @@ export async function generateMetadata({
 
 export default async function HouseDetailPage({ params }: Props) {
   const { slug } = await params;
-  const house = houses.find((item) => item.slug === slug);
+  const house = await getPublicHouseBySlug(slug);
 
   if (!house) {
     notFound();

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { RelationCard } from "@/components/relation-card";
 import { cities } from "@/data/forcadia";
+import { getPublicCityBySlug } from "@/lib/public-content";
 import { empire } from "@/data/empire";
 import {
   getCharacterByCitySlug,
@@ -24,7 +25,7 @@ export async function generateMetadata({
   params,
 }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const city = cities.find((item) => item.slug === slug);
+  const city = await getPublicCityBySlug(slug);
 
   if (!city) {
     return {
@@ -40,7 +41,7 @@ export async function generateMetadata({
 
 export default async function CityDetailPage({ params }: Props) {
   const { slug } = await params;
-  const city = cities.find((item) => item.slug === slug);
+  const city = await getPublicCityBySlug(slug);
 
   if (!city) {
     notFound();

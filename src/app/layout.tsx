@@ -11,6 +11,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://forcadia-web.vercel.app"),
   title: {
     default: "Forcadia: The Shattered Ring",
     template: "%s | Forcadia",

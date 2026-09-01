@@ -135,3 +135,13 @@ model LoreEntry {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+model AdminLoginAttempt {
+  fingerprint  String   @id
+  failures     Int      @default(0)
+  blockedUntil DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([updatedAt])
+}

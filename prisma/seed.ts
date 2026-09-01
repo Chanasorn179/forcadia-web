@@ -15,10 +15,10 @@ import { books } from "../src/data/books";
 import { houses } from "../src/data/houses";
 import { worldLinks } from "../src/data/world-links";
 
-const connectionString = process.env.DATABASE_URL;
+const connectionString = process.env.DIRECT_URL ?? process.env.DATABASE_URL;
 
 if (!connectionString) {
-  throw new Error("DATABASE_URL is not defined.");
+  throw new Error("DIRECT_URL or DATABASE_URL is not defined.");
 }
 
 const adapter = new PrismaPg({

@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { lore } from "@/data/forcadia";
+import { getPublicLoreEntries } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "คลังตำนาน",
 };
 
-export default function LorePage() {
+export const dynamic = "force-dynamic";
+
+export default async function LorePage() {
+  const lore = await getPublicLoreEntries();
   const categories = [...new Set(lore.map((item) => item.category))];
 
   return (

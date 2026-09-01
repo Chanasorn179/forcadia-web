@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HouseEmblem } from "@/components/house-emblem";
-import { houses } from "@/data/houses";
+import { getPublicHouses } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "แปดตระกูลจักรพรรดิ",
 };
 
-export default function HousesPage() {
+export const dynamic = "force-dynamic";
+
+export default async function HousesPage() {
+  const houses = await getPublicHouses();
   return (
     <main className="container-page py-16 md:py-24">
       <p className="section-kicker">The Eight Imperial Houses</p>

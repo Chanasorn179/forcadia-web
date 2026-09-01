@@ -23,19 +23,20 @@ type Props = {
   previousChapter?: ChapterNav;
   nextChapter?: ChapterNav;
   allChapters: ChapterNav[];
+  initialSettings?: ReaderSettings;
 };
 
-type ReaderTheme = "night" | "paper" | "black";
-type ReaderWidth = "narrow" | "medium" | "wide";
+export type ReaderTheme = "night" | "paper" | "black";
+export type ReaderWidth = "narrow" | "medium" | "wide";
 
-type ReaderSettings = {
+export type ReaderSettings = {
   fontSize: number;
   lineHeight: number;
   theme: ReaderTheme;
   width: ReaderWidth;
 };
 
-const defaultSettings: ReaderSettings = {
+export const defaultReaderSettings: ReaderSettings = {
   fontSize: 18,
   lineHeight: 1.95,
   theme: "night",
@@ -77,55 +78,20 @@ export function NovelReader({
   previousChapter,
   nextChapter,
   allChapters,
+  initialSettings = defaultReaderSettings,
 }: Props) {
   const articleRef = useRef<HTMLDivElement>(null);
   const contentsButtonRef = useRef<HTMLButtonElement>(null);
 
   const [settings, setSettings] =
-    useState<ReaderSettings>(defaultSettings);
+    useState<ReaderSettings>(initialSettings);
   const [progress, setProgress] = useState(0);
   const [showContents, setShowContents] = useState(false);
   const [showToolbar, setShowToolbar] = useState(false);
   const [restored, setRestored] = useState(false);
 
-useEffect(() => {
-  const savedSettings = localStorage.getItem(settingsKey());
-  const savedProgress = localStorage.getItem(storageKey(chapterSlug));
-
-  const timeoutId = window.setTimeout(() => {
-    if (savedSettings) {
-      try {
-        const parsed = JSON.parse(savedSettings) as Partial<ReaderSettings>;
-
-        setSettings({
-          fontSize:
-            typeof parsed.fontSize === "number"
-              ? parsed.fontSize
-              : defaultSettings.fontSize,
-
-          lineHeight:
-            typeof parsed.lineHeight === "number"
-              ? parsed.lineHeight
-              : defaultSettings.lineHeight,
-
-          theme:
-            parsed.theme === "night" ||
-            parsed.theme === "paper" ||
-            parsed.theme === "black"
-              ? parsed.theme
-              : defaultSettings.theme,
-
-          width:
-            parsed.width === "narrow" ||
-            parsed.width === "medium" ||
-            parsed.width === "wide"
-              ? parsed.width
-              : defaultSettings.width,
-        });
-      } catch {
-        localStorage.removeItem(settingsKey());
-      }
-    }
+  useEffect(() => {
+    const savedProgress = localStorage.getItem(storageKey(chapterSlug));
 
     if (savedProgress) {
       const value = Number(savedProgress);
@@ -134,22 +100,19 @@ useEffect(() => {
         const maxScroll =
           document.documentElement.scrollHeight - window.innerHeight;
 
-        window.scrollTo({
-          top: Math.round((value / 100) * maxScroll),
-          behavior: "auto",
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: Math.round((value / 100) * maxScroll),
+            behavior: "auto",
+          });
+          setRestored(true);
         });
-
-        setRestored(true);
       }
     }
-  }, 0);
-
-  return () => {
-    window.clearTimeout(timeoutId);
-  };
-}, [chapterSlug]);
+  }, [chapterSlug]);
   useEffect(() => {
     localStorage.setItem(settingsKey(), JSON.stringify(settings));
+    document.cookie = `forcadia_reader_settings=${encodeURIComponent(JSON.stringify(settings))}; Path=/; Max-Age=31536000; SameSite=Lax`;
   }, [settings]);
 
   useEffect(() => {
@@ -254,7 +217,7 @@ useEffect(() => {
   }
 
   function resetSettings() {
-    setSettings(defaultSettings);
+    setSettings(defaultReaderSettings);
   }
 
   function goToTop() {

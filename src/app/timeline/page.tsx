@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { eras } from "@/data/forcadia";
+import { getPublicEras } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "เส้นเวลา",
 };
 
-export default function TimelinePage() {
+export const dynamic = "force-dynamic";
+
+export default async function TimelinePage() {
+  const eras = await getPublicEras();
   return (
     <main className="container-page py-16 md:py-24">
       <p className="section-kicker">Chronicle of the Ring</p>

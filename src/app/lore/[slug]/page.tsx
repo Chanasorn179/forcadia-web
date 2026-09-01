@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { lore } from "@/data/forcadia";
+import {
+  getPublicLoreBySlug,
+  getPublicLoreEntries,
+} from "@/lib/public-content";
 
 type Props = {
   params: Promise<{
@@ -17,7 +21,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const entry = lore.find((item) => item.slug === slug);
+  const entry = await getPublicLoreBySlug(slug);
 
   if (!entry) {
     return {
@@ -33,14 +37,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LoreDetailPage({ params }: Props) {
   const { slug } = await params;
-  const entry = lore.find((item) => item.slug === slug);
+  const [entry, loreEntries] = await Promise.all([
+    getPublicLoreBySlug(slug),
+    getPublicLoreEntries(),
+  ]);
 
   if (!entry) {
     notFound();
   }
 
   const relatedEntries = entry.related.flatMap((relatedItem) => {
-    const match = lore.find((item) => item.term === relatedItem);
+    const match = loreEntries.find((item) => item.term === relatedItem);
     return match ? [match] : [];
   });
 

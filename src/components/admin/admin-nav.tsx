@@ -6,6 +6,7 @@ const links = [
   { href: "/admin/chapters", label: "จัดการตอนนิยาย" },
   { href: "/admin/characters", label: "จัดการตัวละคร" },
   { href: "/admin/houses", label: "จัดการตระกูล" },
+  { href: "/admin/content", label: "เมือง · ศักราช · ตำนาน" },
 ];
 
 export function AdminNav() {

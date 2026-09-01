@@ -31,7 +31,9 @@ export default async function AdminLoginPage({
 
         {error && (
           <div className="mt-5 rounded-2xl border border-rose-300/20 bg-rose-300/5 p-4 text-sm text-rose-200">
-            รหัสผ่านไม่ถูกต้อง
+            {error === "rate-limit"
+              ? "ลองเข้าสู่ระบบหลายครั้งเกินไป กรุณารอ 15 นาทีแล้วลองใหม่"
+              : "รหัสผ่านไม่ถูกต้อง"}
           </div>
         )}
 

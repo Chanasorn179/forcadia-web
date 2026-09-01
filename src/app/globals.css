@@ -252,6 +252,21 @@ a {
   color: #6f4c13;
 }
 
+:root[data-theme="light"] .search-form :is(input, select) {
+  border-color: rgba(91, 62, 20, 0.2);
+  background: rgba(255, 253, 248, 0.92);
+  color: #29231d;
+}
+
+:root[data-theme="light"] .search-form input::placeholder {
+  color: #817970;
+}
+
+:root[data-theme="light"] .search-form select option {
+  background: #fffaf0;
+  color: #29231d;
+}
+
 :root[data-theme="light"] .card-hover:hover {
   background: rgba(255, 249, 237, 0.96);
 }

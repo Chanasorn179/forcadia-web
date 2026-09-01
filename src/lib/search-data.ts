@@ -1,5 +1,12 @@
-import { chapters, characters, cities, eras, lore } from "@/data/forcadia";
-import { houses } from "@/data/houses";
+import {
+  getPublicCharacters,
+  getPublicCities,
+  getPublicEras,
+  getPublicHouses,
+  getPublicLoreEntries,
+  getPublishedChapters,
+  parseChapterContent,
+} from "@/lib/public-content";
 
 export type SearchCategory =
   | "character"
@@ -19,7 +26,17 @@ export type SearchItem = {
   keywords: string[];
 };
 
-export const searchItems: SearchItem[] = [
+async function getSearchItems(): Promise<SearchItem[]> {
+  const [characters, houses, cities, chapters, eras, lore] = await Promise.all([
+    getPublicCharacters(),
+    getPublicHouses(),
+    getPublicCities(),
+    getPublishedChapters(),
+    getPublicEras(),
+    getPublicLoreEntries(),
+  ]);
+
+  return [
   ...characters.map((character) => ({
     id: `character-${character.slug}`,
     category: "character" as const,
@@ -31,13 +48,14 @@ export const searchItems: SearchItem[] = [
       character.name,
       character.thaiName,
       character.title,
-      character.house,
-      character.city,
-      character.key,
+      character.house?.name ?? "",
+      character.keyName,
       character.eye,
       character.domain,
       character.army,
-      ...character.powers,
+      ...(Array.isArray(character.powers)
+        ? character.powers.filter((power): power is string => typeof power === "string")
+        : []),
     ],
   })),
 
@@ -83,15 +101,15 @@ export const searchItems: SearchItem[] = [
     id: `chapter-${chapter.slug}`,
     category: "chapter" as const,
     title: chapter.title,
-    subtitle: `${chapter.order} · POV: ${chapter.pov}`,
+    subtitle: `${chapter.orderText} · POV: ${chapter.pov}`,
     description: chapter.excerpt,
     href: `/read/${chapter.slug}`,
     keywords: [
       chapter.title,
-      chapter.order,
+      chapter.orderText,
       chapter.pov,
       chapter.excerpt,
-      ...chapter.content,
+      ...parseChapterContent(chapter.content),
     ],
   })),
 
@@ -149,7 +167,8 @@ export const searchItems: SearchItem[] = [
         : "",
     ],
   })),
-];
+  ];
+}
 
 function normalize(value: string) {
   return value
@@ -159,7 +178,7 @@ function normalize(value: string) {
     .trim();
 }
 
-export function searchForcadia(query: string) {
+function scoreSearchItems(searchItems: SearchItem[], query: string) {
   const normalizedQuery = normalize(query);
 
   if (!normalizedQuery) {
@@ -192,4 +211,12 @@ export function searchForcadia(query: string) {
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score || a.item.title.localeCompare(b.item.title))
     .map(({ item }) => item);
+}
+
+export async function searchForcadia(query: string) {
+  if (!query.trim()) {
+    return [];
+  }
+
+  return scoreSearchItems(await getSearchItems(), query);
 }

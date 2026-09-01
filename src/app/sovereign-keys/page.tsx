@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HouseEmblem } from "@/components/house-emblem";
-import { characters } from "@/data/forcadia";
-import { houses } from "@/data/houses";
+import {
+  getPublicCharacters,
+  getPublicHouses,
+} from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "กุญแจราชันย์ทั้งแปด",
   description: "สารบบกุญแจราชันย์ ผู้ถือครอง และตระกูลแห่ง Forcadia",
 };
 
-export default function SovereignKeysPage() {
+export const dynamic = "force-dynamic";
+
+export default async function SovereignKeysPage() {
+  const [characters, houses] = await Promise.all([
+    getPublicCharacters(),
+    getPublicHouses(),
+  ]);
   return (
     <main className="container-page py-16 md:py-24">
       <Link href="/lore/sovereign-key" className="text-sm text-amber-200 transition hover:text-amber-100">

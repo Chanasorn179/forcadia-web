@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChapterBookmarkButton } from "@/components/chapter-bookmark-button";
-import { NovelReader } from "@/components/novel-reader";
+import {
+  defaultReaderSettings,
+  NovelReader,
+  type ReaderSettings,
+} from "@/components/novel-reader";
 import {
   getChapterNavigation,
   getPublishedChapterBySlug,
@@ -44,6 +49,23 @@ export default async function ChapterPage({
   }
 
   const paragraphs = parseChapterContent(chapter.content);
+  const cookieStore = await cookies();
+  const savedReaderSettings = cookieStore.get("forcadia_reader_settings")?.value;
+  let initialReaderSettings: ReaderSettings = defaultReaderSettings;
+
+  if (savedReaderSettings) {
+    try {
+      const parsed = JSON.parse(decodeURIComponent(savedReaderSettings)) as Partial<ReaderSettings>;
+      initialReaderSettings = {
+        fontSize: typeof parsed.fontSize === "number" ? Math.min(26, Math.max(15, parsed.fontSize)) : defaultReaderSettings.fontSize,
+        lineHeight: typeof parsed.lineHeight === "number" ? Math.min(2.35, Math.max(1.6, parsed.lineHeight)) : defaultReaderSettings.lineHeight,
+        theme: parsed.theme === "paper" || parsed.theme === "black" || parsed.theme === "night" ? parsed.theme : defaultReaderSettings.theme,
+        width: parsed.width === "narrow" || parsed.width === "wide" || parsed.width === "medium" ? parsed.width : defaultReaderSettings.width,
+      };
+    } catch {
+      initialReaderSettings = defaultReaderSettings;
+    }
+  }
 
   if (paragraphs.length === 0) {
     notFound();
@@ -111,6 +133,7 @@ export default async function ChapterPage({
           title: item.title,
           order: item.orderText,
         }))}
+        initialSettings={initialReaderSettings}
       />
     </main>
   );

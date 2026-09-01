@@ -34,7 +34,7 @@ export default async function SearchPage({ searchParams }: Props) {
   const query = getSingleValue(params.q).trim();
   const selectedCategory = getSingleValue(params.category);
 
-  const allResults = searchForcadia(query);
+  const allResults = await searchForcadia(query);
   const results = validCategories.includes(selectedCategory as SearchCategory)
     ? allResults.filter((item) => item.category === selectedCategory)
     : allResults;
@@ -54,7 +54,7 @@ export default async function SearchPage({ searchParams }: Props) {
       <form
         action="/search"
         method="get"
-        className="glass-panel mt-10 rounded-3xl p-5 md:p-7"
+        className="search-form glass-panel mt-10 rounded-3xl p-5 md:p-7"
       >
         <label
           htmlFor="search-query"

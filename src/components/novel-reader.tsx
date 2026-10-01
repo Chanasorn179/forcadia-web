@@ -234,13 +234,13 @@ export function NovelReader({
         aria-hidden="true"
       >
         <div
-          className="h-full bg-amber-300 transition-[width] duration-150"
+          className="h-full bg-[var(--gold)] transition-[width] duration-150"
           style={{ width: `${progress}%` }}
         />
       </div>
 
       <div className="mx-auto mb-8 max-w-5xl px-3">
-        <div className="glass-panel rounded-2xl p-3">
+        <div className="glass-panel rounded-lg p-3">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <button
@@ -269,7 +269,7 @@ export function NovelReader({
             <div className="text-sm text-slate-400">
               อ่านแล้ว {Math.round(progress)}%
               {restored && (
-                <span className="ml-2 text-amber-200">
+                <span className="ml-2 text-[var(--gold)]">
                   · คืนตำแหน่งเดิมแล้ว
                 </span>
               )}
@@ -390,7 +390,7 @@ export function NovelReader({
                       className={[
                         "rounded-lg border px-3 py-2 text-xs transition",
                         settings.theme === theme
-                          ? "border-amber-200/40 bg-amber-200/10 text-amber-100"
+                          ? "border-amber-200/40 bg-amber-200/10 text-[var(--gold-soft)]"
                           : "border-white/10 text-slate-400 hover:bg-white/5",
                       ].join(" ")}
                     >
@@ -414,7 +414,7 @@ export function NovelReader({
 
       <article
         className={[
-          "mx-auto mt-4 mb-24 rounded-3xl border px-6 py-12 shadow-2xl transition-colors md:mb-0 md:px-14 md:py-16",
+          "mx-auto mt-4 mb-24 rounded-xl border px-6 py-12 shadow-2xl transition-colors md:mb-0 md:px-14 md:py-16",
           themeClasses[settings.theme],
           widthClasses[settings.width],
         ].join(" ")}
@@ -450,10 +450,10 @@ export function NovelReader({
           {previousChapter ? (
             <Link
               href={`/read/${previousChapter.slug}`}
-              className="rounded-2xl border border-current/10 p-4 transition hover:bg-white/5"
+              className="rounded-lg border border-current/10 p-4 transition hover:bg-white/5"
             >
               <span className="text-xs opacity-60">ตอนก่อนหน้า</span>
-              <p className="mt-1 text-amber-300">← {previousChapter.title}</p>
+              <p className="mt-1 text-[var(--gold)]">← {previousChapter.title}</p>
             </Link>
           ) : (
             <div />
@@ -462,10 +462,10 @@ export function NovelReader({
           {nextChapter && (
             <Link
               href={`/read/${nextChapter.slug}`}
-              className="rounded-2xl border border-current/10 p-4 text-right transition hover:bg-white/5"
+              className="rounded-lg border border-current/10 p-4 text-right transition hover:bg-white/5"
             >
               <span className="text-xs opacity-60">ตอนถัดไป</span>
-              <p className="mt-1 text-amber-300">{nextChapter.title} →</p>
+              <p className="mt-1 text-[var(--gold)]">{nextChapter.title} →</p>
             </Link>
           )}
         </nav>
@@ -476,7 +476,7 @@ export function NovelReader({
           type="button"
           onClick={goToTop}
           aria-label="กลับขึ้นด้านบน"
-          className="grid h-12 w-12 place-items-center rounded-full border border-amber-200/30 bg-[#0b0e17]/95 text-amber-100 shadow-xl backdrop-blur transition hover:-translate-y-1 hover:bg-amber-200/10"
+          className="grid h-12 w-12 place-items-center rounded-full border border-amber-200/30 bg-[#0b0e17]/95 text-[var(--gold-soft)] shadow-xl backdrop-blur transition hover:-translate-y-1 hover:bg-amber-200/10"
         >
           ↑
         </button>
@@ -498,7 +498,7 @@ export function NovelReader({
           {nextChapter && (
             <Link
               href={`/read/${nextChapter.slug}`}
-              className="truncate rounded-xl border border-white/10 px-3 py-2 text-right text-sm text-amber-200"
+              className="truncate rounded-xl border border-white/10 px-3 py-2 text-right text-sm text-[var(--gold)]"
             >
               {nextChapter.title} →
             </Link>
@@ -525,7 +525,7 @@ export function NovelReader({
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="section-kicker">Book I</p>
-                <h2 className="mt-2 text-2xl font-semibold text-amber-100">
+                <h2 className="mt-2 text-2xl font-semibold text-[var(--gold-soft)]">
                   สารบัญ
                 </h2>
               </div>
@@ -551,7 +551,7 @@ export function NovelReader({
                     href={`/read/${chapter.slug}`}
                     onClick={() => setShowContents(false)}
                     className={[
-                      "block rounded-2xl border p-4 transition",
+                      "block rounded-lg border p-4 transition",
                       active
                         ? "border-amber-200/40 bg-amber-200/10"
                         : "border-white/10 hover:bg-white/5",
@@ -560,7 +560,7 @@ export function NovelReader({
                     <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
                       {chapter.order}
                     </p>
-                    <p className="mt-1 text-amber-100">{chapter.title}</p>
+                    <p className="mt-1 text-[var(--gold-soft)]">{chapter.title}</p>
                   </Link>
                 );
               })}

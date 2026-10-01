@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components/page-header";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,19 +25,14 @@ export const dynamic = "force-dynamic";
 export default async function WorldPage() {
   const cities = await getPublicCities();
   return (
-    <main className="container-page py-16 md:py-24">
-      <p className="section-kicker">The Shattered Empire</p>
+    <main className="container-page pb-16 md:pb-24">
+      <PageHeader
+        kicker="The Shattered Empire"
+        title={<>แผนที่จักรวรรดิ Forcadia</>}
+        lede={<>นครหลวงตั้งอยู่ศูนย์กลาง เชื่อมต่อแปดดินแดนซึ่งต่างครอบครองอำนาจ วัฒนธรรม และความลับของตนเอง</>}
+      />
 
-      <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
-        แผนที่จักรวรรดิ Forcadia
-      </h1>
-
-      <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-        นครหลวงตั้งอยู่ศูนย์กลาง เชื่อมต่อแปดดินแดนซึ่งต่างครอบครองอำนาจ
-        วัฒนธรรม และความลับของตนเอง
-      </p>
-
-      <section className="world-map glass-panel relative mt-12 hidden aspect-8/5 overflow-hidden rounded-4xl md:block">
+      <section className="world-map glass-panel relative hidden aspect-8/5 overflow-hidden rounded-2xl md:block">
         <div className="world-map-ring world-map-ring-outer absolute inset-[8%] rounded-full border" />
 
         <div className="world-map-ring world-map-ring-inner absolute inset-[18%] rounded-full border border-dashed" />
@@ -84,7 +80,7 @@ export default async function WorldPage() {
               {city.faction}
             </p>
 
-            <span className="mt-1 inline-block text-[10px] text-amber-200/0 transition group-hover:text-amber-200">
+            <span className="mt-1 inline-block text-[10px] text-[var(--gold)]/0 transition group-hover:text-[var(--gold)]">
               เปิดบันทึกเมือง →
             </span>
           </Link>
@@ -96,7 +92,7 @@ export default async function WorldPage() {
           <Link
             key={city.slug}
             href={`/world/${city.slug}`}
-            className="world-city-card glass-panel card-hover group rounded-3xl p-6"
+            className="world-city-card glass-panel card-hover group rounded-xl p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -104,7 +100,7 @@ export default async function WorldPage() {
                   {city.ruler}
                 </p>
 
-                <h2 className="mt-2 text-xl text-amber-100">{city.name}</h2>
+                <h2 className="mt-2 text-xl text-[var(--gold-soft)]">{city.name}</h2>
               </div>
 
               <span
@@ -132,7 +128,7 @@ export default async function WorldPage() {
               {city.description}
             </p>
 
-            <span className="mt-5 inline-flex text-sm text-amber-200 transition group-hover:translate-x-1">
+            <span className="mt-5 inline-flex text-sm text-[var(--gold)] transition group-hover:translate-x-1">
               ดูรายละเอียดสถานที่ →
             </span>
           </Link>

@@ -42,7 +42,7 @@ export function LibraryDashboard() {
 
   if (!ready) {
     return (
-      <div className="mt-10 rounded-3xl border border-white/10 p-8 text-slate-500">
+      <div className="mt-10 rounded-xl border border-white/10 p-8 text-slate-500">
         กำลังเปิดบันทึกส่วนตัว...
       </div>
     );
@@ -60,7 +60,7 @@ export function LibraryDashboard() {
         {lastRead ? (
           <Link
             href={`/read/${lastRead.slug}`}
-            className="glass-panel card-hover group mt-6 block rounded-3xl p-6 md:p-8"
+            className="glass-panel card-hover group mt-6 block rounded-xl p-6 md:p-8"
           >
             <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
               <div>
@@ -68,7 +68,7 @@ export function LibraryDashboard() {
                   {lastRead.order}
                 </p>
 
-                <h3 className="mt-2 text-2xl text-amber-100">
+                <h3 className="mt-2 text-2xl text-[var(--gold-soft)]">
                   {lastRead.title}
                 </h3>
 
@@ -77,14 +77,14 @@ export function LibraryDashboard() {
                 </p>
               </div>
 
-              <span className="shrink-0 text-sm text-amber-200 transition group-hover:translate-x-1">
+              <span className="shrink-0 text-sm text-[var(--gold)] transition group-hover:translate-x-1">
                 อ่านต่อ →
               </span>
             </div>
 
             <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/5">
               <div
-                className="h-full rounded-full bg-amber-300"
+                className="h-full rounded-full bg-[var(--gold)]"
                 style={{
                   width: `${Math.min(
                     100,
@@ -95,12 +95,12 @@ export function LibraryDashboard() {
             </div>
           </Link>
         ) : (
-          <div className="mt-6 rounded-3xl border border-dashed border-white/10 p-8 text-center">
+          <div className="mt-6 rounded-xl border border-dashed border-white/10 p-8 text-center">
             <p className="text-slate-300">ยังไม่มีประวัติการอ่าน</p>
 
             <Link
               href="/books"
-              className="mt-4 inline-flex text-sm text-amber-200 hover:underline"
+              className="mt-4 inline-flex text-sm text-[var(--gold)] hover:underline"
             >
               เปิดห้องสมุด →
             </Link>
@@ -130,7 +130,7 @@ export function LibraryDashboard() {
         </div>
 
         {bookmarks.length === 0 ? (
-          <div className="mt-6 rounded-3xl border border-dashed border-white/10 p-8 text-center">
+          <div className="mt-6 rounded-xl border border-dashed border-white/10 p-8 text-center">
             <p className="text-slate-300">ยังไม่ได้บันทึกตอนใดไว้</p>
             <p className="mt-2 text-sm text-slate-500">
               เปิดตอนนิยายแล้วกด “บันทึกตอนนี้”
@@ -141,13 +141,13 @@ export function LibraryDashboard() {
             {bookmarks.map((bookmark) => (
               <article
                 key={bookmark.slug}
-                className="glass-panel rounded-3xl p-6"
+                className="glass-panel rounded-xl p-6"
               >
                 <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
                   {bookmark.order}
                 </p>
 
-                <h3 className="mt-2 text-xl text-amber-100">
+                <h3 className="mt-2 text-xl text-[var(--gold-soft)]">
                   {bookmark.title}
                 </h3>
 
@@ -158,7 +158,7 @@ export function LibraryDashboard() {
                 <div className="mt-5 flex flex-wrap gap-3">
                   <Link
                     href={`/read/${bookmark.slug}`}
-                    className="rounded-full border border-amber-200/30 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-200/10"
+                    className="rounded-full border border-amber-200/30 px-4 py-2 text-sm text-[var(--gold-soft)] transition hover:bg-amber-200/10"
                   >
                     เปิดอ่าน
                   </Link>

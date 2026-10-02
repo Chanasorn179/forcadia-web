@@ -91,7 +91,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="site-header sticky top-0 z-60 border-b shadow-[0_10px_40px_rgba(0,0,0,0.22)] backdrop-blur-xl">
+    <header className="site-header sticky top-0 z-60 border-b backdrop-blur-xl">
       <div className="container-page">
         <div className="flex min-h-18 items-center justify-between gap-4">
           {/* Logo */}
@@ -112,11 +112,11 @@ export function SiteHeader() {
             </span>
 
             <span className="min-w-0">
-              <span className="block truncate font-serif text-lg font-semibold tracking-[0.12em] text-amber-100">
-                FOURCADIR
+              <span className="block truncate font-[family-name:var(--font-display)] text-[1.35rem] font-semibold leading-none tracking-[0.04em] text-[var(--gold-soft)]">
+                Fourcadir
               </span>
 
-              <span className="hidden text-[10px] uppercase tracking-[0.25em] text-slate-400 sm:block">
+              <span className="mt-1 hidden font-[family-name:var(--font-display)] text-[0.82rem] italic leading-none text-slate-400 sm:block">
                 Imperial Archive
               </span>
             </span>
@@ -137,10 +137,10 @@ export function SiteHeader() {
                   onClick={closeMenus}
                   aria-current={active ? "page" : undefined}
                   className={[
-                    "relative rounded-full px-4 py-3 text-sm font-semibold transition",
+                    "relative px-4 py-3 text-sm font-medium transition",
                     active
-                      ? "bg-amber-100/10 text-amber-50"
-                      : "text-slate-300 hover:bg-white/5 hover:text-white",
+                      ? "text-[var(--gold-soft)]"
+                      : "text-slate-300 hover:text-[var(--gold-soft)]",
                   ].join(" ")}
                 >
                   {item.label}
@@ -148,7 +148,7 @@ export function SiteHeader() {
                   {active && (
                     <span
                       aria-hidden="true"
-                      className="absolute inset-x-4 -bottom-1 h-px bg-amber-300"
+                      className="absolute inset-x-4 bottom-1 h-px bg-linear-to-r from-transparent via-[var(--gold)] to-transparent"
                     />
                   )}
                 </Link>
@@ -163,10 +163,10 @@ export function SiteHeader() {
                 aria-haspopup="menu"
                 onClick={toggleMoreMenu}
                 className={[
-                  "relative inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold transition",
+                  "relative inline-flex items-center gap-2 px-4 py-3 text-sm font-medium transition",
                   secondaryActive || moreOpen
-                    ? "bg-amber-100/10 text-amber-50"
-                    : "text-slate-300 hover:bg-white/5 hover:text-white",
+                    ? "text-[var(--gold-soft)]"
+                    : "text-slate-300 hover:text-[var(--gold-soft)]",
                 ].join(" ")}
               >
                 เพิ่มเติม
@@ -182,7 +182,7 @@ export function SiteHeader() {
                 {secondaryActive && (
                   <span
                     aria-hidden="true"
-                    className="absolute inset-x-4 -bottom-1 h-px bg-amber-300"
+                    className="absolute inset-x-4 bottom-1 h-px bg-linear-to-r from-transparent via-[var(--gold)] to-transparent"
                   />
                 )}
               </button>
@@ -190,7 +190,7 @@ export function SiteHeader() {
               {moreOpen && (
                 <div
                   role="menu"
-                  className="more-menu absolute right-0 top-[calc(100%+0.75rem)] w-56 overflow-hidden rounded-2xl border p-2 shadow-2xl backdrop-blur-xl"
+                  className="more-menu absolute right-0 top-[calc(100%+0.75rem)] w-56 overflow-hidden rounded-lg border p-1.5 shadow-2xl backdrop-blur-xl"
                 >
                   {secondaryItems.map((item) => {
                     const active = isActivePath(pathname, item.href);
@@ -203,7 +203,7 @@ export function SiteHeader() {
                         role="menuitem"
                         aria-current={active ? "page" : undefined}
                         className={[
-                          "more-menu-link flex items-center justify-between rounded-xl px-4 py-3 text-sm transition",
+                          "more-menu-link flex items-center justify-between rounded-md px-4 py-3 text-sm transition",
                           active
                             ? "bg-amber-200/10 text-amber-100"
                             : "text-slate-300 hover:bg-white/5 hover:text-white",
@@ -228,7 +228,7 @@ export function SiteHeader() {
             <Link
               href="/read"
               onClick={closeMenus}
-              className="hidden rounded-full border border-amber-200/30 px-5 py-2.5 text-sm font-semibold text-amber-100 transition hover:bg-amber-200/10 sm:inline-flex"
+              className="btn-seal hidden !min-h-10 !px-5 !py-2 text-sm sm:inline-flex"
             >
               เริ่มอ่าน
             </Link>
@@ -285,7 +285,7 @@ export function SiteHeader() {
                     onClick={closeMenus}
                     aria-current={active ? "page" : undefined}
                     className={[
-                      "flex items-center justify-between rounded-2xl border px-4 py-3 text-sm transition",
+                      "flex items-center justify-between rounded-lg border px-4 py-3 text-sm transition",
                       active
                         ? "border-amber-200/30 bg-amber-200/10 text-amber-100"
                         : "border-white/10 text-slate-300 hover:bg-white/5",
@@ -302,7 +302,7 @@ export function SiteHeader() {
             <Link
               href="/read"
               onClick={closeMenus}
-              className="mt-3 flex w-full items-center justify-center rounded-2xl border border-amber-200/30 bg-amber-200/10 px-5 py-3 font-semibold text-amber-100 sm:hidden"
+              className="btn-seal mt-3 flex w-full sm:hidden"
             >
               เริ่มอ่าน
             </Link>

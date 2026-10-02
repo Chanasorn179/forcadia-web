@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components/page-header";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HouseEmblem } from "@/components/house-emblem";
@@ -19,31 +20,30 @@ export default async function SovereignKeysPage() {
     getPublicHouses(),
   ]);
   return (
-    <main className="container-page py-16 md:py-24">
-      <Link href="/lore/sovereign-key" className="text-sm text-amber-200 transition hover:text-amber-100">
+    <main className="container-page pb-16 md:pb-24">
+      <Link href="/lore/sovereign-key" className="mt-10 inline-flex text-sm text-[var(--gold)] transition hover:text-[var(--gold-soft)]">
         ← กลับไปตำนานกุญแจราชันย์
       </Link>
 
-      <p className="section-kicker mt-8">The Eight Sovereign Keys</p>
-      <h1 className="mt-4 text-4xl font-semibold md:text-6xl">กุญแจราชันย์ทั้งแปด</h1>
-      <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-        เศษอำนาจของปฐมจักรพรรดิที่ผูกพันกับผู้ถือครองทั้งแปด
-        แต่ละดอกควบคุมหลักการและเขตแดนอาคมที่แตกต่างกัน
-      </p>
+      <PageHeader
+        kicker="The Eight Sovereign Keys"
+        title={<>กุญแจราชันย์ทั้งแปด</>}
+        lede={<>เศษอำนาจของปฐมจักรพรรดิที่ผูกพันกับผู้ถือครองทั้งแปด แต่ละดอกควบคุมหลักการและเขตแดนอาคมที่แตกต่างกัน</>}
+      />
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2">
         {houses.map((house, index) => {
           const holder = characters.find((item) => item.slug === house.rulerSlug);
 
           return (
-            <article key={house.slug} className="glass-panel rounded-3xl p-6 md:p-8">
+            <article key={house.slug} className="glass-panel rounded-xl p-6 md:p-8">
               <div className="grid gap-6 sm:grid-cols-[7rem_1fr] sm:items-center">
                 <HouseEmblem src={house.emblem} alt={`ตรา ${house.name}`} accent={house.accent} size="md" />
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
                     Key {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h2 className="mt-2 text-2xl text-amber-100">{house.key}</h2>
+                  <h2 className="mt-2 text-2xl text-[var(--gold-soft)]">{house.key}</h2>
                   <p className="mt-2 text-sm text-slate-400">{house.name} · {house.thaiName}</p>
                 </div>
               </div>
@@ -51,12 +51,12 @@ export default async function SovereignKeysPage() {
               <dl className="mt-6 grid gap-5 sm:grid-cols-2">
                 <div>
                   <dt className="text-xs uppercase tracking-[0.18em] text-slate-500">ผู้ถือครอง</dt>
-                  <dd className="mt-2 text-amber-100">{holder?.name ?? house.ruler}</dd>
+                  <dd className="mt-2 text-[var(--gold-soft)]">{holder?.name ?? house.ruler}</dd>
                   {holder && <dd className="mt-1 text-sm text-slate-400">{holder.thaiName}</dd>}
                 </div>
                 <div>
                   <dt className="text-xs uppercase tracking-[0.18em] text-slate-500">Domain</dt>
-                  <dd className="mt-2 text-amber-100">{house.domain}</dd>
+                  <dd className="mt-2 text-[var(--gold-soft)]">{house.domain}</dd>
                 </div>
                 {holder && (
                   <>
@@ -74,7 +74,7 @@ export default async function SovereignKeysPage() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 {holder && (
-                  <Link href={`/characters/${holder.slug}`} className="rounded-full border border-amber-200/25 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-200/10">
+                  <Link href={`/characters/${holder.slug}`} className="rounded-full border border-amber-200/25 px-4 py-2 text-sm text-[var(--gold-soft)] transition hover:bg-amber-200/10">
                     ผู้ถือครอง →
                   </Link>
                 )}

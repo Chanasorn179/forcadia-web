@@ -49,16 +49,16 @@ export default async function BookDetailPage({
     <main className="container-page py-16 md:py-24">
       <Link
         href="/books"
-        className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
+        className="inline-flex items-center gap-2 text-sm text-[var(--gold)] transition hover:text-[var(--gold-soft)]"
       >
         <span aria-hidden="true">←</span>
         กลับไปห้องสมุด
       </Link>
 
       <section className="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="glass-panel grid min-h-120 place-items-center rounded-3xl border border-amber-200/15 bg-[radial-gradient(circle_at_center,rgba(217,184,108,0.22),rgba(7,9,18,0.98)_70%)] p-8">
-          <div className="w-full max-w-sm rounded-3xl border border-amber-200/20 bg-black/30 p-10 text-center shadow-2xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-amber-200">
+        <div className="glass-panel grid min-h-120 place-items-center rounded-xl border border-[var(--plate-edge)] bg-[radial-gradient(circle_at_center,rgba(217,184,108,0.22),rgba(7,9,18,0.98)_70%)] p-8">
+          <div className="w-full max-w-sm rounded-xl border border-[var(--plate-edge)] bg-black/30 p-10 text-center shadow-2xl">
+            <p className="text-xs uppercase tracking-[0.28em] text-[var(--gold)]">
               {book.subtitle}
             </p>
             <h1 className="gold-text mt-6 text-4xl font-semibold md:text-5xl">
@@ -70,7 +70,7 @@ export default async function BookDetailPage({
           </div>
         </div>
 
-        <article className="glass-panel rounded-3xl p-7 md:p-10">
+        <article className="glass-panel rounded-xl p-7 md:p-10">
           <p className="section-kicker">
             Book {String(book.order).padStart(2, "0")}
           </p>
@@ -87,7 +87,7 @@ export default async function BookDetailPage({
           <div className="crack-line my-8" />
 
           <div className="flex flex-wrap gap-3">
-            <span className="rounded-full border border-amber-200/20 bg-amber-200/5 px-4 py-2 text-sm text-amber-100">
+            <span className="rounded-full border border-[var(--plate-edge)] bg-amber-200/5 px-4 py-2 text-sm text-[var(--gold-soft)]">
               {statusLabels[book.status]}
             </span>
             <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300">
@@ -98,7 +98,7 @@ export default async function BookDetailPage({
           {firstChapter && (
             <Link
               href={`/read/${firstChapter.slug}`}
-              className="mt-8 inline-flex rounded-full border border-amber-200/30 bg-amber-200/10 px-6 py-3 font-semibold text-amber-100 transition hover:bg-amber-200/20"
+              className="mt-8 inline-flex rounded-full border border-amber-200/30 bg-amber-200/10 px-6 py-3 font-semibold text-[var(--gold-soft)] transition hover:bg-amber-200/20"
             >
               เริ่มอ่านเล่มนี้
             </Link>
@@ -117,7 +117,7 @@ export default async function BookDetailPage({
             <Link
               key={chapter.id}
               href={`/read/${chapter.slug}`}
-              className="glass-panel card-hover group flex flex-col gap-4 rounded-3xl p-6 md:flex-row md:items-center md:justify-between"
+              className="glass-panel card-hover group flex flex-col gap-4 rounded-xl p-6 md:flex-row md:items-center md:justify-between"
             >
               <div className="flex gap-5">
                 <span className="text-sm text-slate-500">
@@ -127,7 +127,7 @@ export default async function BookDetailPage({
                   <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
                     {chapter.orderText}
                   </p>
-                  <h3 className="mt-2 text-xl text-amber-100">
+                  <h3 className="mt-2 text-xl text-[var(--gold-soft)]">
                     {chapter.title}
                   </h3>
                   <p className="mt-2 line-clamp-2 text-sm leading-7 text-slate-400">
@@ -136,7 +136,7 @@ export default async function BookDetailPage({
                 </div>
               </div>
 
-              <span className="shrink-0 text-sm text-amber-200 transition group-hover:translate-x-1">
+              <span className="shrink-0 text-sm text-[var(--gold)] transition group-hover:translate-x-1">
                 อ่านตอนนี้ →
               </span>
             </Link>

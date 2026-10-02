@@ -61,7 +61,7 @@ export function ChapterBookmarkButton({
       className={[
         "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition disabled:cursor-wait disabled:opacity-60",
         bookmarked
-          ? "border-amber-200/40 bg-amber-200/10 text-amber-100"
+          ? "border-amber-200/40 bg-amber-200/10 text-[var(--gold-soft)]"
           : "border-white/10 text-slate-300 hover:border-amber-200/25 hover:bg-white/5",
       ].join(" ")}
     >

@@ -53,7 +53,7 @@ export default async function HouseDetailPage({ params }: Props) {
     <main className="container-page py-16 md:py-24">
       <Link
         href="/houses"
-        className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
+        className="inline-flex items-center gap-2 text-sm text-[var(--gold)] transition hover:text-[var(--gold-soft)]"
       >
         <span aria-hidden="true">←</span>
         กลับไปหน้าตระกูล
@@ -67,7 +67,7 @@ export default async function HouseDetailPage({ params }: Props) {
           size="lg"
         />
 
-        <article className="glass-panel rounded-3xl p-7 md:p-10">
+        <article className="glass-panel rounded-xl p-7 md:p-10">
           <p className="section-kicker">{house.emblemName}</p>
 
           <h1 className="gold-text mt-4 text-4xl font-semibold md:text-6xl">
@@ -97,28 +97,28 @@ export default async function HouseDetailPage({ params }: Props) {
               <dt className="text-xs uppercase tracking-[0.22em] text-slate-500">
                 ผู้ปกครอง
               </dt>
-              <dd className="mt-2 text-lg text-amber-100">{house.ruler}</dd>
+              <dd className="mt-2 text-lg text-[var(--gold-soft)]">{house.ruler}</dd>
             </div>
 
             <div>
               <dt className="text-xs uppercase tracking-[0.22em] text-slate-500">
                 นครประจำตระกูล
               </dt>
-              <dd className="mt-2 text-lg text-amber-100">{house.city}</dd>
+              <dd className="mt-2 text-lg text-[var(--gold-soft)]">{house.city}</dd>
             </div>
 
             <div>
               <dt className="text-xs uppercase tracking-[0.22em] text-slate-500">
                 กุญแจราชันย์
               </dt>
-              <dd className="mt-2 text-lg text-amber-100">{house.key}</dd>
+              <dd className="mt-2 text-lg text-[var(--gold-soft)]">{house.key}</dd>
             </div>
 
             <div>
               <dt className="text-xs uppercase tracking-[0.22em] text-slate-500">
                 เขตแดนอาคม
               </dt>
-              <dd className="mt-2 text-lg text-amber-100">{house.domain}</dd>
+              <dd className="mt-2 text-lg text-[var(--gold-soft)]">{house.domain}</dd>
             </div>
           </dl>
         </article>

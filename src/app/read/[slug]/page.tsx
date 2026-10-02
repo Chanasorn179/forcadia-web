@@ -86,7 +86,7 @@ export default async function ChapterPage({
         <div>
           <Link
             href={`/books/${chapter.book.slug}`}
-            className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
+            className="inline-flex items-center gap-2 text-sm text-[var(--gold)] transition hover:text-[var(--gold-soft)]"
           >
             <span aria-hidden="true">←</span>
             กลับไปสารบัญ {chapter.book.title}

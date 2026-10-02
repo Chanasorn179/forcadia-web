@@ -1,3 +1,4 @@
+import { PageHeader } from "@/components/page-header";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getPublicEras } from "@/lib/public-content";
@@ -11,19 +12,14 @@ export const dynamic = "force-dynamic";
 export default async function TimelinePage() {
   const eras = await getPublicEras();
   return (
-    <main className="container-page py-16 md:py-24">
-      <p className="section-kicker">Chronicle of the Ring</p>
+    <main className="container-page pb-16 md:pb-24">
+      <PageHeader
+        kicker="Chronicle of the Ring"
+        title={<>ศักราชแห่งจักรวรรดิ</>}
+        lede={<>ทุกสองร้อยห้าสิบปี อำนาจจะคืนสู่ Unity Crown และศักราชใหม่จะถือกำเนิดจากผู้ครอบครองบัลลังก์</>}
+      />
 
-      <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
-        ศักราชแห่งจักรวรรดิ
-      </h1>
-
-      <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-        ทุกสองร้อยห้าสิบปี อำนาจจะคืนสู่ Unity Crown
-        และศักราชใหม่จะถือกำเนิดจากผู้ครอบครองบัลลังก์
-      </p>
-
-      <div className="relative mt-14 space-y-7 before:absolute before:bottom-5 before:left-5 before:top-5 before:w-px before:bg-amber-200/20 md:before:left-1/2">
+      <div className="relative space-y-7 before:absolute before:bottom-5 before:left-5 before:top-5 before:w-px before:bg-amber-200/20 md:before:left-1/2">
         {eras.map((era, index) => (
           <article
             key={era.slug}
@@ -34,9 +30,9 @@ export default async function TimelinePage() {
             <div className={index % 2 === 1 ? "md:col-start-2" : ""}>
               <Link
                 href={`/timeline/${era.slug}`}
-                className="glass-panel card-hover group block rounded-3xl p-6"
+                className="glass-panel card-hover group block rounded-xl p-6"
               >
-                <p className="text-xs uppercase tracking-[0.22em] text-amber-200">
+                <p className="text-xs uppercase tracking-[0.22em] text-[var(--gold)]">
                   Era {String(index + 1).padStart(2, "0")}
                 </p>
 
@@ -61,7 +57,7 @@ export default async function TimelinePage() {
 
                 <p className="mt-4 leading-7 text-slate-400">{era.detail}</p>
 
-                <span className="mt-5 inline-flex text-sm text-amber-200 transition group-hover:translate-x-1">
+                <span className="mt-5 inline-flex text-sm text-[var(--gold)] transition group-hover:translate-x-1">
                   เปิดบันทึกศักราช →
                 </span>
               </Link>

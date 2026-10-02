@@ -64,7 +64,7 @@ export function GalleryGrid({ items }: Props) {
             className={[
               "min-h-11 rounded-full border px-5 py-2 text-sm transition",
               category === item
-                ? "border-amber-200/40 bg-amber-200/10 text-amber-100"
+                ? "border-amber-200/40 bg-amber-200/10 text-[var(--gold-soft)]"
                 : "border-white/10 text-slate-400 hover:border-white/20 hover:bg-white/5 hover:text-slate-200",
             ].join(" ")}
           >
@@ -77,7 +77,7 @@ export function GalleryGrid({ items }: Props) {
         {filteredItems.map((item, index) => (
           <article
             key={item.id}
-            className="glass-panel card-hover group overflow-hidden rounded-3xl"
+            className="glass-panel card-hover group overflow-hidden rounded-xl"
           >
             <button
               type="button"
@@ -116,7 +116,7 @@ export function GalleryGrid({ items }: Props) {
                   {categoryLabels[item.category]}
                 </p>
 
-                <h2 className="mt-3 text-2xl text-amber-100">
+                <h2 className="mt-3 text-2xl text-[var(--gold-soft)]">
                   {item.title}
                 </h2>
 
@@ -133,7 +133,7 @@ export function GalleryGrid({ items }: Props) {
             <div className="border-t border-white/10 px-6 py-4">
               <Link
                 href={item.href}
-                className="inline-flex min-h-11 items-center text-sm text-amber-200 transition hover:translate-x-1"
+                className="inline-flex min-h-11 items-center text-sm text-[var(--gold)] transition hover:translate-x-1"
               >
                 เปิดบันทึกที่เกี่ยวข้อง →
               </Link>
@@ -156,7 +156,7 @@ export function GalleryGrid({ items }: Props) {
             className="absolute inset-0"
           />
 
-          <div className="glass-panel relative z-10 w-full max-w-5xl overflow-hidden rounded-3xl">
+          <div className="glass-panel relative z-10 w-full max-w-5xl overflow-hidden rounded-xl">
             <div
               className="relative h-[65vh] min-h-80"
               style={{
@@ -179,7 +179,7 @@ export function GalleryGrid({ items }: Props) {
                   {categoryLabels[selectedItem.category]}
                 </p>
 
-                <h2 className="mt-2 text-2xl text-amber-100">
+                <h2 className="mt-2 text-2xl text-[var(--gold-soft)]">
                   {selectedItem.title}
                 </h2>
 
@@ -191,7 +191,7 @@ export function GalleryGrid({ items }: Props) {
               <div className="flex gap-3">
                 <Link
                   href={selectedItem.href}
-                  className="rounded-full border border-amber-200/30 px-5 py-3 text-sm text-amber-100 transition hover:bg-amber-200/10"
+                  className="rounded-full border border-amber-200/30 px-5 py-3 text-sm text-[var(--gold-soft)] transition hover:bg-amber-200/10"
                 >
                   เปิดบันทึก
                 </Link>

@@ -17,6 +17,7 @@
     "db:reset": "prisma migrate reset"
   },
   "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.3.0",
     "@fontsource/noto-sans-thai": "^5.3.0",
     "@fontsource/noto-serif-thai": "^5.3.0",
     "@prisma/adapter-pg": "7.10.0",

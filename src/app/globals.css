@@ -2,25 +2,32 @@
 
 @theme {
   --font-sans: "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Noto Serif Thai", Georgia, serif;
+  --font-serif: "Cormorant Garamond", "Noto Serif Thai", Georgia, serif;
+  --font-display: "Cormorant Garamond", "Noto Serif Thai", Georgia, serif;
 }
 
 :root {
   color-scheme: dark;
-  --background: #05070d;
-  --foreground: #f5f1e8;
-  --gold: #d9b86c;
-  --gold-soft: #f4dda5;
-  --muted: #9ca5b8;
+  --background: #07080d;
+  --foreground: #ede6d6;
+  --gold: #c9a45c;
+  --gold-soft: #ead39c;
+  --gold-deep: #8f6f32;
+  --muted: #8c93a3;
+  --ink: #0e1018;
+  --plate: #11131c;
+  --plate-edge: rgba(201, 164, 92, 0.2);
+  --plate-inner: rgba(234, 211, 156, 0.06);
   --panel: rgba(15, 19, 31, 0.78);
-  --line: rgba(217, 184, 108, 0.22);
-  --focus: #f4dda5;
+  --line: rgba(201, 164, 92, 0.22);
+  --focus: #ead39c;
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --body-background:
-    radial-gradient(circle at 50% -10%, rgba(68, 76, 130, 0.28), transparent 38%),
-    radial-gradient(circle at 10% 30%, rgba(86, 46, 116, 0.16), transparent 28%),
-    linear-gradient(180deg, #070912 0%, #05070d 50%, #03040a 100%);
-  --header-background: rgba(7, 9, 18, 0.88);
-  --header-line: rgba(255, 255, 255, 0.1);
+    radial-gradient(ellipse 80% 50% at 50% -8%, rgba(201, 164, 92, 0.09), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 20%, rgba(78, 70, 140, 0.12), transparent 70%),
+    linear-gradient(180deg, #090a11 0%, #07080d 45%, #050609 100%);
+  --header-background: rgba(8, 9, 14, 0.82);
+  --header-line: rgba(201, 164, 92, 0.14);
   --toggle-background: rgba(255, 255, 255, 0.04);
   --toggle-color: #f4dda5;
 }
@@ -31,7 +38,13 @@
   --foreground: #201a15;
   --gold: #8b641e;
   --gold-soft: #704d13;
+  --gold-deep: #5c3f0e;
   --muted: #5f6470;
+  --ink: #efe6d3;
+  --plate: #fbf6eb;
+  --plate-edge: rgba(122, 83, 24, 0.24);
+  --plate-inner: rgba(122, 83, 24, 0.08);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .1 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --panel: rgba(255, 252, 245, 0.84);
   --line: rgba(122, 83, 24, 0.24);
   --focus: #795719;
@@ -55,7 +68,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--body-background);
+  background: var(--grain), var(--body-background);
   color: var(--foreground);
   font-family: "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "kern" 1;
@@ -101,8 +114,14 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Noto Serif Thai", Georgia, serif;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.005em;
   text-wrap: balance;
+}
+
+h1 {
+  line-height: 1.12;
 }
 
 button,
@@ -153,20 +172,27 @@ a {
   margin-inline: auto;
 }
 
+/* "Codex plate": a solid archival surface with a hairline gold edge and a
+   second inset rule, like a gilded frame. Used by every public panel/card. */
 .glass-panel {
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent 38%),
-    linear-gradient(180deg, rgba(20, 24, 39, 0.94), rgba(9, 11, 20, 0.9));
-  border: 1px solid var(--line);
-  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.34);
-  backdrop-filter: blur(16px);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 30%),
+    var(--plate);
+  border: 1px solid var(--plate-edge);
+  box-shadow:
+    inset 0 0 0 4px var(--plate),
+    inset 0 0 0 5px var(--plate-inner),
+    0 18px 50px rgba(0, 0, 0, 0.32);
 }
 
 :root[data-theme="light"] .glass-panel {
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.72), transparent 42%),
-    var(--panel);
-  box-shadow: 0 18px 55px rgba(82, 58, 25, 0.12);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent 40%),
+    var(--plate);
+  box-shadow:
+    inset 0 0 0 4px var(--plate),
+    inset 0 0 0 5px var(--plate-inner),
+    0 14px 40px rgba(82, 58, 25, 0.1);
 }
 
 /* Admin pages use many compact dark-mode utility styles. Keep their light-mode
@@ -287,33 +313,72 @@ a {
 }
 
 .gold-text {
-  background: linear-gradient(90deg, #b98d37, #f5dda1, #c39b4d);
+  background: linear-gradient(100deg, #a8843f 0%, #ead39c 42%, #c9a45c 68%, #8f6f32 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.section-kicker {
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold-soft);
-  font-size: 0.72rem;
-  font-weight: 700;
+/* Latin inscription line above a heading: italic Cormorant led by a small
+   lozenge, instead of a tracked all-caps label. */
+:root[data-theme="light"] .gold-text {
+  background-image: linear-gradient(100deg, #6e4f16 0%, #a8843f 45%, #8b641e 70%, #5c3f0e 100%);
 }
 
+:root[data-theme="light"] .hero-backdrop {
+  display: none;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.section-kicker::before {
+  content: "";
+  width: 0.42rem;
+  height: 0.42rem;
+  flex-shrink: 0;
+  transform: rotate(45deg);
+  border: 1px solid currentColor;
+}
+
+/* Divider with a centered lozenge — the ring's "seam". */
 .crack-line {
+  position: relative;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(217, 184, 108, 0.55), transparent);
+  background: linear-gradient(90deg, transparent, var(--plate-edge) 20%, rgba(201, 164, 92, 0.55) 50%, var(--plate-edge) 80%, transparent);
+}
+
+.crack-line::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: 1px solid var(--gold);
+  background: var(--background);
 }
 
 .card-hover {
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  transition: border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
-  border-color: rgba(244, 221, 165, 0.5);
-  background: rgba(25, 30, 48, 0.92);
+  border-color: rgba(201, 164, 92, 0.55);
+  box-shadow:
+    inset 0 0 0 4px var(--plate),
+    inset 0 0 0 5px rgba(201, 164, 92, 0.22),
+    0 22px 60px rgba(0, 0, 0, 0.4);
 }
 
 .link-arrow {
@@ -321,7 +386,7 @@ a {
 }
 
 .link-arrow:hover {
-  color: #f4dda5;
+  color: var(--gold-soft);
   transform: translateX(3px);
 }
 
@@ -333,109 +398,25 @@ a {
   mask-image: linear-gradient(to bottom, black, transparent 92%);
 }
 
-.world-map {
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent 38%),
-    linear-gradient(180deg, rgba(20, 24, 39, 0.96), rgba(8, 10, 18, 0.94));
-}
 
-.world-map-ring-outer {
-  border-color: rgba(217, 184, 108, 0.2);
-}
 
-.world-map-ring-inner {
-  border-color: rgba(217, 184, 108, 0.12);
-}
 
-.world-map-glow {
-  background:
-    radial-gradient(circle at center, rgba(217, 184, 108, 0.15), transparent 20%),
-    radial-gradient(circle at center, rgba(99, 105, 180, 0.12), transparent 60%);
-}
 
-.world-map-emblem {
-  background: #0d101b;
-}
 
-.world-map-node:hover .world-map-emblem {
-  box-shadow: 0 0 28px rgba(253, 230, 138, 0.35);
-}
 
-.world-map-city {
-  color: #fef3c7;
-}
 
-.world-map-ruler {
-  color: #64748b;
-}
 
-.world-map-node:hover .world-map-city {
-  color: white;
-}
 
-.world-map-node:hover .world-map-ruler {
-  color: #cbd5e1;
-}
 
-:root[data-theme="light"] .world-map {
-  border-color: rgba(128, 87, 27, 0.28);
-  background-color: #eee1c8;
-  background-image:
-    radial-gradient(circle at center, rgba(255, 251, 239, 0.95) 0 9%, transparent 31%),
-    linear-gradient(rgba(132, 93, 37, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(132, 93, 37, 0.055) 1px, transparent 1px),
-    radial-gradient(circle at 18% 22%, rgba(141, 99, 41, 0.1), transparent 32%),
-    linear-gradient(145deg, #f8efd9, #e9d7b5);
-  background-size: auto, 42px 42px, 42px 42px, auto, auto;
-  box-shadow:
-    inset 0 0 80px rgba(105, 67, 20, 0.12),
-    0 24px 60px rgba(82, 58, 25, 0.14);
-}
 
-:root[data-theme="light"] .world-map-ring-outer {
-  border-color: rgba(137, 91, 26, 0.34);
-  box-shadow: 0 0 0 1px rgba(255, 250, 232, 0.55);
-}
 
-:root[data-theme="light"] .world-map-ring-inner {
-  border-color: rgba(137, 91, 26, 0.26);
-}
 
-:root[data-theme="light"] .world-map-glow {
-  background:
-    radial-gradient(circle at center, rgba(255, 249, 224, 0.95), transparent 22%),
-    radial-gradient(circle at center, rgba(151, 105, 39, 0.1), transparent 62%);
-}
 
-:root[data-theme="light"] .world-map-emblem {
-  background: #201b1b;
-  box-shadow:
-    0 0 0 4px rgba(255, 248, 226, 0.8),
-    0 8px 22px rgba(76, 49, 17, 0.26);
-}
 
-:root[data-theme="light"] .world-map-node:hover .world-map-emblem {
-  box-shadow:
-    0 0 0 5px rgba(255, 248, 226, 0.92),
-    0 10px 28px rgba(105, 67, 20, 0.38);
-}
 
-:root[data-theme="light"] .world-map-city {
-  color: #63430f;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
-}
 
-:root[data-theme="light"] .world-map-ruler {
-  color: #68606a;
-}
 
-:root[data-theme="light"] .world-map-node:hover .world-map-city {
-  color: #3f2808;
-}
 
-:root[data-theme="light"] .world-map-node:hover .world-map-ruler {
-  color: #443f46;
-}
 
 :root[data-theme="light"] .world-city-card {
   border-color: rgba(128, 87, 27, 0.2);
@@ -466,14 +447,14 @@ a {
 }
 
 .read-book-button {
-  color: #fcd34d !important;
-  background: #0f172a;
-  border: 1px solid #fbbf24;
+  color: var(--gold-soft) !important;
+  background: transparent;
+  border: 1px solid rgba(201, 164, 92, 0.55);
 }
 
 .read-book-button:hover {
-  color: #0f172a !important;
-  background: #fcd34d;
+  color: #120e06 !important;
+  background: var(--gold);
 }
 
 /* Forcadia Novel Reader */
@@ -506,4 +487,398 @@ a {
     margin-block: 1.35rem;
     padding-left: 1rem;
   }
+}
+
+@layer components {
+/* ───────── Imperial Archive design system ───────── */
+
+/* Primary action: a gilt seal. Secondary: an engraved outline. */
+.btn-seal,
+.btn-ghost {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  font-weight: 600;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease;
+}
+
+.btn-seal {
+  border: 1px solid #ead39c66;
+  background: linear-gradient(180deg, #d8b66d 0%, #c9a45c 45%, #a8843f 100%);
+  color: #17110a;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 244, 214, 0.55),
+    inset 0 -1px 0 rgba(80, 56, 16, 0.4),
+    0 10px 30px rgba(201, 164, 92, 0.16);
+}
+
+.btn-seal:hover {
+  background: linear-gradient(180deg, #e6c886 0%, #d4b06a 45%, #b18c45 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 244, 214, 0.6),
+    inset 0 -1px 0 rgba(80, 56, 16, 0.4),
+    0 14px 36px rgba(201, 164, 92, 0.26);
+}
+
+.btn-ghost {
+  border: 1px solid var(--plate-edge);
+  background: transparent;
+  color: var(--foreground);
+}
+
+.btn-ghost:hover {
+  border-color: rgba(201, 164, 92, 0.55);
+  color: var(--gold-soft);
+}
+
+:root[data-theme="light"] .btn-seal {
+  color: #1d150a;
+}
+
+/* Page header shared by every top-level public page. */
+.page-header {
+  position: relative;
+  padding-block: 4.5rem 3rem;
+}
+
+.page-header h1 {
+  margin-top: 0.9rem;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  color: var(--foreground);
+}
+
+.page-header p.lede {
+  margin-top: 1.25rem;
+  max-width: 44rem;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.9;
+}
+
+.page-header::after {
+  content: "";
+  display: block;
+  margin-top: 2.75rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201, 164, 92, 0.5), var(--plate-edge) 35%, transparent);
+}
+
+/* Portrait card: tall framed artwork, colored by the sovereign's house. */
+.portrait-card {
+  --accent: #c9a45c;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid var(--plate-edge);
+  background: var(--plate);
+  transition: border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.portrait-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.85;
+}
+
+.portrait-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42), 0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.portrait-card .portrait-art {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 65%),
+    var(--ink);
+}
+
+.portrait-card .portrait-art img {
+  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.portrait-card:hover .portrait-art img {
+  transform: scale(1.04);
+}
+
+.portrait-card .portrait-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(9, 10, 16, 0.55) 72%, var(--plate) 100%);
+}
+
+.portrait-card .portrait-frame {
+  position: absolute;
+  inset: 0.6rem;
+  z-index: 1;
+  border: 1px solid rgba(234, 211, 156, 0.16);
+  border-radius: 0.4rem;
+  pointer-events: none;
+}
+
+.house-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent, var(--gold));
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.98rem;
+}
+
+.house-mark::before {
+  content: "";
+  width: 0.38rem;
+  height: 0.38rem;
+  transform: rotate(45deg);
+  background: currentColor;
+}
+
+:root[data-theme="light"] .portrait-card .portrait-art::after {
+  background: linear-gradient(180deg, transparent 50%, rgba(251, 246, 235, 0.5) 75%, var(--plate) 100%);
+}
+
+:root[data-theme="light"] .house-mark {
+  color: color-mix(in srgb, var(--accent, var(--gold)) 50%, #2a2015);
+}
+
+:root[data-theme="light"] .portrait-card .portrait-frame {
+  border-color: rgba(255, 250, 238, 0.4);
+}
+
+/* The Shattered Ring: eight crests on a broken circle (home hero). */
+.imperial-ring {
+  --size: min(34rem, 88vw);
+  --radius: calc(var(--size) * 0.41);
+  --crest: calc(var(--size) * 0.165);
+  position: relative;
+  width: var(--size);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+.imperial-ring svg.ring-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ring-crest {
+  --angle: 0deg;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--crest);
+  height: var(--crest);
+  margin: calc(var(--crest) / -2) 0 0 calc(var(--crest) / -2);
+  transform: rotate(var(--angle)) translateY(calc(var(--radius) * -1)) rotate(calc(var(--angle) * -1));
+  border-radius: 999px;
+}
+
+.ring-crest .crest-disc {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, #0b0c13), #08090f 72%);
+  box-shadow: 0 0 0 4px var(--background), 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 260ms ease, border-color 260ms ease, transform 260ms ease;
+}
+
+.ring-crest:hover .crest-disc,
+.ring-crest:focus-visible .crest-disc {
+  transform: scale(1.08);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--background), 0 0 34px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.ring-crest .crest-name {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 0.45rem);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 1.6vw, 0.92rem);
+  font-style: italic;
+  text-shadow: 0 0 6px var(--background), 0 0 12px var(--background);
+  transition: color 200ms ease;
+}
+
+.ring-crest:hover .crest-name,
+.ring-crest:focus-visible .crest-name {
+  color: var(--accent);
+}
+
+.ring-center {
+  position: absolute;
+  inset: 31%;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(201, 164, 92, 0.14), transparent 68%);
+}
+
+.ring-fade-in {
+  animation: ring-rise 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.ring-crest {
+  animation: crest-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 90ms + 300ms);
+}
+
+@keyframes ring-rise {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes crest-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+:root[data-theme="light"] .ring-crest .crest-disc {
+  background: radial-gradient(circle, #fffaf0, #eadcc4 75%);
+  box-shadow: 0 0 0 4px var(--background), 0 10px 24px rgba(82, 58, 25, 0.16);
+}
+
+:root[data-theme="light"] .ring-crest .crest-disc img {
+  padding: 8%;
+}
+
+@media (max-width: 640px) {
+  .ring-crest .crest-name {
+    display: none;
+  }
+
+  .page-header {
+    padding-block: 3rem 2rem;
+  }
+}
+
+/* Empire map: the illustrated map with emblem pins and hover cards. */
+.empire-map-frame {
+  position: relative;
+  border: 1px solid var(--plate-edge);
+  border-radius: 0.9rem;
+  padding: 0.5rem;
+  background: var(--plate);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+.empire-map-scroll {
+  overflow-x: auto;
+  border-radius: 0.55rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-deep) transparent;
+}
+
+.empire-map {
+  position: relative;
+  min-width: 860px;
+}
+
+.map-pin {
+  --accent: #c9a45c;
+  position: absolute;
+  z-index: 1;
+  width: 4.4%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+}
+
+.map-pin:hover,
+.map-pin:focus-visible {
+  z-index: 5;
+  outline: none;
+}
+
+.map-pin-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.map-pin:hover .map-pin-ring,
+.map-pin:focus-visible .map-pin-ring {
+  transform: scale(1.25);
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 3px rgba(5, 6, 9, 0.55),
+    0 0 26px color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.map-pin-card {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 1rem);
+  width: 17rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  border-radius: 0.6rem;
+  background: rgba(9, 10, 16, 0.94);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-6px, -50%);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.map-pin[data-side="left"] .map-pin-card {
+  left: auto;
+  right: calc(100% + 1rem);
+  transform: translate(6px, -50%);
+}
+
+.map-pin:hover .map-pin-card,
+.map-pin:focus-visible .map-pin-card {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* The map art is dark in both themes, so its hover card stays dark too. */
+.map-pin-card {
+  --foreground: #ede6d6;
+  --gold: #c9a45c;
+  color: #ede6d6;
+}
+
+:root[data-theme="light"] .map-pin-card .house-mark {
+  color: var(--accent);
+}
+
+:root[data-theme="light"] .map-pin-card .text-slate-300 {
+  color: #cbd5e1;
+}
+
+:root[data-theme="light"] .map-pin-card .text-slate-400 {
+  color: #94a3b8;
+}
+
+@media (min-width: 768px) {
+  .empire-map {
+    min-width: 0;
+  }
+}
 }

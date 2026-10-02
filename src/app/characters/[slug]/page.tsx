@@ -57,14 +57,14 @@ export default async function CharacterDetailPage({
     <main className="container-page py-16 md:py-24">
       <Link
         href="/characters"
-        className="text-sm text-amber-200 transition hover:text-amber-100"
+        className="text-sm text-[var(--gold)] transition hover:text-[var(--gold-soft)]"
       >
         ← กลับไปหน้าตัวละคร
       </Link>
 
       <section className="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div
-          className="glass-panel relative min-h-120 overflow-hidden rounded-3xl"
+          className="glass-panel relative min-h-120 overflow-hidden rounded-xl"
           style={{
             background:
               `radial-gradient(circle at center, ${character.accent}22, rgba(7,9,18,0.98) 70%)`,
@@ -86,7 +86,7 @@ export default async function CharacterDetailPage({
           </div>
         </div>
 
-        <article className="glass-panel rounded-3xl p-7 md:p-10">
+        <article className="glass-panel rounded-xl p-7 md:p-10">
           <p className="section-kicker">Imperial Sovereign</p>
 
           <h1 className="gold-text mt-4 text-4xl font-semibold md:text-6xl">
@@ -97,7 +97,7 @@ export default async function CharacterDetailPage({
             {character.thaiName}
           </p>
 
-          <p className="mt-4 text-lg text-amber-200">
+          <p className="mt-4 text-lg text-[var(--gold)]">
             {character.title}
           </p>
 
@@ -112,7 +112,7 @@ export default async function CharacterDetailPage({
               <dt className="text-xs uppercase tracking-[0.18em] text-slate-500">
                 Royal Eye
               </dt>
-              <dd className="mt-2 text-amber-100">
+              <dd className="mt-2 text-[var(--gold-soft)]">
                 {character.eye}
               </dd>
             </div>
@@ -121,7 +121,7 @@ export default async function CharacterDetailPage({
               <dt className="text-xs uppercase tracking-[0.18em] text-slate-500">
                 Domain
               </dt>
-              <dd className="mt-2 text-amber-100">
+              <dd className="mt-2 text-[var(--gold-soft)]">
                 {character.domain}
               </dd>
             </div>
@@ -130,7 +130,7 @@ export default async function CharacterDetailPage({
               <dt className="text-xs uppercase tracking-[0.18em] text-slate-500">
                 Army
               </dt>
-              <dd className="mt-2 text-amber-100">
+              <dd className="mt-2 text-[var(--gold-soft)]">
                 {character.army}
               </dd>
             </div>
@@ -139,7 +139,7 @@ export default async function CharacterDetailPage({
               <dt className="text-xs uppercase tracking-[0.18em] text-slate-500">
                 Sovereign Key
               </dt>
-              <dd className="mt-2 text-amber-100">
+              <dd className="mt-2 text-[var(--gold-soft)]">
                 {character.keyName}
               </dd>
             </div>
@@ -148,7 +148,7 @@ export default async function CharacterDetailPage({
           {character.house && (
             <Link
               href={`/houses/${character.house.slug}`}
-              className="mt-8 inline-flex rounded-full border border-amber-200/30 bg-amber-200/10 px-5 py-3 text-sm font-semibold text-amber-100 transition hover:bg-amber-200/20"
+              className="mt-8 inline-flex rounded-full border border-amber-200/30 bg-amber-200/10 px-5 py-3 text-sm font-semibold text-[var(--gold-soft)] transition hover:bg-amber-200/20"
             >
               เปิดบันทึก {character.house.name}
             </Link>
@@ -167,7 +167,7 @@ export default async function CharacterDetailPage({
           {powers.map((power, index) => (
             <article
               key={power}
-              className="glass-panel flex items-center gap-4 rounded-2xl p-5 text-slate-300"
+              className="glass-panel flex items-center gap-4 rounded-lg p-5 text-slate-300"
             >
               <span
                 aria-hidden="true"
@@ -180,7 +180,7 @@ export default async function CharacterDetailPage({
                 <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
                   Sovereign Ability
                 </p>
-                <h3 className="mt-1 text-lg text-amber-100">{power}</h3>
+                <h3 className="mt-1 text-lg text-[var(--gold-soft)]">{power}</h3>
               </div>
             </article>
           ))}
@@ -200,7 +200,7 @@ export default async function CharacterDetailPage({
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
             {house && (
-              <article className="glass-panel rounded-3xl p-6 md:p-8">
+              <article className="glass-panel rounded-xl p-6 md:p-8">
                 <div className="grid gap-6 sm:grid-cols-[7rem_1fr] sm:items-center">
                   <HouseEmblem
                     src={house.emblem}
@@ -212,7 +212,7 @@ export default async function CharacterDetailPage({
                     <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
                       Imperial House
                     </p>
-                    <h3 className="mt-2 text-2xl text-amber-100">{house.name}</h3>
+                    <h3 className="mt-2 text-2xl text-[var(--gold-soft)]">{house.name}</h3>
                     <p className="mt-1 text-sm text-slate-400">{house.thaiName}</p>
                   </div>
                 </div>
@@ -227,7 +227,7 @@ export default async function CharacterDetailPage({
 
                 <Link
                   href={`/houses/${house.slug}`}
-                  className="mt-6 inline-flex text-sm font-semibold text-amber-200 transition hover:translate-x-1"
+                  className="mt-6 inline-flex text-sm font-semibold text-[var(--gold)] transition hover:translate-x-1"
                 >
                   เปิดบันทึกตระกูล →
                 </Link>
@@ -235,7 +235,7 @@ export default async function CharacterDetailPage({
             )}
 
             {city && (
-              <article className="glass-panel rounded-3xl p-6 md:p-8">
+              <article className="glass-panel rounded-xl p-6 md:p-8">
                 <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
                   Sovereign Capital
                 </p>
@@ -248,7 +248,7 @@ export default async function CharacterDetailPage({
                     {city.symbol}
                   </span>
                   <div>
-                    <h3 className="text-2xl text-amber-100">{city.name}</h3>
+                    <h3 className="text-2xl text-[var(--gold-soft)]">{city.name}</h3>
                     <p className="mt-1 text-sm text-slate-400">
                       {city.thaiName} · {city.title}
                     </p>
@@ -267,13 +267,13 @@ export default async function CharacterDetailPage({
                   </div>
                   <div className="sm:col-span-2">
                     <dt className="text-xs uppercase tracking-[0.18em] text-slate-500">สถานที่สำคัญ</dt>
-                    <dd className="mt-2 text-amber-100">{city.landmark}</dd>
+                    <dd className="mt-2 text-[var(--gold-soft)]">{city.landmark}</dd>
                   </div>
                 </dl>
 
                 <Link
                   href={`/world/${city.slug}`}
-                  className="mt-6 inline-flex text-sm font-semibold text-amber-200 transition hover:translate-x-1"
+                  className="mt-6 inline-flex text-sm font-semibold text-[var(--gold)] transition hover:translate-x-1"
                 >
                   สำรวจนครแห่งนี้ →
                 </Link>

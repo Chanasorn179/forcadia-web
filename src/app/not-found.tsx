@@ -9,7 +9,7 @@ export default function NotFound() {
         <p className="mt-5 text-slate-400">ไม่พบบันทึกที่คุณกำลังค้นหา</p>
         <Link
           href="/"
-          className="mt-8 inline-flex rounded-full border border-amber-200/30 px-6 py-3 text-amber-100"
+          className="mt-8 inline-flex rounded-full border border-amber-200/30 px-6 py-3 text-[var(--gold-soft)]"
         >
           กลับหน้าหลัก
         </Link>

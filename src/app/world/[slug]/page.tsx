@@ -67,7 +67,7 @@ export default async function CityDetailPage({ params }: Props) {
     <main className="container-page py-16 md:py-24">
       <Link
         href="/world"
-        className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
+        className="inline-flex items-center gap-2 text-sm text-[var(--gold)] transition hover:text-[var(--gold-soft)]"
       >
         <span aria-hidden="true">←</span>
         กลับไปแผนที่จักรวรรดิ
@@ -75,7 +75,7 @@ export default async function CityDetailPage({ params }: Props) {
 
       <section className="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div
-          className="glass-panel relative min-h-120 overflow-hidden rounded-3xl border"
+          className="glass-panel relative min-h-120 overflow-hidden rounded-xl border"
           style={{
             borderColor: `${city.accent}55`,
             background: `radial-gradient(circle at center, ${city.accent}18, rgba(7, 9, 18, 0.92) 68%)`,
@@ -104,13 +104,13 @@ export default async function CityDetailPage({ params }: Props) {
               {crestSubtitle}
             </p>
 
-            <p className="mt-2 text-xl text-amber-100">
+            <p className="mt-2 text-xl text-[var(--gold-soft)]">
               {crestTitle}
             </p>
           </div>
         </div>
 
-        <article className="glass-panel rounded-3xl p-7 md:p-10">
+        <article className="glass-panel rounded-xl p-7 md:p-10">
           <p className="section-kicker">{city.faction}</p>
 
           <h1 className="gold-text mt-4 text-4xl font-semibold md:text-6xl">
@@ -136,21 +136,21 @@ export default async function CityDetailPage({ params }: Props) {
               <dt className="text-xs uppercase tracking-[0.22em] text-slate-500">
                 ผู้ปกครอง
               </dt>
-              <dd className="mt-2 text-lg text-amber-100">{city.ruler}</dd>
+              <dd className="mt-2 text-lg text-[var(--gold-soft)]">{city.ruler}</dd>
             </div>
 
             <div>
               <dt className="text-xs uppercase tracking-[0.22em] text-slate-500">
                 อำนาจปกครอง
               </dt>
-              <dd className="mt-2 text-lg text-amber-100">{city.faction}</dd>
+              <dd className="mt-2 text-lg text-[var(--gold-soft)]">{city.faction}</dd>
             </div>
 
             <div>
               <dt className="text-xs uppercase tracking-[0.22em] text-slate-500">
                 สถานที่สำคัญ
               </dt>
-              <dd className="mt-2 text-lg text-amber-100">{city.landmark}</dd>
+              <dd className="mt-2 text-lg text-[var(--gold-soft)]">{city.landmark}</dd>
             </div>
 
             <div>
@@ -163,7 +163,7 @@ export default async function CityDetailPage({ params }: Props) {
             </div>
           </dl>
 
-          <div className="mt-8 rounded-2xl border border-white/10 bg-white/3 p-5">
+          <div className="mt-8 rounded-lg border border-white/10 bg-white/3 p-5">
             <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
               สถาปัตยกรรม
             </p>

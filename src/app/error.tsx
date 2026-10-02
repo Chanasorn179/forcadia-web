@@ -15,9 +15,9 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
 
   return (
     <main className="container-page grid min-h-[65vh] place-items-center py-20">
-      <section className="glass-panel w-full max-w-2xl rounded-3xl p-8 text-center md:p-12">
+      <section className="glass-panel w-full max-w-2xl rounded-xl p-8 text-center md:p-12">
         <p className="section-kicker">Archive Interrupted</p>
-        <h1 className="mt-4 text-3xl font-semibold text-amber-100 md:text-5xl">
+        <h1 className="mt-4 text-3xl font-semibold text-[var(--gold-soft)] md:text-5xl">
           เปิดบันทึกนี้ไม่สำเร็จ
         </h1>
         <p className="mx-auto mt-5 max-w-lg leading-8 text-slate-400">
@@ -29,7 +29,7 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
           <button
             type="button"
             onClick={reset}
-            className="rounded-full border border-amber-200/30 bg-amber-200/10 px-6 py-3 font-semibold text-amber-100 transition hover:bg-amber-200/20"
+            className="rounded-full border border-amber-200/30 bg-amber-200/10 px-6 py-3 font-semibold text-[var(--gold-soft)] transition hover:bg-amber-200/20"
           >
             ลองอีกครั้ง
           </button>

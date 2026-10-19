@@ -34,15 +34,14 @@ colors:
   action-light: "#5e1834"
   action-hover-light: "#7d2347"
   action-ink-light: "#fbefe0"
-  house-saint-cross: "#d9a21f"
-  house-saint-cross-ink: "#1f1206"
-  house-paradise-swan: "#2836a8"
-  house-venom-veil: "#1d5e45"
-  house-void-requiem: "#463a6e"
-  house-azure-song: "#136f80"
-  house-royal-flush: "#b3233c"
-  house-iron-bastion: "#46525e"
-  house-night-fall: "#15111c"
+  house-saint-cross: "#7a5a1c"
+  house-paradise-swan: "#262f66"
+  house-venom-veil: "#1d4234"
+  house-void-requiem: "#382f52"
+  house-azure-song: "#154c56"
+  house-royal-flush: "#6e1d2d"
+  house-iron-bastion: "#343b44"
+  house-night-fall: "#17121d"
   on-field: "#fbf3ec"
   reader-night: "#1d0f19"
   reader-night-ink: "#ecdfe6"
@@ -236,7 +235,7 @@ The palette is a tinted cloth, card stock in two weights (wine stock and bone), 
 - **Pale Foil** (foil-pale) and **Foil Cream** (foil-cream): headline and active-navigation ink on dark grounds, the dark-theme focus ring, and text on the deck-box cover.
 
 ### Tertiary: House fields
-Each House owns one full colour field. Text on the field uses `on-field` (#fbf3ec), except Saint-Cross, whose saffron field takes the dark `house-saint-cross-ink`.
+Each House owns one full colour field, set in deep jewel tones so the card never outshines its crest and nameplate. Text on every field uses `on-field` (#fbf3ec).
 - **Saint-Cross Saffron** (house-saint-cross)
 - **Paradise-Swan Ultramarine** (house-paradise-swan)
 - **Venom-Veil Viridian** (house-venom-veil)

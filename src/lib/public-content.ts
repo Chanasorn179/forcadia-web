@@ -1,3 +1,4 @@
+import { byCanonicalOrder } from "@/lib/canonical-order";
 import { characterLore, characterLoreFields } from "@/data/character-lore";
 import { prisma } from "@/lib/prisma";
 import { books as staticBooks, getBookChapters } from "@/data/books";
@@ -263,16 +264,6 @@ export async function getChapterNavigation(
 const emptyLore = Object.fromEntries(
   characterLoreFields.map(({ name }) => [name, null]),
 ) as Record<(typeof characterLoreFields)[number]["name"], string | null>;
-
-/* Canonical order from the Fourcadir record: Michael, Astraea, Abigail, Last,
-   Remuria, Fortuna, Remus, Erebos. Entries added later follow alphabetically. */
-function byCanonicalOrder<T extends { slug: string; name: string }>(order: { slug: string }[]) {
-  const rank = (slug: string) => {
-    const index = order.findIndex((item) => item.slug === slug);
-    return index === -1 ? order.length : index;
-  };
-  return (a: T, b: T) => rank(a.slug) - rank(b.slug) || a.name.localeCompare(b.name);
-}
 
 export async function getPublicCharacters() {
   try {

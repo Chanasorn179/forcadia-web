@@ -448,20 +448,6 @@
           "#ffe9a6"
         ]
       },
-      "house-saint-cross-ink": {
-        "role": "tertiary",
-        "displayName": "Saffron Field Ink",
-        "tonalRamp": [
-          "#110904",
-          "#2d2319",
-          "#4c3f34",
-          "#6e5e50",
-          "#8f7f71",
-          "#b1a295",
-          "#d4c6ba",
-          "#f8ece1"
-        ]
-      },
       "house-paradise-swan": {
         "role": "tertiary",
         "displayName": "Paradise-Swan Ultramarine",
@@ -800,7 +786,7 @@
       "kind": "custom",
       "refersTo": "card-arcana-face",
       "description": "5:8 House card: crosshatched back turns to the House field face on hover/focus.",
-      "html": "<a class=\"ds-arcana\" href=\"#\" style=\"--field:#b3233c;--on-field:#fbf3ec\"><span class=\"ds-arcana-back\"><svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"#e0b95f\" stroke-width=\"1.6\"><path d=\"M4 18.5h16M5 18.5 3.5 8l5 4L12 5l3.5 7 5-4L19 18.5\"/></svg></span><span class=\"ds-arcana-face\"><span class=\"ds-idx\">VI</span><svg viewBox=\"0 0 24 24\" width=\"40\" height=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M12 3.5 18.5 12 12 20.5 5.5 12Z\"/></svg><span class=\"ds-name\">Royal Flush</span></span></a>",
+      "html": "<a class=\"ds-arcana\" href=\"#\" style=\"--field:#6e1d2d;--on-field:#fbf3ec\"><span class=\"ds-arcana-back\"><svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"#e0b95f\" stroke-width=\"1.6\"><path d=\"M4 18.5h16M5 18.5 3.5 8l5 4L12 5l3.5 7 5-4L19 18.5\"/></svg></span><span class=\"ds-arcana-face\"><span class=\"ds-idx\">VI</span><svg viewBox=\"0 0 24 24\" width=\"40\" height=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M12 3.5 18.5 12 12 20.5 5.5 12Z\"/></svg><span class=\"ds-name\">Royal Flush</span></span></a>",
       "css": ".ds-arcana{position:relative;display:block;width:8.5rem;aspect-ratio:5/8;perspective:900px;border-radius:.8rem;transition:transform 520ms cubic-bezier(.16,1,.3,1)}.ds-arcana-back,.ds-arcana-face{position:absolute;inset:0;display:grid;border-radius:inherit;backface-visibility:hidden;box-shadow:0 18px 26px -14px rgba(8,2,6,.75),0 3px 6px rgba(8,2,6,.35);transition:transform 620ms cubic-bezier(.16,1,.3,1)}.ds-arcana-back{place-items:center;background:repeating-linear-gradient(45deg,transparent 0 9px,rgba(224,185,95,.1) 9px 10px),repeating-linear-gradient(-45deg,transparent 0 9px,rgba(224,185,95,.1) 9px 10px),color-mix(in srgb,var(--field) 62%,#1d0915);outline:1px solid rgba(224,185,95,.55);outline-offset:-7px}.ds-arcana-face{grid-template-rows:auto 1fr auto;justify-items:center;align-items:center;padding:.7rem .5rem .8rem;background:var(--field);color:var(--on-field);outline:1px solid color-mix(in srgb,var(--on-field) 45%,transparent);outline-offset:-6px;transform:rotateY(180deg)}.ds-idx{font-family:Chonburi,serif;font-size:.72rem;letter-spacing:.16em}.ds-name{font-family:Chonburi,serif;font-size:.72rem;text-align:center}.ds-arcana:hover,.ds-arcana:focus-visible{transform:translateY(-1.5rem) scale(1.08)}.ds-arcana:hover .ds-arcana-back,.ds-arcana:focus-visible .ds-arcana-back{transform:rotateY(-180deg)}.ds-arcana:hover .ds-arcana-face,.ds-arcana:focus-visible .ds-arcana-face{transform:rotateY(0)}.ds-arcana:focus-visible{outline:2px solid #ecd08a;outline-offset:6px}@media (prefers-reduced-motion:reduce){.ds-arcana-back{display:none}.ds-arcana-face{transform:none}}"
     },
     {
@@ -816,7 +802,7 @@
       "kind": "card",
       "refersTo": "card-portrait",
       "description": "Character printed on their House field; label below the name.",
-      "html": "<a class=\"ds-portrait\" href=\"#\" style=\"--field:#1d5e45;--on-field:#fbf3ec\"><span class=\"ds-art\"></span><span class=\"ds-body\"><strong>Abigail</strong><span>ผู้พิทักษ์ม่านพิษ</span><small>HOUSE VENOM-VEIL</small></span></a>",
+      "html": "<a class=\"ds-portrait\" href=\"#\" style=\"--field:#1d4234;--on-field:#fbf3ec\"><span class=\"ds-art\"></span><span class=\"ds-body\"><strong>Abigail</strong><span>ผู้พิทักษ์ม่านพิษ</span><small>HOUSE VENOM-VEIL</small></span></a>",
       "css": ".ds-portrait{position:relative;display:flex;flex-direction:column;width:14rem;padding:.6rem;border-radius:1.2rem;background:var(--field);color:var(--on-field);text-decoration:none;box-shadow:0 18px 40px -12px rgba(8,2,6,.7),0 4px 10px rgba(8,2,6,.35);transition:transform 420ms cubic-bezier(.16,1,.3,1)}.ds-portrait::after{content:'';position:absolute;inset:5px;border:1px solid color-mix(in srgb,var(--on-field) 35%,transparent);border-radius:.95rem;pointer-events:none}.ds-art{display:block;aspect-ratio:4/5;border-radius:.8rem;background:rgba(0,0,0,.25)}.ds-body{display:flex;flex-direction:column;padding:1.1rem .7rem .9rem}.ds-body strong{font-family:Chonburi,serif;font-weight:400;font-size:1.2rem;line-height:1.3}.ds-body span{margin-top:.3rem;font-family:'Noto Sans Thai',sans-serif;font-size:.9rem;opacity:.9}.ds-body small{margin-top:.5rem;font-family:'Noto Sans Thai',sans-serif;font-size:.75rem;letter-spacing:.14em;opacity:.85}.ds-portrait:hover,.ds-portrait:focus-visible{transform:translateY(-6px) rotate(-.6deg)}"
     }
   ],

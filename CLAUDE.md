@@ -12,7 +12,7 @@ npm run build               # production build + TypeScript check
 npm run lint                # ESLint
 npx tsc --noEmit -p .       # type-check only
 npm run validate:data       # consistency check of the static data in src/data
-npx tsx --test scripts/database-config.test.ts   # the only unit test (node:test)
+npm test                    # node:test suites in tests/ (single file: npx tsx --test tests/<name>.test.ts)
 npm run db:migrate:deploy   # apply migrations (uses DIRECT_URL)
 npm run db:seed             # upsert src/data/* into the database — OVERWRITES admin edits
 npm run db:generate         # regenerate the Prisma client into src/generated/prisma
@@ -44,5 +44,3 @@ Production deploys run from the CLI (`vercel deploy --prod --yes`), not from Git
 - No eyebrow/kicker labels above headings, no Unicode glyphs as icons (use `src/components/icons.tsx`, incl. `SymbolIcon` for content symbols like ☀ ⌛ ≋).
 - shadcn/ui primitives live in `src/components/ui/*` with colours mapped to these tokens in an `@theme inline` block; icons are swapped to the local icon set and the toaster follows the site theme (no `next-themes`, no `lucide-react`).
 - Thai is the primary language. *Forcadia* is the novel's title; the empire is *Fourcadir* (จักรวรรดิโฟร์คาเดียร์).
-
-Unused legacy code (not routed): `src/components/cinematic-home.*`, `src/components/archive/*`, the PascalCase files in `src/components/ui/` (HeroOverlay, InfoPanel …; the lowercase ones are shadcn), the 3D/`archive-*` CSS block, `src/store`, `src/hooks`.

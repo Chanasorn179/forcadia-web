@@ -112,7 +112,7 @@ export const capitalDistricts: CapitalDistrict[] = [
       },
       {
         name: "Moonlight Central Hospital",
-        detail: "โรงพยาบาลกลางแสงจันทร์ ศูนย์การแพทย์ที่ดีที่สุด ผสานวิทยาการรักษาด้วยพลังแสงจาก House Saint-Cross และวิชาสมุนไพร",
+        detail: "โรงพยาบาลกลางแสงจันทร์ ศูนย์การแพทย์ที่ดีที่สุด ผสานวิทยาการรักษาด้วยพลังแสงจาก House Saint-Cross และวิชาสมุนไพรจาก House Venom-Veil",
       },
     ],
   },

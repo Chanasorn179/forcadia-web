@@ -26,7 +26,7 @@ export function CharacterLoreSection({ lore, keyName, eye, domain, army, houseSl
         <div>
           <h2 id="lore-heading" className="text-3xl md:text-4xl">บันทึกที่ยังถูกผนึก</h2>
           <p className="mt-4 max-w-xl leading-8 text-slate-300">
-            ไพ่ใบนี้ยังคว่ำอยู่ ประวัติและพลังของผู้ครองบัลลังก์นี้ยังไม่ถูกเปิดเผยในคลังจักรวรรดิ
+            ประวัติและพลังของผู้ครองบัลลังก์นี้ยังไม่ถูกเปิดเผยในคลังจักรวรรดิ
           </p>
         </div>
       </section>
@@ -79,7 +79,7 @@ export function CharacterLoreSection({ lore, keyName, eye, domain, army, houseSl
         </div>
       </div>
 
-      <h3 className="mt-14 text-2xl md:text-3xl">ห้าอาร์คานาแห่งอำนาจ</h3>
+      <h3 className="mt-14 text-2xl md:text-3xl">พลังทั้งห้า</h3>
       <ol className="power-arcana mt-6">
         {arcana.map((item, index) => (
           <li key={item.label} className="power-arcanum" data-house={houseSlug}>

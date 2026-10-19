@@ -71,7 +71,7 @@ export default async function HomePage() {
                 ))}
               </div>
               <Link href={`/read/${prologue.slug}`} className="lead-card-action btn-action">
-                พลิกไพ่ · อ่านต่อ
+                อ่านต่อ
                 <ArrowIcon />
               </Link>
               <p className="lead-card-band arcana-index">
@@ -82,7 +82,7 @@ export default async function HomePage() {
             <article className="lead-card">
               <h1 id="prologue-title" className="lead-card-title">Forcadia: The Shattered Ring</h1>
               <div className="lead-card-text">
-                <p>ไพ่ใบแรกยังคว่ำอยู่ ตอนแรกของเรื่องกำลังจะเผยแพร่เร็ว ๆ นี้</p>
+                <p>ตอนแรกของเรื่องกำลังจะเผยแพร่เร็ว ๆ นี้</p>
               </div>
               <Link href="/books" className="lead-card-action btn-action">
                 ดูหนังสือ
@@ -125,7 +125,7 @@ export default async function HomePage() {
               ))}
             </ul>
             <p className="arcana-fan-caption">
-              แปดตระกูล หนึ่งบัลลังก์ว่างเปล่า เลือกไพ่เพื่อเปิดบันทึกตระกูล
+              แปดตระกูล หนึ่งบัลลังก์ว่างเปล่า เลือกตระกูลเพื่อเปิดบันทึก
             </p>
           </nav>
         </div>
@@ -155,7 +155,7 @@ export default async function HomePage() {
       <section aria-labelledby="chapters-heading" className="chapter-row-section">
         <div className="container-page">
           <div className="spread-head">
-            <h2 id="chapters-heading" className="text-3xl md:text-5xl">ไพ่ที่เปิดแล้ว</h2>
+            <h2 id="chapters-heading" className="text-3xl md:text-5xl">ตอนที่เผยแพร่แล้ว</h2>
             <p className="spread-lede">
               ทุกตอนที่เผยแพร่เรียงตามลำดับ ตอนล่าสุดมีกรอบทองล้อมไว้
             </p>
@@ -215,14 +215,14 @@ export default async function HomePage() {
             บัลลังก์ยังว่างเปล่า
           </h2>
           <p className="mt-4 max-w-md text-slate-300">
-            เรื่องราวเริ่มที่ไพ่ใบแรก โลกทั้งใบรออยู่หลังจากนั้น
+            เรื่องราวเริ่มที่ปฐมบท โลกทั้งใบรออยู่หลังจากนั้น
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
               href={prologue ? `/read/${prologue.slug}` : "/read"}
               className="btn-action inline-flex min-h-12 items-center justify-center gap-3 rounded-full px-8 font-bold"
             >
-              เปิดไพ่ใบแรก
+              เริ่มอ่านตอนแรก
               <ArrowIcon />
             </Link>
             <Link
@@ -236,7 +236,7 @@ export default async function HomePage() {
         <Link
           href={prologue ? `/read/${prologue.slug}` : "/read"}
           className="closing-back card-hover"
-          aria-label="เปิดไพ่ใบแรก"
+          aria-label="เริ่มอ่านตอนแรก"
         >
           <Image src="/images/logos/unity-crown-webmark-gold.svg" alt="" width={56} height={56} />
         </Link>

@@ -46,3 +46,6 @@ next-env.d.ts
 /.impeccable/review/
 /.impeccable/questions/
 /.impeccable/hook.cache.json
+
+# Personal Claude Code settings (impeccable hooks use an absolute path)
+.claude/settings.local.json

@@ -80,7 +80,7 @@ function HouseForm({
         <Field name="name" label="ชื่อภาษาอังกฤษ" required />
         <Field name="thaiName" label="ชื่อภาษาไทย" required />
         <Field name="slug" label="Slug" placeholder="เว้นว่างเพื่อสร้างจากชื่อ" />
-        <Field name="emblem" label="พาธตราตระกูล" placeholder="/images/crests-transparent/example.png" required />
+        <Field name="emblem" label="พาธตราตระกูล" placeholder="/images/crests-presentation/example.png" required />
         <Field name="emblemName" label="ชื่อตรา" required />
         <Field name="motto" label="คำขวัญ" required />
         <Field name="keyName" label="Sovereign Key" required />

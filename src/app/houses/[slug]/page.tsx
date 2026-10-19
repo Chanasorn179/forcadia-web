@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HouseEmblem } from "@/components/house-emblem";
+import { Nameplate } from "@/components/nameplate";
 import { RelationCard } from "@/components/relation-card";
 import { houses } from "@/data/houses";
 import { getPublicHouseBySlug } from "@/lib/public-content";
@@ -61,21 +62,19 @@ export default async function HouseDetailPage({ params }: Props) {
       </Link>
 
       <section className="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-        <HouseEmblem
-          src={house.emblem}
-          alt={`ตรา ${house.name}`}
-          accent={house.accent}
-          size="lg"
-        />
+        <div className="house-plaque">
+          <HouseEmblem
+            src={house.emblem}
+            alt={`ตรา ${house.name}`}
+            accent={house.accent}
+            size="lg"
+          />
+          <Nameplate as="h1" size="lg" name={house.name} thaiName={house.thaiName} />
+        </div>
 
         <article className="glass-panel rounded-3xl p-7 md:p-10">
-          <h1 className="gold-text text-4xl font-semibold md:text-6xl">
-            {house.name}
-          </h1>
-
-          <p className="mt-3 text-xl text-slate-300">
-            {house.thaiName}
-            <span className="ml-3 text-base text-amber-200">· {house.emblemName}</span>
+          <p className="card-title text-2xl text-amber-100 md:text-3xl">
+            {house.emblemName}
           </p>
 
           <blockquote

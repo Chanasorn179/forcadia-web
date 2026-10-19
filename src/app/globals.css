@@ -122,14 +122,16 @@
 
 /* House arcana: each House owns a full colour field. */
 [data-house] { --on-field: #fbf3ec; }
-[data-house="saint-cross"] { --field: #d9a21f; --on-field: #1f1206; }
-[data-house="paradise-swan"] { --field: #2836a8; }
-[data-house="venom-veil"] { --field: #1d5e45; }
-[data-house="void-requiem"] { --field: #463a6e; }
-[data-house="azure-song"] { --field: #136f80; }
-[data-house="royal-flush"] { --field: #b3233c; }
-[data-house="iron-bastion"] { --field: #46525e; }
-[data-house="night-fall"] { --field: #15111c; }
+/* Deep jewel tones, as if printed on aged card stock: each House stays
+   recognisable by colour without outshining its crest and nameplate. */
+[data-house="saint-cross"] { --field: #7a5a1c; }
+[data-house="paradise-swan"] { --field: #262f66; }
+[data-house="venom-veil"] { --field: #1d4234; }
+[data-house="void-requiem"] { --field: #382f52; }
+[data-house="azure-song"] { --field: #154c56; }
+[data-house="royal-flush"] { --field: #6e1d2d; }
+[data-house="iron-bastion"] { --field: #343b44; }
+[data-house="night-fall"] { --field: #17121d; }
 
 * {
   box-sizing: border-box;
@@ -417,17 +419,6 @@ textarea {
 :root[data-theme="light"] .search-form select option {
   background: var(--bone);
   color: #1f1419;
-}
-
-:root[data-theme="light"] .house-emblem {
-  background: radial-gradient(circle at 50% 42%, #fff 0 24%, transparent 62%), var(--bone);
-  box-shadow: var(--shadow-card) !important;
-}
-
-:root[data-theme="light"] .house-emblem-image {
-  object-fit: contain;
-  padding: 0.75rem;
-  filter: drop-shadow(0 8px 12px rgba(60, 22, 38, 0.16));
 }
 
 /* Foil is a colour, never a gradient. */
@@ -1145,7 +1136,7 @@ textarea {
   background:
     repeating-linear-gradient(45deg, transparent 0 9px, rgba(224, 185, 95, 0.1) 9px 10px),
     repeating-linear-gradient(-45deg, transparent 0 9px, rgba(224, 185, 95, 0.1) 9px 10px),
-    color-mix(in srgb, var(--field) 62%, #1d0915);
+    var(--field);
   outline: 1px solid rgba(224, 185, 95, 0.55);
   outline-offset: -7px;
 }
@@ -1167,10 +1158,10 @@ textarea {
 
 .arcana-face-crest {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 88%;
+  aspect-ratio: 1;
+  align-self: center;
   margin-block: 0.35rem;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
 }
 
 .arcana-face-name {
@@ -1537,7 +1528,6 @@ textarea {
   width: 78%;
   aspect-ratio: 1;
   margin-block: 1rem 1.25rem;
-  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.35));
   transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -2171,4 +2161,130 @@ textarea {
   background:
     radial-gradient(ellipse 120% 50% at 100% 0%, color-mix(in srgb, var(--wine) 30%, transparent), transparent 70%),
     var(--cloth-deep);
+}
+
+/* Crest plate: the brand kit's presentation crests carry their own black
+   ground and gold frame, so they sit on the House field as a framed plate. */
+.arcana-face-crest,
+.house-arcanum-crest {
+  overflow: hidden;
+  border-radius: 0.6rem;
+  background: #07070a;
+  box-shadow:
+    0 0 0 1px rgba(224, 185, 95, 0.45),
+    0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+
+.arcana-face-crest img,
+.house-arcanum-crest img {
+  object-fit: cover;
+}
+
+.house-emblem {
+  background: #07070a !important;
+  border-color: rgba(224, 185, 95, 0.45) !important;
+}
+
+.house-emblem-image {
+  object-fit: contain !important;
+  padding: 0;
+  filter: none;
+}
+
+/* House nameplate (brand kit): black plate, double gold frame, lozenge ends.
+   Always printed dark, whatever the site theme. */
+.nameplate {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.2rem;
+  width: 100%;
+  padding: 0.75rem 2.4rem 0.85rem;
+  border: 1.5px solid #c99a3e;
+  border-radius: 0.9rem;
+  background: #0b0a0d;
+  text-align: center;
+  box-shadow: 0 10px 22px -10px rgba(0, 0, 0, 0.7);
+}
+
+.nameplate::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(201, 154, 62, 0.4);
+  border-radius: 0.6rem;
+  pointer-events: none;
+}
+
+.nameplate-name {
+  margin: 0;
+  font-family: "Chonburi", "Noto Serif Thai", Georgia, serif;
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  color: #ecd08a;
+  text-wrap: balance;
+}
+
+.nameplate-thai {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #d6c1cd;
+}
+
+.nameplate-lozenge {
+  position: absolute;
+  top: 50%;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: #c99a3e;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.nameplate-lozenge-start {
+  left: 0.85rem;
+}
+
+.nameplate-lozenge-end {
+  right: 0.85rem;
+}
+
+.nameplate-lg {
+  padding: 1.1rem 3rem 1.2rem;
+}
+
+.nameplate-lg .nameplate-name {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+}
+
+.nameplate-lg .nameplate-thai {
+  font-size: 1rem;
+}
+
+.nameplate-lg .nameplate-lozenge {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.nameplate-lg .nameplate-lozenge-start {
+  left: 1.2rem;
+}
+
+.nameplate-lg .nameplate-lozenge-end {
+  right: 1.2rem;
+}
+
+.house-plaque {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.nameplate-prefix {
+  display: block;
+}
+
+.nameplate-core {
+  white-space: nowrap;
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Nameplate } from "@/components/nameplate";
 import { getPublicHouses } from "@/lib/public-content";
 
 export const metadata: Metadata = {
@@ -42,8 +43,7 @@ export default async function HousesPage() {
                   className="object-contain"
                 />
               </span>
-              <h2 className="house-arcanum-name">{house.name.replace("House ", "")}</h2>
-              <span className="house-arcanum-thai">{house.thaiName}</span>
+              <Nameplate name={house.name} thaiName={house.thaiName} />
               <span className="house-arcanum-emblem">{house.emblemName}</span>
               <p className="house-arcanum-text">{house.description}</p>
             </Link>

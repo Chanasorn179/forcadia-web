@@ -6,7 +6,7 @@ const characterArtwork: Record<string, string> = {
   "remuria-azure-song": "/images/portraits/remuria.png",
   "fortuna-royal-flush": "/images/portraits/fortuna.png",
   "remus-iron-bastion": "/images/portraits/remus.png",
-  "erebos-night-fall": "/images/crests-transparent/night-fall.png",
+  "erebos-night-fall": "/images/crests-presentation/night-fall.png",
 };
 
 export function getCharacterArtwork(slug: string) {

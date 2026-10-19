@@ -328,7 +328,7 @@ export const cities: City[] = [
     faction: "House Saint-Cross",
     accent: "#e7c66f",
     symbol: "☀",
-    emblem: "/images/crests-transparent/saint-cross.png",
+    emblem: "/images/crests-presentation/saint-cross.png",
   },
   {
     slug: "astra-caelum",
@@ -347,7 +347,7 @@ export const cities: City[] = [
     faction: "House ParadiseSwan",
     accent: "#8ea1ff",
     symbol: "✦",
-    emblem: "/images/crests-transparent/paradise-swan.png",
+    emblem: "/images/crests-presentation/paradise-swan.png",
   },
   {
     slug: "floraven-mortis",
@@ -366,7 +366,7 @@ export const cities: City[] = [
     faction: "House Venom-Veil",
     accent: "#77d58b",
     symbol: "♢",
-    emblem: "/images/crests-transparent/venom-veil.png",
+    emblem: "/images/crests-presentation/venom-veil.png",
   },
   {
     slug: "silentharrow",
@@ -385,7 +385,7 @@ export const cities: City[] = [
     faction: "House Void-Requiem",
     accent: "#b5b2c7",
     symbol: "⌛",
-    emblem: "/images/crests-transparent/void-requiem.png",
+    emblem: "/images/crests-presentation/void-requiem.png",
   },
   {
     slug: "thalassara",
@@ -404,7 +404,7 @@ export const cities: City[] = [
     faction: "House Azure-Song",
     accent: "#67c8e8",
     symbol: "≋",
-    emblem: "/images/crests-transparent/azure-song.png",
+    emblem: "/images/crests-presentation/azure-song.png",
   },
   {
     slug: "aurea-fortuna",
@@ -423,7 +423,7 @@ export const cities: City[] = [
     faction: "House Royal-Flush",
     accent: "#f1a9d4",
     symbol: "◆",
-    emblem: "/images/crests-transparent/royal-flush.png",
+    emblem: "/images/crests-presentation/royal-flush.png",
   },
   {
     slug: "ferrum-vanguard",
@@ -442,7 +442,7 @@ export const cities: City[] = [
     faction: "House Iron-Bastion",
     accent: "#9ca8b4",
     symbol: "⬢",
-    emblem: "/images/crests-transparent/iron-bastion.png",
+    emblem: "/images/crests-presentation/iron-bastion.png",
   },
   {
     slug: "nihil-ruina",
@@ -461,7 +461,7 @@ export const cities: City[] = [
     faction: "House Night-Fall",
     accent: "#a178e8",
     symbol: "◉",
-    emblem: "/images/crests-transparent/night-fall.png",
+    emblem: "/images/crests-presentation/night-fall.png",
   },
 ];
 

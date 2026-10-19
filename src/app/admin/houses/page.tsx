@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { requireAdmin } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
+import { FlashToast } from "@/components/admin/flash-toast";
 
 type Props = {
   searchParams: Promise<{
@@ -54,9 +55,7 @@ export default async function AdminHousesPage({
       </div>
 
       {(query.created || query.deleted) && (
-        <div className="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-300/5 p-4 text-emerald-200">
-          ดำเนินการเรียบร้อยแล้ว
-        </div>
+        <FlashToast message="ดำเนินการเรียบร้อยแล้ว" />
       )}
 
       {query.error && (
@@ -98,7 +97,7 @@ export default async function AdminHousesPage({
                 href={`/admin/houses/${house.id}`}
                 className="mt-5 inline-flex text-sm text-amber-200 transition hover:text-amber-100"
               >
-                แก้ไข →
+                แก้ไข
               </Link>
             </div>
           </article>

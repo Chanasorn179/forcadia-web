@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin-auth";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   searchParams: Promise<{
@@ -43,7 +46,7 @@ export default async function NewChapterPage({
         href="/admin/chapters"
         className="text-sm text-amber-200 transition hover:text-amber-100"
       >
-        ← กลับไปรายการตอน
+        กลับไปรายการตอน
       </Link>
 
       <h1 className="mt-3 text-4xl font-semibold">
@@ -81,7 +84,7 @@ export default async function NewChapterPage({
               <select
                 name="bookId"
                 required
-                className="min-h-12 rounded-2xl border border-white/10 bg-[#0d101b] px-4 text-slate-100 outline-none focus:border-amber-200/40"
+                className="native-select"
               >
                 {books.map((book) => (
                   <option key={book.id} value={book.id}>
@@ -93,23 +96,23 @@ export default async function NewChapterPage({
 
             <label className="grid gap-2">
               <span className="text-sm text-slate-400">ลำดับตัวเลข</span>
-              <input
+              <Input
                 name="sortOrder"
                 type="number"
                 min="1"
                 defaultValue={suggestedOrder}
                 required
-                className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+                
               />
             </label>
 
             <label className="grid gap-2">
               <span className="text-sm text-slate-400">ชื่อตอน</span>
-              <input
+              <Input
                 name="title"
                 required
                 placeholder="The Crown Beyond Silence"
-                className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+                
               />
             </label>
 
@@ -117,41 +120,41 @@ export default async function NewChapterPage({
               <span className="text-sm text-slate-400">
                 Slug
               </span>
-              <input
+              <Input
                 name="slug"
                 placeholder="เว้นว่างเพื่อสร้างจากชื่อตอน"
-                className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+                
               />
             </label>
 
             <label className="grid gap-2">
               <span className="text-sm text-slate-400">Order text</span>
-              <input
+              <Input
                 name="orderText"
                 required
                 placeholder="Chapter IV"
-                className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+                
               />
             </label>
 
             <label className="grid gap-2">
               <span className="text-sm text-slate-400">POV</span>
-              <input
+              <Input
                 name="pov"
                 required
                 placeholder="Astraea ParadiseSwan"
-                className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+                
               />
             </label>
           </div>
 
           <label className="grid gap-2">
             <span className="text-sm text-slate-400">บทคัดย่อ</span>
-            <textarea
+            <Textarea
               name="excerpt"
               rows={4}
               required
-              className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-slate-100 outline-none focus:border-amber-200/40"
+              
             />
           </label>
 
@@ -159,11 +162,11 @@ export default async function NewChapterPage({
             <span className="text-sm text-slate-400">
               เนื้อหา — คั่นแต่ละย่อหน้าด้วยบรรทัดว่าง
             </span>
-            <textarea
+            <Textarea
               name="content"
               rows={22}
               required
-              className="rounded-2xl border border-white/10 bg-black/20 p-4 font-serif leading-8 text-slate-100 outline-none focus:border-amber-200/40"
+              className="font-serif leading-8"
             />
           </label>
 
@@ -180,12 +183,12 @@ export default async function NewChapterPage({
           </label>
 
           <div className="flex flex-wrap gap-3">
-            <button
+            <Button
               type="submit"
-              className="rounded-full border border-amber-200/30 bg-amber-200/10 px-6 py-3 font-semibold text-amber-100 transition hover:bg-amber-200/20"
+              
             >
               สร้างตอนใหม่
-            </button>
+            </Button>
 
             <Link
               href="/admin/chapters"

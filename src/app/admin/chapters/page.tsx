@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin-auth";
+import { FlashToast } from "@/components/admin/flash-toast";
 
 type Props = {
   searchParams: Promise<{
@@ -53,15 +54,11 @@ export default async function AdminChaptersPage({
       </div>
 
       {query.created && (
-        <div className="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-300/5 p-4 text-emerald-200">
-          เพิ่มตอนใหม่เรียบร้อยแล้ว
-        </div>
+        <FlashToast message="เพิ่มตอนใหม่เรียบร้อยแล้ว" />
       )}
 
       {query.deleted && (
-        <div className="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-300/5 p-4 text-emerald-200">
-          ลบตอนเรียบร้อยแล้ว
-        </div>
+        <FlashToast message="ลบตอนเรียบร้อยแล้ว" />
       )}
 
       {query.error && (
@@ -141,7 +138,7 @@ export default async function AdminChaptersPage({
                         href={`/admin/chapters/${chapter.id}`}
                         className="text-sm text-amber-200 transition hover:text-amber-100"
                       >
-                        แก้ไข →
+                        แก้ไข
                       </Link>
                     </div>
                   </td>

@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import { DeleteCharacterForm } from "@/components/admin/delete-character-form";
 import { requireAdmin } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { FlashToast } from "@/components/admin/flash-toast";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -49,15 +53,13 @@ export default async function EditCharacterPage({
         href="/admin/characters"
         className="text-sm text-amber-200 transition hover:text-amber-100"
       >
-        ← กลับไปรายการตัวละคร
+        กลับไปรายการตัวละคร
       </Link>
 
       <h1 className="mt-3 text-4xl font-semibold">{character.name}</h1>
 
       {query.saved && (
-        <div className="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-300/5 p-4 text-emerald-200">
-          บันทึกข้อมูลเรียบร้อยแล้ว
-        </div>
+        <FlashToast message="บันทึกข้อมูลเรียบร้อยแล้ว" />
       )}
 
       {query.error && (
@@ -86,11 +88,11 @@ export default async function EditCharacterPage({
             <label key={name} className="grid gap-2">
               <span className="text-sm text-slate-400">{label}</span>
 
-              <input
+              <Input
                 name={name}
                 defaultValue={value}
                 required
-                className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+                
               />
             </label>
           ))}
@@ -102,7 +104,7 @@ export default async function EditCharacterPage({
               name="symbol"
               defaultValue={character.symbol}
               required
-              className="min-h-12 rounded-2xl border border-white/10 bg-[#0d101b] px-4 text-lg text-slate-100 outline-none focus:border-amber-200/40"
+              className="native-select text-lg"
             >
               <option value="✦">✦ ดาวจักรวรรดิ</option>
               <option value="☀">☀ ดวงอาทิตย์</option>
@@ -123,12 +125,12 @@ export default async function EditCharacterPage({
 
         <label className="grid gap-2">
           <span className="text-sm text-slate-400">คำอธิบายตัวละคร</span>
-          <textarea
+          <Textarea
             name="summary"
             rows={6}
             defaultValue={character.summary}
             required
-            className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-slate-100 outline-none focus:border-amber-200/40"
+            
           />
         </label>
 
@@ -136,24 +138,24 @@ export default async function EditCharacterPage({
           <span className="text-sm text-slate-400">
             พลังเด่น — หนึ่งรายการต่อหนึ่งบรรทัด
           </span>
-          <textarea
+          <Textarea
             name="powers"
             rows={7}
             defaultValue={powers.join("\n")}
             required
-            className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-slate-100 outline-none focus:border-amber-200/40"
+            
           />
         </label>
 
         <CharacterLoreFields values={character} />
 
         <div className="flex flex-wrap gap-3">
-          <button
+          <Button
             type="submit"
-            className="rounded-full border border-amber-200/30 bg-amber-200/10 px-6 py-3 font-semibold text-amber-100 transition hover:bg-amber-200/20"
+            
           >
             บันทึกการแก้ไข
-          </button>
+          </Button>
 
           <Link
             href={`/characters/${character.slug}`}

@@ -336,6 +336,14 @@ export async function getPublicHouses(): Promise<typeof staticHouses> {
       },
     });
 
+    /* Keep the story's canonical order of the eight Houses (the deck's
+       numbering depends on it); Houses added later follow alphabetically. */
+    const canonicalIndex = (slug: string) => {
+      const index = staticHouses.findIndex((item) => item.slug === slug);
+      return index === -1 ? staticHouses.length : index;
+    };
+    houses.sort((a, b) => canonicalIndex(a.slug) - canonicalIndex(b.slug));
+
     return houses.map((house) => {
       const presentation = staticHouses.find((item) => item.slug === house.slug);
 

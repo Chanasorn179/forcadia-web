@@ -1,13 +1,10 @@
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { characterLoreFields, type CharacterLoreField } from "@/data/character-lore";
 
 type Props = {
   values?: Partial<Record<CharacterLoreField, string | null>>;
 };
-
-const inputClass =
-  "min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40";
-const textareaClass =
-  "rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-slate-100 outline-none focus:border-amber-200/40";
 
 export function CharacterLoreFields({ values = {} }: Props) {
   return (
@@ -27,18 +24,9 @@ export function CharacterLoreFields({ values = {} }: Props) {
           >
             <span className="text-sm text-slate-400">{label}</span>
             {rows > 0 ? (
-              <textarea
-                name={name}
-                rows={rows}
-                defaultValue={values[name] ?? ""}
-                className={textareaClass}
-              />
+              <Textarea name={name} rows={rows} defaultValue={values[name] ?? ""} />
             ) : (
-              <input
-                name={name}
-                defaultValue={values[name] ?? ""}
-                className={inputClass}
-              />
+              <Input name={name} defaultValue={values[name] ?? ""} />
             )}
           </label>
         ))}

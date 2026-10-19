@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { AdminNav } from "@/components/admin/admin-nav";
+import { Toaster } from "@/components/ui/sonner";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default async function AdminLayout({
   const authenticated = await isAdminAuthenticated();
 
   if (!authenticated) {
-    return <div className="admin-surface">{children}</div>;
+    return <div className="admin-surface">{children}<Toaster /></div>;
   }
 
   return (
@@ -25,6 +26,7 @@ export default async function AdminLayout({
         <AdminNav />
         <div>{children}</div>
       </div>
+      <Toaster position="bottom-right" />
     </main>
   );
 }

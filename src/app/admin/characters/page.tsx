@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
+import { FlashToast } from "@/components/admin/flash-toast";
+import { SymbolIcon } from "@/components/icons";
 
 type Props = {
   searchParams: Promise<{
@@ -50,9 +52,7 @@ export default async function AdminCharactersPage({
       </div>
 
       {(query.created || query.deleted) && (
-        <div className="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-300/5 p-4 text-emerald-200">
-          ดำเนินการเรียบร้อยแล้ว
-        </div>
+        <FlashToast message="ดำเนินการเรียบร้อยแล้ว" />
       )}
 
       {query.error && (
@@ -76,7 +76,7 @@ export default async function AdminCharactersPage({
                   backgroundColor: `${character.accent}12`,
                 }}
               >
-                {character.symbol}
+                <SymbolIcon symbol={character.symbol} className="h-5 w-5" />
               </span>
 
               <div className="min-w-0">
@@ -106,7 +106,7 @@ export default async function AdminCharactersPage({
                 href={`/admin/characters/${character.id}`}
                 className="text-sm text-amber-200 transition hover:text-amber-100"
               >
-                แก้ไข →
+                แก้ไข
               </Link>
             </div>
           </article>

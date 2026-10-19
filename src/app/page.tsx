@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CharacterCard } from "@/components/character-card";
 import { ContinueReadingCard } from "@/components/continue-reading-card";
 import { ArrowIcon } from "@/components/icons";
+import { characterLore } from "@/data/character-lore";
 import { characters as staticCharacters } from "@/data/forcadia";
 import {
   getPublicCharacters,
@@ -46,6 +47,9 @@ export default async function HomePage() {
       : null;
   }).filter((character): character is (typeof staticCharacters)[number] => Boolean(character));
 
+  /* The Seven Sovereigns: the rulers whose lore is on record. Erebos's
+     throne stands empty, so he is not counted among them. */
+  const sovereigns = characters.filter((character) => characterLore[character.slug]);
   const prologue = chapters[0];
   const openingLines = prologue ? parseChapterContent(prologue.content).slice(0, 2) : [];
   const arcanumName = prologue?.book.title.replace(/^Book [IVXLC]+:\s*/, "") ?? "The Empty Throne";
@@ -134,18 +138,15 @@ export default async function HomePage() {
       <section aria-labelledby="characters-heading" className="container-page py-20 md:py-28">
         <div className="spread-head">
           <h2 id="characters-heading" className="text-3xl md:text-5xl">
-            ผู้ถือไพ่แห่งวงแหวน
+            เจ็ดเซียนดารา ผู้ปกครองสรรพสิ่ง
           </h2>
-          <p className="spread-lede">
-            ผู้ครองอำนาจแต่ละคนถือกุญแจหนึ่งดอกและตระกูลหนึ่งตระกูล ไพ่ของพวกเขาคือเส้นทางเข้าสู่เรื่อง
-          </p>
           <Link href="/characters" className="link-arrow text-sm text-amber-200">
             ดูตัวละครทั้งหมด
           </Link>
         </div>
 
         <div className="character-spread mt-12">
-          {characters.slice(0, 4).map((character) => (
+          {sovereigns.slice(0, 4).map((character) => (
             <CharacterCard key={character.slug} character={character} />
           ))}
         </div>

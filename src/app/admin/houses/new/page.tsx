@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   searchParams: Promise<{
@@ -34,7 +37,7 @@ export default async function NewHousePage({
         href="/admin/houses"
         className="text-sm text-amber-200 transition hover:text-amber-100"
       >
-        ← กลับไปรายการตระกูล
+        กลับไปรายการตระกูล
       </Link>
 
       <h1 className="mt-3 text-4xl font-semibold">
@@ -89,7 +92,7 @@ function HouseForm({
           <select
             name="rulerId"
             required
-            className="min-h-12 rounded-2xl border border-white/10 bg-[#0d101b] px-4 text-slate-100 outline-none focus:border-amber-200/40"
+            className="native-select"
           >
             {rulers.map((ruler) => (
               <option key={ruler.id} value={ruler.id}>
@@ -102,21 +105,21 @@ function HouseForm({
 
       <label className="grid gap-2">
         <span className="text-sm text-slate-400">คำอธิบาย</span>
-        <textarea
+        <Textarea
           name="description"
           rows={7}
           required
-          className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-slate-100 outline-none focus:border-amber-200/40"
+          
         />
       </label>
 
       <div className="flex flex-wrap gap-3">
-        <button
+        <Button
           type="submit"
-          className="rounded-full border border-amber-200/30 bg-amber-200/10 px-6 py-3 font-semibold text-amber-100 transition hover:bg-amber-200/20"
+          
         >
           สร้างตระกูล
-        </button>
+        </Button>
 
         <Link
           href="/admin/houses"
@@ -145,12 +148,12 @@ function Field({
   return (
     <label className="grid gap-2">
       <span className="text-sm text-slate-400">{label}</span>
-      <input
+      <Input
         name={name}
         required={required}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+        
       />
     </label>
   );

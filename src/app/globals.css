@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* dark: follows the site theme switch (data-theme), not the OS setting. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* The Ring Deck — Forcadia's visual world.
    Ground is the reading cloth, surfaces are printed card stock, gold foil is
    only ever a line. Slate and amber are re-cut into the cloth's own tinted
@@ -27,6 +30,29 @@
   --color-amber-300: #e0b95f;
   --color-amber-400: #c99a3e;
   --color-amber-500: #a87b28;
+}
+
+/* shadcn/ui semantic colours, bound to the Ring Deck tokens so every
+   primitive renders as card stock on the cloth instead of the default theme. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--stock);
+  --color-card-foreground: var(--foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--foreground);
+  --color-primary: var(--action);
+  --color-primary-foreground: var(--action-ink);
+  --color-secondary: var(--stock);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--stock);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent-surface);
+  --color-accent-foreground: var(--foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--stock-edge);
+  --color-input: var(--stock-edge);
+  --color-ring: var(--focus);
 }
 
 :root {
@@ -57,6 +83,9 @@
   --toggle-background: rgba(245, 236, 241, 0.04);
   --toggle-color: #ecd08a;
   --shadow-card: 0 18px 40px -12px rgba(8, 2, 6, 0.7), 0 4px 10px rgba(8, 2, 6, 0.35);
+  --popover: var(--cloth-deep);
+  --accent-surface: rgba(224, 185, 95, 0.12);
+  --destructive: #d2445f;
 }
 
 :root[data-theme="light"] {
@@ -86,6 +115,9 @@
   --toggle-background: rgba(94, 24, 52, 0.05);
   --toggle-color: #5e1834;
   --shadow-card: 0 16px 34px -14px rgba(60, 22, 38, 0.32), 0 3px 8px rgba(60, 22, 38, 0.12);
+  --popover: var(--stock);
+  --accent-surface: rgba(94, 24, 52, 0.07);
+  --destructive: #a3203a;
 }
 
 /* House arcana: each House owns a full colour field. */
@@ -1071,7 +1103,7 @@ textarea {
 }
 
 .arcana-fan li {
-  --spread: 13deg;
+  --spread: 10.5deg;
   --angle: calc((var(--i) - (var(--n) - 1) / 2) * var(--spread));
   position: absolute;
   left: 50%;
@@ -1079,13 +1111,13 @@ textarea {
   width: clamp(6.5rem, 9vw, 8.5rem);
   aspect-ratio: 5 / 8;
   margin-left: calc(clamp(6.5rem, 9vw, 8.5rem) / -2);
-  transform-origin: 50% 210%;
+  transform-origin: 50% 230%;
   transform: rotate(var(--angle));
 }
 
 /* The ring is broken: Night-Fall's card, the empty throne, has slipped out of it. */
 .arcana-fan li:has([data-house="night-fall"]) {
-  transform: rotate(calc(var(--angle) + 9deg)) translate(1.6rem, 2.4rem);
+  transform: rotate(calc(var(--angle) + 6deg)) translate(-1.25rem, 2.75rem);
 }
 
 .arcana-card {
@@ -2091,4 +2123,52 @@ textarea {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* Admin danger zone: a wine-red card, never a coloured side border. */
+.danger-zone {
+  border-color: color-mix(in srgb, var(--destructive) 35%, transparent);
+  background: color-mix(in srgb, var(--destructive) 7%, transparent);
+}
+
+/* Native selects in the admin match the shadcn Input. */
+.native-select {
+  min-height: 3rem;
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--color-input);
+  background-color: var(--cloth-deep);
+  padding-inline: 1rem;
+  color: var(--foreground);
+  outline: none;
+}
+
+.native-select:focus-visible {
+  border-color: var(--color-ring);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ring) 40%, transparent);
+}
+
+/* shadcn surfaces in the deck: menus and drawers are card stock with a foil frame. */
+.deck-menu,
+.deck-sheet {
+  border-color: var(--foil-line);
+  box-shadow: var(--shadow-card);
+}
+
+.deck-menu {
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.deck-menu-item {
+  min-height: 2.75rem;
+  border-radius: 0.75rem;
+  padding-inline: 0.9rem;
+  font-size: 0.95rem;
+}
+
+.deck-sheet {
+  background:
+    radial-gradient(ellipse 120% 50% at 100% 0%, color-mix(in srgb, var(--wine) 30%, transparent), transparent 70%),
+    var(--cloth-deep);
 }

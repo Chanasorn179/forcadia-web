@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { CharacterLoreFields } from "@/components/admin/character-lore-fields";
 import { requireAdmin } from "@/lib/admin-auth";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   searchParams: Promise<{
@@ -20,7 +23,7 @@ export default async function NewCharacterPage({
         href="/admin/characters"
         className="text-sm text-amber-200 transition hover:text-amber-100"
       >
-        ← กลับไปรายการตัวละคร
+        กลับไปรายการตัวละคร
       </Link>
 
       <h1 className="mt-3 text-4xl font-semibold">
@@ -71,7 +74,7 @@ function CharacterForm({ action }: { action: string }) {
             name="symbol"
             defaultValue="✦"
             required
-            className="min-h-12 rounded-2xl border border-white/10 bg-[#0d101b] px-4 text-lg text-slate-100 outline-none focus:border-amber-200/40"
+            className="native-select text-lg"
           >
             <option value="✦">✦ ดาวจักรวรรดิ</option>
             <option value="☀">☀ ดวงอาทิตย์</option>
@@ -92,11 +95,11 @@ function CharacterForm({ action }: { action: string }) {
 
       <label className="grid gap-2">
         <span className="text-sm text-slate-400">คำอธิบายตัวละคร</span>
-        <textarea
+        <Textarea
           name="summary"
           rows={6}
           required
-          className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-slate-100 outline-none focus:border-amber-200/40"
+          
         />
       </label>
 
@@ -104,23 +107,23 @@ function CharacterForm({ action }: { action: string }) {
         <span className="text-sm text-slate-400">
           พลังเด่น — หนึ่งรายการต่อหนึ่งบรรทัด
         </span>
-        <textarea
+        <Textarea
           name="powers"
           rows={7}
           required
-          className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-slate-100 outline-none focus:border-amber-200/40"
+          
         />
       </label>
 
       <CharacterLoreFields />
 
       <div className="flex flex-wrap gap-3">
-        <button
+        <Button
           type="submit"
-          className="rounded-full border border-amber-200/30 bg-amber-200/10 px-6 py-3 font-semibold text-amber-100 transition hover:bg-amber-200/20"
+          
         >
           สร้างตัวละคร
-        </button>
+        </Button>
 
         <Link
           href="/admin/characters"
@@ -149,12 +152,12 @@ function Field({
   return (
     <label className="grid gap-2">
       <span className="text-sm text-slate-400">{label}</span>
-      <input
+      <Input
         name={name}
         required={required}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+        
       />
     </label>
   );

@@ -8,7 +8,15 @@ import {
   useState,
   type CSSProperties,
 } from "react";
-import { ArrowIcon, CloseIcon } from "@/components/icons";
+import { ArrowIcon } from "@/components/icons";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 type ChapterNav = {
   slug: string;
@@ -82,7 +90,6 @@ export function NovelReader({
   initialSettings = defaultReaderSettings,
 }: Props) {
   const articleRef = useRef<HTMLDivElement>(null);
-  const contentsButtonRef = useRef<HTMLButtonElement>(null);
 
   const [settings, setSettings] =
     useState<ReaderSettings>(initialSettings);
@@ -115,30 +122,6 @@ export function NovelReader({
     localStorage.setItem(settingsKey(), JSON.stringify(settings));
     document.cookie = `forcadia_reader_settings=${encodeURIComponent(JSON.stringify(settings))}; Path=/; Max-Age=31536000; SameSite=Lax`;
   }, [settings]);
-
-  useEffect(() => {
-    if (!showContents) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    const contentsButton = contentsButtonRef.current;
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setShowContents(false);
-      }
-    }
-
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-      contentsButton?.focus();
-    };
-  }, [showContents]);
 
   useEffect(() => {
     let ticking = false;
@@ -255,7 +238,6 @@ export function NovelReader({
               </button>
 
               <button
-                ref={contentsButtonRef}
                 type="button"
                 onClick={() => setShowContents(true)}
                 aria-haspopup="dialog"
@@ -507,49 +489,22 @@ export function NovelReader({
         </div>
       </div>
 
-      {showContents && (
-        <div
-          id="reader-contents"
-          className="fixed inset-0 z-80 bg-black/70 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          aria-label="สารบัญนิยาย"
-        >
-          <button
-            type="button"
-            aria-label="ปิดสารบัญ"
-            onClick={() => setShowContents(false)}
-            className="absolute inset-0"
-          />
+      <Sheet open={showContents} onOpenChange={setShowContents}>
+        <SheetContent id="reader-contents" side="right" className="deck-sheet w-full overflow-y-auto sm:max-w-md">
+          <SheetHeader>
+            <SheetTitle className="text-2xl font-normal text-amber-100">สารบัญ</SheetTitle>
+            <SheetDescription className="text-slate-400">เลือกตอนที่ต้องการอ่าน</SheetDescription>
+          </SheetHeader>
 
-          <aside className="absolute right-0 top-0 h-full w-full max-w-md overflow-y-auto border-l border-white/10 bg-[var(--cloth-deep)] p-6 shadow-2xl">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <h2 className="mt-2 text-2xl font-semibold text-amber-100">
-                  สารบัญ
-                </h2>
-              </div>
+          <div className="space-y-3 px-4 pb-6">
+            {allChapters.map((chapter) => {
+              const active = chapter.slug === chapterSlug;
 
-              <button
-                type="button"
-                autoFocus
-                aria-label="ปิดสารบัญ"
-                onClick={() => setShowContents(false)}
-                className="grid h-11 w-11 place-items-center rounded-full border border-white/10 text-slate-300 hover:bg-white/5"
-              >
-                <CloseIcon className="h-5 w-5" />
-              </button>
-            </div>
-
-            <div className="mt-8 space-y-3">
-              {allChapters.map((chapter) => {
-                const active = chapter.slug === chapterSlug;
-
-                return (
+              return (
+                <SheetClose key={chapter.slug} asChild>
                   <Link
-                    key={chapter.slug}
                     href={`/read/${chapter.slug}`}
-                    onClick={() => setShowContents(false)}
+                    aria-current={active ? "page" : undefined}
                     className={[
                       "block rounded-2xl border p-4 transition",
                       active
@@ -557,17 +512,17 @@ export function NovelReader({
                         : "border-white/10 hover:bg-white/5",
                     ].join(" ")}
                   >
-                    <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
+                    <p className="text-amber-100">{chapter.title}</p>
+                    <p className="arcana-index mt-1 text-xs uppercase text-slate-400">
                       {chapter.order}
                     </p>
-                    <p className="mt-1 text-amber-100">{chapter.title}</p>
                   </Link>
-                );
-              })}
-            </div>
-          </aside>
-        </div>
-      )}
+                </SheetClose>
+              );
+            })}
+          </div>
+        </SheetContent>
+      </Sheet>
     </>
   );
 }

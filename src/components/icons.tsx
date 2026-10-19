@@ -135,3 +135,31 @@ const symbolPaths: Record<string, React.ReactNode> = {
 export function SymbolIcon({ symbol, ...props }: IconProps & { symbol: string }) {
   return <Icon {...props}>{symbolPaths[symbol] ?? symbolPaths["◆"]}</Icon>;
 }
+
+export function CheckIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="m5 12.5 4.5 4.5L19 7.5" />
+    </Icon>
+  );
+}
+
+export function CircleIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <circle cx="12" cy="12" r="5" fill="currentColor" stroke="none" />
+    </Icon>
+  );
+}
+
+/* Directional aliases used by the shadcn primitives. */
+export const XIcon = CloseIcon;
+export const ChevronDownIcon = ChevronIcon;
+
+export function ChevronUpIcon({ className = "h-4 w-4", ...props }: IconProps) {
+  return <ChevronIcon className={`${className} rotate-180`} {...props} />;
+}
+
+export function ChevronRightIcon({ className = "h-4 w-4", ...props }: IconProps) {
+  return <ChevronIcon className={`${className} -rotate-90`} {...props} />;
+}

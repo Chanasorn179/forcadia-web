@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const links = [
   { href: "/admin", label: "ภาพรวม" },
@@ -53,12 +54,12 @@ export function AdminNav() {
       </nav>
 
       <form action="/admin/api/logout" method="post" className="mt-5">
-        <button
+        <Button variant="ghost"
           type="submit"
-          className="w-full rounded-xl border border-rose-300/20 px-4 py-3 text-sm text-rose-200 transition hover:bg-rose-300/10"
+          className="w-full text-destructive hover:text-destructive"
         >
           ออกจากระบบ
-        </button>
+        </Button>
       </form>
     </aside>
   );

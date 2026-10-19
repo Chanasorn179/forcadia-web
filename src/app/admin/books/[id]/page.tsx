@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 import { DeleteBookForm } from "@/components/admin/delete-book-form";
 import { requireAdmin } from "@/lib/admin-auth";
 import { prisma } from "@/lib/prisma";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { FlashToast } from "@/components/admin/flash-toast";
 
 type Props = {
   params: Promise<{
@@ -46,7 +50,7 @@ export default async function EditBookPage({
         href="/admin/books"
         className="text-sm text-amber-200 transition hover:text-amber-100"
       >
-        ← กลับไปรายการหนังสือ
+        กลับไปรายการหนังสือ
       </Link>
 
       <h1 className="mt-3 text-4xl font-semibold">
@@ -54,9 +58,7 @@ export default async function EditBookPage({
       </h1>
 
       {query.saved && (
-        <div className="mt-6 rounded-2xl border border-emerald-300/20 bg-emerald-300/5 p-4 text-emerald-200">
-          บันทึกข้อมูลเรียบร้อยแล้ว
-        </div>
+        <FlashToast message="บันทึกข้อมูลเรียบร้อยแล้ว" />
       )}
 
       {query.error && (
@@ -75,11 +77,11 @@ export default async function EditBookPage({
             <span className="text-sm text-slate-400">
               ชื่อภาษาอังกฤษ
             </span>
-            <input
+            <Input
               name="title"
               defaultValue={book.title}
               required
-              className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+              
             />
           </label>
 
@@ -87,11 +89,11 @@ export default async function EditBookPage({
             <span className="text-sm text-slate-400">
               ชื่อภาษาไทย
             </span>
-            <input
+            <Input
               name="thaiTitle"
               defaultValue={book.thaiTitle}
               required
-              className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+              
             />
           </label>
 
@@ -99,33 +101,33 @@ export default async function EditBookPage({
             <span className="text-sm text-slate-400">
               Subtitle
             </span>
-            <input
+            <Input
               name="subtitle"
               defaultValue={book.subtitle}
               required
-              className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+              
             />
           </label>
 
           <label className="grid gap-2">
             <span className="text-sm text-slate-400">Slug</span>
-            <input
+            <Input
               name="slug"
               defaultValue={book.slug}
               required
-              className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+              
             />
           </label>
 
           <label className="grid gap-2">
             <span className="text-sm text-slate-400">ลำดับเล่ม</span>
-            <input
+            <Input
               name="order"
               type="number"
               min="1"
               defaultValue={book.order}
               required
-              className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+              
             />
           </label>
 
@@ -134,7 +136,7 @@ export default async function EditBookPage({
             <select
               name="status"
               defaultValue={book.status}
-              className="min-h-12 rounded-2xl border border-white/10 bg-[#0d101b] px-4 text-slate-100 outline-none focus:border-amber-200/40"
+              className="native-select"
             >
               <option value="DRAFT">ฉบับร่าง</option>
               <option value="ONGOING">กำลังเผยแพร่</option>
@@ -147,31 +149,31 @@ export default async function EditBookPage({
           <span className="text-sm text-slate-400">
             พาธภาพปก
           </span>
-          <input
+          <Input
             name="cover"
             defaultValue={book.cover ?? ""}
-            className="min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+            
           />
         </label>
 
         <label className="grid gap-2">
           <span className="text-sm text-slate-400">คำอธิบาย</span>
-          <textarea
+          <Textarea
             name="description"
             rows={7}
             defaultValue={book.description}
             required
-            className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-slate-100 outline-none focus:border-amber-200/40"
+            
           />
         </label>
 
         <div className="flex flex-wrap gap-3">
-          <button
+          <Button
             type="submit"
-            className="rounded-full border border-amber-200/30 bg-amber-200/10 px-6 py-3 font-semibold text-amber-100 transition hover:bg-amber-200/20"
+            
           >
             บันทึกการแก้ไข
-          </button>
+          </Button>
 
           <Link
             href={`/books/${book.slug}`}

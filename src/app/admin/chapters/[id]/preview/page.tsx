@@ -45,7 +45,7 @@ export default async function ChapterPreviewPage({
             href={`/admin/chapters/${chapter.id}`}
             className="text-sm text-amber-200 transition hover:text-amber-100"
           >
-            ← กลับไปแก้ไข
+            กลับไปแก้ไข
           </Link>
 
           <p className="mt-3 text-sm text-slate-500">

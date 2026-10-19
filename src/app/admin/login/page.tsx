@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 type Props = {
   searchParams: Promise<{
@@ -47,21 +49,21 @@ export default async function AdminLoginPage({
             Admin Password
           </label>
 
-          <input
+          <Input
             id="password"
             name="password"
             type="password"
             required
             autoComplete="current-password"
-            className="mt-3 min-h-12 w-full rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40"
+            className="mt-3"
           />
 
-          <button
+          <Button size="lg"
             type="submit"
-            className="mt-5 min-h-12 w-full rounded-2xl border border-amber-200/30 bg-amber-200/10 font-semibold text-amber-100 transition hover:bg-amber-200/20"
+            className="mt-5 w-full"
           >
             เปิด Admin Console
-          </button>
+          </Button>
         </form>
       </section>
     </main>

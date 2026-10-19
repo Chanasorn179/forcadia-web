@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin-auth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 type FieldProps = {
   name: string;
@@ -11,15 +14,14 @@ type FieldProps = {
 };
 
 function Field({ name, label, defaultValue, required, multiline }: FieldProps) {
-  const className = "min-h-12 rounded-2xl border border-white/10 bg-black/20 px-4 text-slate-100 outline-none focus:border-amber-200/40";
 
   return (
     <label className="grid gap-2 text-sm text-slate-400">
       {label}
       {multiline ? (
-        <textarea name={name} defaultValue={String(defaultValue ?? "")} required={required} rows={4} className={`${className} p-4`} />
+        <Textarea name={name} defaultValue={String(defaultValue ?? "")} required={required} rows={4} />
       ) : (
-        <input name={name} defaultValue={String(defaultValue ?? "")} required={required} className={className} />
+        <Input name={name} defaultValue={String(defaultValue ?? "")} required={required} />
       )}
     </label>
   );
@@ -28,13 +30,13 @@ function Field({ name, label, defaultValue, required, multiline }: FieldProps) {
 function SubmitRow({ isExisting = false }: { isExisting?: boolean }) {
   return (
     <div className="flex flex-wrap gap-3">
-      <button className="min-h-11 rounded-full border border-amber-200/30 bg-amber-200/10 px-5 text-sm font-semibold text-amber-100">
+      <Button size="sm">
         {isExisting ? "บันทึกการแก้ไข" : "สร้างรายการ"}
-      </button>
+      </Button>
       {isExisting && (
-        <button name="_action" value="delete" className="min-h-11 rounded-full border border-rose-300/25 px-5 text-sm text-rose-200">
+        <Button variant="destructive" size="sm" name="_action" value="delete">
           ลบรายการ
-        </button>
+        </Button>
       )}
     </div>
   );
@@ -64,7 +66,7 @@ export default async function AdminContentPage() {
               <Field name="thaiName" label="ชื่อไทย" required /><Field name="title" label="ฉายา" required />
               <Field name="accent" label="Accent HEX" defaultValue="#d9b86c" required /><Field name="symbol" label="สัญลักษณ์" defaultValue="✦" required />
               <Field name="landmark" label="สถานที่สำคัญ" required /><Field name="emblem" label="พาธรูปตรา" />
-              <label className="grid gap-2 text-sm text-slate-400">ตระกูล<select name="houseId" className="min-h-12 rounded-2xl border border-white/10 bg-[#0d101b] px-4"><option value="">ไม่ระบุ</option>{houses.map((house) => <option key={house.id} value={house.id}>{house.name}</option>)}</select></label>
+              <label className="grid gap-2 text-sm text-slate-400">ตระกูล<select name="houseId" className="native-select"><option value="">ไม่ระบุ</option>{houses.map((house) => <option key={house.id} value={house.id}>{house.name}</option>)}</select></label>
               <div />
               <Field name="description" label="คำอธิบาย" required multiline /><Field name="atmosphere" label="บรรยากาศ" required multiline />
               <Field name="architecture" label="สถาปัตยกรรม" required multiline /><div className="self-end"><SubmitRow /></div>
@@ -101,7 +103,7 @@ export default async function AdminContentPage() {
           })}
         </section>
       </div>
-      <Link href="/admin" className="mt-8 inline-flex min-h-11 items-center text-amber-200">← กลับ Dashboard</Link>
+      <Link href="/admin" className="mt-8 inline-flex min-h-11 items-center text-amber-200">กลับ Dashboard</Link>
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { MoonIcon, SunIcon } from "@/components/icons";
 
 type Theme = "light" | "dark";
 
@@ -30,9 +31,9 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={isDark ? "เปลี่ยนเป็นโหมดสว่าง" : "เปลี่ยนเป็นโหมดกลางคืน"}
       title={isDark ? "โหมดสว่าง" : "โหมดกลางคืน"}
-      className="theme-toggle grid h-10 w-10 place-items-center rounded-full border text-lg transition"
+      className="theme-toggle grid h-11 w-11 place-items-center rounded-full border transition"
     >
-      <span aria-hidden="true">{isDark ? "☀" : "☾"}</span>
+      {isDark ? <SunIcon className="h-[18px] w-[18px]" /> : <MoonIcon className="h-[18px] w-[18px]" />}
     </button>
   );
 }

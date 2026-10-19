@@ -13,6 +13,7 @@ import {
   getPublishedChapterBySlug,
   parseChapterContent,
 } from "@/lib/public-content";
+import { ArrowIcon } from "@/components/icons";
 
 type Props = {
   params: Promise<{
@@ -88,7 +89,7 @@ export default async function ChapterPage({
             href={`/books/${chapter.book.slug}`}
             className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
           >
-            <span aria-hidden="true">←</span>
+            <ArrowIcon className="h-4 w-4 rotate-180" />
             กลับไปสารบัญ {chapter.book.title}
           </Link>
 

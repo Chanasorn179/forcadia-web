@@ -6,6 +6,7 @@ import {
   isBookmarked,
   removeBookmark,
 } from "@/lib/library-storage";
+import { BookmarkIcon } from "@/components/icons";
 
 type Props = {
   slug: string;
@@ -65,7 +66,7 @@ export function ChapterBookmarkButton({
           : "border-white/10 text-slate-300 hover:border-amber-200/25 hover:bg-white/5",
       ].join(" ")}
     >
-      <span aria-hidden="true">{bookmarked ? "★" : "☆"}</span>
+      <BookmarkIcon className="h-4 w-4" filled={bookmarked} />
       {bookmarked ? "บันทึกแล้ว" : "บันทึกตอนนี้"}
     </button>
   );

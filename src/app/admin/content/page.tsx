@@ -51,7 +51,6 @@ export default async function AdminContentPage() {
 
   return (
     <>
-      <p className="section-kicker">World Content</p>
       <h1 className="mt-3 text-4xl font-semibold md:text-5xl">เมือง ศักราช และคลังตำนาน</h1>
       <p className="mt-3 text-slate-400">ข้อมูลที่บันทึกที่นี่จะแสดงในหน้า public และระบบค้นหาทันที</p>
 

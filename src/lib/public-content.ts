@@ -1,3 +1,4 @@
+import { characterLore, characterLoreFields } from "@/data/character-lore";
 import { prisma } from "@/lib/prisma";
 import { books as staticBooks, getBookChapters } from "@/data/books";
 import {
@@ -258,6 +259,11 @@ export async function getChapterNavigation(
   }
 }
 
+/* The bundled fallback mirrors the database shape, where lore columns are nullable. */
+const emptyLore = Object.fromEntries(
+  characterLoreFields.map(({ name }) => [name, null]),
+) as Record<(typeof characterLoreFields)[number]["name"], string | null>;
+
 export async function getPublicCharacters() {
   try {
     return await prisma.character.findMany({
@@ -270,6 +276,8 @@ export async function getPublicCharacters() {
       .map((character) => {
         const house = staticHouses.find((item) => item.rulerSlug === character.slug);
         return {
+          ...emptyLore,
+          ...characterLore[character.slug],
           ...character,
           id: character.slug,
           keyName: character.key,
@@ -298,6 +306,8 @@ export async function getPublicCharacterBySlug(slug: string) {
     if (!character) return null;
     const house = staticHouses.find((item) => item.rulerSlug === character.slug);
     return {
+      ...emptyLore,
+      ...characterLore[character.slug],
       ...character,
       id: character.slug,
       keyName: character.key,

@@ -6,6 +6,7 @@ import {
   getPublicLoreBySlug,
   getPublicLoreEntries,
 } from "@/lib/public-content";
+import { ArrowIcon, SymbolIcon } from "@/components/icons";
 
 type Props = {
   params: Promise<{
@@ -57,24 +58,25 @@ export default async function LoreDetailPage({ params }: Props) {
         href="/lore"
         className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
       >
-        <span aria-hidden="true">←</span>
+        <ArrowIcon className="h-4 w-4 rotate-180" />
         กลับไปคลังตำนาน
       </Link>
 
       <article className="glass-panel mx-auto mt-8 max-w-5xl rounded-3xl p-7 md:p-12">
         <div className="flex flex-col gap-8 md:flex-row md:items-start">
           <div className="grid h-28 w-28 shrink-0 place-items-center rounded-3xl border border-amber-200/25 bg-amber-200/5 text-5xl text-amber-200">
-            {entry.symbol}
+            <SymbolIcon symbol={entry.symbol} className="h-[0.8em] w-[0.8em]" />
           </div>
 
           <div>
-            <p className="section-kicker">{entry.category}</p>
-
-            <h1 className="gold-text mt-4 text-4xl font-semibold md:text-6xl">
+            <h1 className="gold-text text-4xl font-semibold md:text-6xl">
               {entry.term}
             </h1>
 
-            <p className="mt-3 text-xl text-slate-300">{entry.thaiName}</p>
+            <p className="mt-3 text-xl text-slate-300">
+              {entry.thaiName}
+              <span className="ml-3 text-base text-amber-200">· {entry.category}</span>
+            </p>
 
             <p className="mt-6 text-xl leading-8 text-amber-100">
               {entry.meaning}
@@ -125,7 +127,7 @@ export default async function LoreDetailPage({ params }: Props) {
                   href={`/lore/${relatedEntry.slug}`}
                   className="rounded-full border border-amber-200/20 bg-amber-200/5 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-200/10"
                 >
-                  {relatedItem} →
+                  {relatedItem}
                 </Link>
               ) : (
                 <span
@@ -141,7 +143,6 @@ export default async function LoreDetailPage({ params }: Props) {
 
         {entry.slug === "sovereign-key" && (
           <section className="mt-8 rounded-2xl border border-amber-200/20 bg-amber-200/5 p-6">
-            <p className="section-kicker">The Eight Fragments</p>
             <h2 className="mt-3 text-2xl text-amber-100">กุญแจราชันย์ทั้งแปด</h2>
             <p className="mt-3 leading-7 text-slate-300">
               เปิดสารบบเพื่อดูชื่อกุญแจ ผู้ถือครอง ตระกูล และอำนาจที่เชื่อมโยงกัน
@@ -150,7 +151,7 @@ export default async function LoreDetailPage({ params }: Props) {
               href="/sovereign-keys"
               className="mt-5 inline-flex rounded-full border border-amber-200/30 px-5 py-2.5 text-sm font-semibold text-amber-100 transition hover:bg-amber-200/10"
             >
-              เปิดสารบบกุญแจราชันย์ →
+              เปิดสารบบกุญแจราชันย์
             </Link>
           </section>
         )}

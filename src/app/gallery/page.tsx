@@ -10,8 +10,6 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <main className="container-page py-16 md:py-24">
-      <p className="section-kicker">Imperial Gallery</p>
-
       <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
         หอศิลป์แห่ง Forcadia
       </h1>

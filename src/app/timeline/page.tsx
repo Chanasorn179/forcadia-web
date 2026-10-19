@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getPublicEras } from "@/lib/public-content";
+import { SymbolIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "เส้นเวลา",
@@ -12,8 +13,6 @@ export default async function TimelinePage() {
   const eras = await getPublicEras();
   return (
     <main className="container-page py-16 md:py-24">
-      <p className="section-kicker">Chronicle of the Ring</p>
-
       <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
         ศักราชแห่งจักรวรรดิ
       </h1>
@@ -36,9 +35,6 @@ export default async function TimelinePage() {
                 href={`/timeline/${era.slug}`}
                 className="glass-panel card-hover group block rounded-3xl p-6"
               >
-                <p className="text-xs uppercase tracking-[0.22em] text-amber-200">
-                  Era {String(index + 1).padStart(2, "0")}
-                </p>
 
                 <div
                   className={`mt-3 flex items-center gap-4 ${
@@ -47,13 +43,13 @@ export default async function TimelinePage() {
                 >
                   <span
                     className="grid h-11 w-11 shrink-0 place-items-center rounded-full border"
-                    style={{
+                    data-accent-ink style={{
                       color: era.accent,
                       borderColor: `${era.accent}55`,
                       backgroundColor: `${era.accent}12`,
                     }}
                   >
-                    {era.symbol}
+                    <SymbolIcon symbol={era.symbol} className="h-6 w-6" />
                   </span>
 
                   <h2 className="text-2xl">{era.name}</h2>
@@ -62,7 +58,7 @@ export default async function TimelinePage() {
                 <p className="mt-4 leading-7 text-slate-400">{era.detail}</p>
 
                 <span className="mt-5 inline-flex text-sm text-amber-200 transition group-hover:translate-x-1">
-                  เปิดบันทึกศักราช →
+                  เปิดบันทึกศักราช
                 </span>
               </Link>
             </div>

@@ -14,7 +14,6 @@ export default async function BooksPage() {
 
   return (
     <main className="container-page py-16 md:py-24">
-      <p className="section-kicker">The Imperial Library</p>
       <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
         หนังสือแห่ง Forcadia
       </h1>

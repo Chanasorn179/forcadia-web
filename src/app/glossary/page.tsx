@@ -15,10 +15,9 @@ export default async function GlossaryPage() {
   return (
     <main className="container-page py-16 md:py-24">
       <Link href="/lore" className="text-sm text-amber-200 transition hover:text-amber-100">
-        ← กลับไปคลังตำนาน
+        กลับไปคลังตำนาน
       </Link>
 
-      <p className="section-kicker mt-8">Imperial Glossary</p>
       <h1 className="mt-4 text-4xl font-semibold md:text-6xl">คำศัพท์แห่ง Forcadia</h1>
       <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
         ดัชนีชื่อและแนวคิดสำคัญ พร้อมคำแปล ประเภท และความหมายโดยย่อ
@@ -42,7 +41,7 @@ export default async function GlossaryPage() {
               <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{entry.category}</p>
               <p className="mt-2 text-sm leading-6 text-slate-400">{entry.meaning}</p>
             </div>
-            <span className="text-sm text-amber-200 transition group-hover:translate-x-1">เปิดคำศัพท์ →</span>
+            <span className="text-sm text-amber-200 transition group-hover:translate-x-1">เปิดคำศัพท์</span>
           </Link>
         ))}
       </div>

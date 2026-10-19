@@ -12,6 +12,7 @@ import {
   lore,
 } from "../src/data/forcadia";
 import { books } from "../src/data/books";
+import { characterLore } from "../src/data/character-lore";
 import { houses } from "../src/data/houses";
 import { worldLinks } from "../src/data/world-links";
 
@@ -42,6 +43,7 @@ function toPublicationStatus(status: string) {
 
 async function seedCharacters() {
   for (const character of characters) {
+    const extendedLore = characterLore[character.slug] ?? {};
     await prisma.character.upsert({
       where: { slug: character.slug },
       update: {
@@ -56,6 +58,7 @@ async function seedCharacters() {
         powers: character.powers,
         accent: character.accent,
         symbol: character.symbol,
+        ...extendedLore,
       },
       create: {
         slug: character.slug,
@@ -70,6 +73,7 @@ async function seedCharacters() {
         powers: character.powers,
         accent: character.accent,
         symbol: character.symbol,
+        ...extendedLore,
       },
     });
   }

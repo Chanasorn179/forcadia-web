@@ -49,8 +49,6 @@ export default async function EditBookPage({
         ← กลับไปรายการหนังสือ
       </Link>
 
-      <p className="section-kicker mt-8">Edit Book</p>
-
       <h1 className="mt-3 text-4xl font-semibold">
         {book.title}
       </h1>

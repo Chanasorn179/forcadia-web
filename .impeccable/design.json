@@ -1,0 +1,890 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-19T09:20:36+00:00",
+  "title": "Design System: Forcadia",
+  "extensions": {
+    "colorMeta": {
+      "cloth": {
+        "role": "primary",
+        "displayName": "Wine Velvet Cloth",
+        "tonalRamp": [
+          "#15060e",
+          "#321d29",
+          "#533947",
+          "#765667",
+          "#987789",
+          "#ba9bab",
+          "#dcc0ce",
+          "#ffe6f3"
+        ]
+      },
+      "cloth-deep": {
+        "role": "primary",
+        "displayName": "Deep Cloth",
+        "tonalRamp": [
+          "#13070e",
+          "#301f28",
+          "#4f3b46",
+          "#725966",
+          "#947a88",
+          "#b69daa",
+          "#d8c2ce",
+          "#fce8f2"
+        ]
+      },
+      "stock": {
+        "role": "neutral",
+        "displayName": "Wine Stock",
+        "tonalRamp": [
+          "#14060f",
+          "#311e2a",
+          "#513a48",
+          "#745768",
+          "#96788a",
+          "#b89cac",
+          "#dac1d0",
+          "#fee7f4"
+        ]
+      },
+      "stock-edge": {
+        "role": "neutral",
+        "displayName": "Wine Stock Edge",
+        "tonalRamp": [
+          "#16040e",
+          "#351c29",
+          "#563747",
+          "#7a5467",
+          "#9d7588",
+          "#be98ab",
+          "#e1bece",
+          "#ffe5f3"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Cloth Ink",
+        "tonalRamp": [
+          "#150a11",
+          "#22131d",
+          "#33212d",
+          "#4d3a47",
+          "#6f5867",
+          "#a58b9b",
+          "#d6c1cd",
+          "#f5ecf1"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Cloth Ink",
+        "tonalRamp": [
+          "#150a11",
+          "#22131d",
+          "#33212d",
+          "#4d3a47",
+          "#6f5867",
+          "#a58b9b",
+          "#d6c1cd",
+          "#f5ecf1"
+        ]
+      },
+      "foil": {
+        "role": "secondary",
+        "displayName": "Gold Foil",
+        "tonalRamp": [
+          "#6e4c12",
+          "#8a6420",
+          "#a87b28",
+          "#c99a3e",
+          "#e0b95f",
+          "#ecd08a",
+          "#f5e3b3",
+          "#fbf3dc"
+        ]
+      },
+      "foil-pale": {
+        "role": "secondary",
+        "displayName": "Pale Foil",
+        "tonalRamp": [
+          "#6e4c12",
+          "#8a6420",
+          "#a87b28",
+          "#c99a3e",
+          "#e0b95f",
+          "#ecd08a",
+          "#f5e3b3",
+          "#fbf3dc"
+        ]
+      },
+      "foil-cream": {
+        "role": "secondary",
+        "displayName": "Foil Cream",
+        "tonalRamp": [
+          "#6e4c12",
+          "#8a6420",
+          "#a87b28",
+          "#c99a3e",
+          "#e0b95f",
+          "#ecd08a",
+          "#f5e3b3",
+          "#fbf3dc"
+        ]
+      },
+      "foil-line": {
+        "role": "secondary",
+        "displayName": "Foil Line",
+        "canonical": "rgba(224, 185, 95, 0.42)"
+      },
+      "wine": {
+        "role": "neutral",
+        "displayName": "Wine",
+        "tonalRamp": [
+          "#230009",
+          "#470623",
+          "#6e223f",
+          "#983d5e",
+          "#bd5f7e",
+          "#de87a1",
+          "#ffaec6",
+          "#ffd7eb"
+        ]
+      },
+      "wine-ink": {
+        "role": "neutral",
+        "displayName": "Wine Ink",
+        "tonalRamp": [
+          "#12070e",
+          "#2e2028",
+          "#4e3c46",
+          "#705a66",
+          "#927b88",
+          "#b39eaa",
+          "#d6c3ce",
+          "#fae9f2"
+        ]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone Stock",
+        "tonalRamp": [
+          "#0e0a07",
+          "#29241f",
+          "#47413b",
+          "#676059",
+          "#888179",
+          "#aba49d",
+          "#cec8c1",
+          "#f3ede8"
+        ]
+      },
+      "bone-ink": {
+        "role": "neutral",
+        "displayName": "Bone Ink",
+        "tonalRamp": [
+          "#11080d",
+          "#2d2128",
+          "#4c3d45",
+          "#6e5b65",
+          "#907c86",
+          "#b29fa9",
+          "#d5c4cc",
+          "#f9eaf1"
+        ]
+      },
+      "bone-ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Bone Ink",
+        "tonalRamp": [
+          "#12070d",
+          "#2f2028",
+          "#4e3c45",
+          "#705a65",
+          "#927b86",
+          "#b49ea9",
+          "#d7c3cd",
+          "#fae9f1"
+        ]
+      },
+      "card-foil": {
+        "role": "neutral",
+        "displayName": "Printed Card Foil",
+        "tonalRamp": [
+          "#1b0400",
+          "#3b1d00",
+          "#5d3a00",
+          "#825800",
+          "#a57a22",
+          "#c69e57",
+          "#e8c386",
+          "#ffeab4"
+        ]
+      },
+      "card-index-red": {
+        "role": "neutral",
+        "displayName": "Card Index Red",
+        "tonalRamp": [
+          "#240003",
+          "#490617",
+          "#702231",
+          "#9a3e4c",
+          "#c0606d",
+          "#e18791",
+          "#ffafb7",
+          "#ffd8de"
+        ]
+      },
+      "card-band-wine": {
+        "role": "neutral",
+        "displayName": "Card Band Wine",
+        "tonalRamp": [
+          "#200009",
+          "#440d23",
+          "#6a283f",
+          "#92435d",
+          "#b7657e",
+          "#d88ba1",
+          "#f9b2c6",
+          "#ffdaeb"
+        ]
+      },
+      "deck-box": {
+        "role": "neutral",
+        "displayName": "Deck Box",
+        "tonalRamp": [
+          "#1b010e",
+          "#3c1628",
+          "#5f3046",
+          "#854c66",
+          "#a96d88",
+          "#ca92aa",
+          "#ecb8ce",
+          "#ffe0f2"
+        ]
+      },
+      "cloth-light": {
+        "role": "primary",
+        "displayName": "Lilac Linen",
+        "tonalRamp": [
+          "#0d0a0d",
+          "#272428",
+          "#444046",
+          "#645f66",
+          "#858087",
+          "#a8a3a9",
+          "#ccc7cd",
+          "#f1edf2"
+        ]
+      },
+      "cloth-deep-light": {
+        "role": "primary",
+        "displayName": "Deep Linen",
+        "tonalRamp": [
+          "#0d0a0f",
+          "#28232a",
+          "#463f48",
+          "#665e68",
+          "#877f89",
+          "#a9a2ac",
+          "#cdc6cf",
+          "#f2ecf4"
+        ]
+      },
+      "stock-light": {
+        "role": "neutral",
+        "displayName": "Daylight Stock",
+        "tonalRamp": [
+          "#0d0b0a",
+          "#272424",
+          "#444140",
+          "#64605f",
+          "#858180",
+          "#a8a4a3",
+          "#ccc8c7",
+          "#f1eeed"
+        ]
+      },
+      "stock-edge-light": {
+        "role": "neutral",
+        "displayName": "Daylight Stock Edge",
+        "tonalRamp": [
+          "#10090a",
+          "#2b2224",
+          "#4a3f40",
+          "#6b5d5f",
+          "#8c7e80",
+          "#aea1a3",
+          "#d2c6c7",
+          "#f6ebed"
+        ]
+      },
+      "bone-light": {
+        "role": "neutral",
+        "displayName": "Daylight Bone",
+        "tonalRamp": [
+          "#0c0b09",
+          "#272522",
+          "#44413f",
+          "#64615d",
+          "#85827e",
+          "#a7a4a1",
+          "#cbc8c6",
+          "#f0eeeb"
+        ]
+      },
+      "ink-light": {
+        "role": "neutral",
+        "displayName": "Linen Ink",
+        "tonalRamp": [
+          "#0f090c",
+          "#2b2226",
+          "#493e43",
+          "#6a5d63",
+          "#8c7e84",
+          "#aea1a6",
+          "#d1c5ca",
+          "#f6ebf0"
+        ]
+      },
+      "ink-muted-light": {
+        "role": "neutral",
+        "displayName": "Muted Linen Ink",
+        "tonalRamp": [
+          "#11080d",
+          "#2d2128",
+          "#4c3d46",
+          "#6e5b66",
+          "#8f7c87",
+          "#b19fa9",
+          "#d4c4cd",
+          "#f9eaf2"
+        ]
+      },
+      "foil-light": {
+        "role": "secondary",
+        "displayName": "Bronze Foil",
+        "tonalRamp": [
+          "#6e4c12",
+          "#8a6420",
+          "#a87b28",
+          "#c99a3e",
+          "#e0b95f",
+          "#ecd08a",
+          "#f5e3b3",
+          "#fbf3dc"
+        ]
+      },
+      "foil-deep-light": {
+        "role": "secondary",
+        "displayName": "Deep Bronze Foil",
+        "tonalRamp": [
+          "#6e4c12",
+          "#8a6420",
+          "#a87b28",
+          "#c99a3e",
+          "#e0b95f",
+          "#ecd08a",
+          "#f5e3b3",
+          "#fbf3dc"
+        ]
+      },
+      "foil-line-light": {
+        "role": "secondary",
+        "displayName": "Bronze Foil Line",
+        "canonical": "rgba(138, 100, 32, 0.45)"
+      },
+      "action-light": {
+        "role": "neutral",
+        "displayName": "Wine Action",
+        "tonalRamp": [
+          "#1f000a",
+          "#411123",
+          "#662b40",
+          "#8e475f",
+          "#b26880",
+          "#d38ea3",
+          "#f4b5c7",
+          "#ffddec"
+        ]
+      },
+      "action-hover-light": {
+        "role": "neutral",
+        "displayName": "Wine Action Hover",
+        "tonalRamp": [
+          "#22000a",
+          "#460823",
+          "#6d2340",
+          "#963f5e",
+          "#bc617f",
+          "#dc88a2",
+          "#fdafc6",
+          "#ffd8ec"
+        ]
+      },
+      "action-ink-light": {
+        "role": "neutral",
+        "displayName": "Action Cream",
+        "tonalRamp": [
+          "#0f0a05",
+          "#2a241c",
+          "#494136",
+          "#696053",
+          "#8b8174",
+          "#ada398",
+          "#d0c8bd",
+          "#f5ede4"
+        ]
+      },
+      "house-saint-cross": {
+        "role": "tertiary",
+        "displayName": "Saint-Cross Saffron",
+        "tonalRamp": [
+          "#1d0300",
+          "#3e1b00",
+          "#613800",
+          "#875600",
+          "#aa7800",
+          "#cb9d3d",
+          "#ecc374",
+          "#ffe9a6"
+        ]
+      },
+      "house-saint-cross-ink": {
+        "role": "tertiary",
+        "displayName": "Saffron Field Ink",
+        "tonalRamp": [
+          "#110904",
+          "#2d2319",
+          "#4c3f34",
+          "#6e5e50",
+          "#8f7f71",
+          "#b1a295",
+          "#d4c6ba",
+          "#f8ece1"
+        ]
+      },
+      "house-paradise-swan": {
+        "role": "tertiary",
+        "displayName": "Paradise-Swan Ultramarine",
+        "tonalRamp": [
+          "#04003b",
+          "#111665",
+          "#263591",
+          "#3e54c1",
+          "#5c78e8",
+          "#819eff",
+          "#a7c4ff",
+          "#d0ebff"
+        ]
+      },
+      "house-venom-veil": {
+        "role": "tertiary",
+        "displayName": "Venom-Veil Viridian",
+        "tonalRamp": [
+          "#001106",
+          "#002e1d",
+          "#194d38",
+          "#346e56",
+          "#569176",
+          "#7eb39a",
+          "#a7d6bf",
+          "#d1fae6"
+        ]
+      },
+      "house-void-requiem": {
+        "role": "tertiary",
+        "displayName": "Void-Requiem Slate Violet",
+        "tonalRamp": [
+          "#0d0520",
+          "#261e41",
+          "#433a65",
+          "#63588c",
+          "#8479b0",
+          "#a69dd0",
+          "#cac2f0",
+          "#efe8ff"
+        ]
+      },
+      "house-azure-song": {
+        "role": "tertiary",
+        "displayName": "Azure-Song Teal",
+        "tonalRamp": [
+          "#001019",
+          "#002c37",
+          "#004b59",
+          "#1a6c7c",
+          "#428f9f",
+          "#6fb1c0",
+          "#9bd4e2",
+          "#c7f8ff"
+        ]
+      },
+      "house-royal-flush": {
+        "role": "tertiary",
+        "displayName": "Royal-Flush Vermilion",
+        "tonalRamp": [
+          "#2c0000",
+          "#54000a",
+          "#7f0122",
+          "#ac263c",
+          "#d44e5b",
+          "#f47a81",
+          "#ffa4a9",
+          "#ffcfd2"
+        ]
+      },
+      "house-iron-bastion": {
+        "role": "tertiary",
+        "displayName": "Iron-Bastion Gunmetal",
+        "tonalRamp": [
+          "#060c12",
+          "#1e262e",
+          "#39434d",
+          "#57636e",
+          "#788490",
+          "#9ba7b2",
+          "#c0cad5",
+          "#e6f0f9"
+        ]
+      },
+      "house-night-fall": {
+        "role": "tertiary",
+        "displayName": "Night-Fall Eclipse",
+        "tonalRamp": [
+          "#0c0a10",
+          "#26232c",
+          "#44404b",
+          "#635f6c",
+          "#84808e",
+          "#a7a2b0",
+          "#cbc7d3",
+          "#f0ecf7"
+        ]
+      },
+      "on-field": {
+        "role": "tertiary",
+        "displayName": "On-Field Ivory",
+        "tonalRamp": [
+          "#0e0a08",
+          "#282420",
+          "#46413c",
+          "#66605a",
+          "#88817b",
+          "#aaa49e",
+          "#cec8c3",
+          "#f2ede9"
+        ]
+      },
+      "reader-night": {
+        "role": "neutral",
+        "displayName": "Reader Night",
+        "tonalRamp": [
+          "#10080e",
+          "#2c2129",
+          "#4b3d47",
+          "#6c5b67",
+          "#8e7c88",
+          "#b09fab",
+          "#d3c4ce",
+          "#f8eaf3"
+        ]
+      },
+      "reader-night-ink": {
+        "role": "neutral",
+        "displayName": "Reader Night Ink",
+        "tonalRamp": [
+          "#0f090c",
+          "#2a2327",
+          "#483f44",
+          "#685e63",
+          "#8a7f85",
+          "#aca2a7",
+          "#cfc6cb",
+          "#f4ecf0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The lead card's prologue title only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page h1s, 2.25rem to 3.75rem."
+      },
+      "headline-section": {
+        "displayName": "Section Headline",
+        "purpose": "Spread h2s, 1.875rem to 3rem."
+      },
+      "title": {
+        "displayName": "Card Title",
+        "purpose": "Portrait and House arcanum names."
+      },
+      "title-serif": {
+        "displayName": "Serif Title",
+        "purpose": "Chapter-card and h3 titles."
+      },
+      "reading": {
+        "displayName": "Reading",
+        "purpose": "Lead card opening lines and the novel reader."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Interface text and ledes."
+      },
+      "index": {
+        "displayName": "Arcana Index",
+        "purpose": "Roman numerals, card-0 corners, foot bands."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase House/emblem labels, always below the title."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card",
+        "value": "0 18px 40px -12px rgba(8, 2, 6, 0.7), 0 4px 10px rgba(8, 2, 6, 0.35)",
+        "purpose": "Every card at rest on the dark cloth (--shadow-card)."
+      },
+      {
+        "name": "card-light",
+        "value": "0 16px 34px -14px rgba(60, 22, 38, 0.32), 0 3px 8px rgba(60, 22, 38, 0.12)",
+        "purpose": "Card at rest on the lilac linen."
+      },
+      {
+        "name": "card-lift",
+        "value": "0 30px 50px -18px rgba(8, 2, 6, 0.7), 0 8px 16px rgba(8, 2, 6, 0.3)",
+        "purpose": "Hover/focus state of the card lift."
+      },
+      {
+        "name": "card-lift-light",
+        "value": "0 28px 44px -18px rgba(60, 22, 38, 0.38), 0 6px 14px rgba(60, 22, 38, 0.12)",
+        "purpose": "Card lift in light theme."
+      },
+      {
+        "name": "lead",
+        "value": "0 50px 80px -30px rgba(8, 2, 6, 0.8), 0 12px 24px rgba(8, 2, 6, 0.35)",
+        "purpose": "Card 0, highest on the table."
+      },
+      {
+        "name": "arcana",
+        "value": "0 18px 26px -14px rgba(8, 2, 6, 0.75), 0 3px 6px rgba(8, 2, 6, 0.35)",
+        "purpose": "Small fanned House cards."
+      },
+      {
+        "name": "crest-drop",
+        "value": "drop-shadow(0 10px 14px rgba(0, 0, 0, 0.35))",
+        "purpose": "Crests printed on House fields (filter)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one authored curve: every lift and turn."
+      },
+      {
+        "name": "card-lift",
+        "value": "420ms",
+        "purpose": "translateY(-6px) rotate(-0.6deg) plus deeper shadow and foil-line edge."
+      },
+      {
+        "name": "arcana-lift",
+        "value": "520ms",
+        "purpose": "Arcana rises 2.25rem and scales 1.08."
+      },
+      {
+        "name": "arcana-turn",
+        "value": "620ms",
+        "purpose": "rotateY turn from back to face; removed under reduced motion."
+      },
+      {
+        "name": "crest-scale",
+        "value": "600ms",
+        "purpose": "House crest scales to 1.04 on hover."
+      },
+      {
+        "name": "colour",
+        "value": "200ms ease",
+        "purpose": "Border, background and outline colour changes."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "All transitions collapse; card backs hidden, lead card untilted."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "520px"
+      },
+      {
+        "name": "sm-cards",
+        "value": "560px"
+      },
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "map",
+        "value": "700px"
+      },
+      {
+        "name": "md",
+        "value": "767px"
+      },
+      {
+        "name": "lg",
+        "value": "1023px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Action Button",
+      "kind": "button",
+      "refersTo": "button-action",
+      "description": "Filled pill for the primary action (light theme wine). Dark theme currently fills with foil; see drift.",
+      "html": "<a class=\"ds-btn-action\" href=\"#\">เปิดไพ่ใบแรก <svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn-action{display:inline-flex;align-items:center;gap:.75rem;min-height:3rem;padding:0 2rem;border-radius:999px;background:#5e1834;color:#fbefe0;font-family:'Noto Sans Thai',sans-serif;font-weight:700;text-decoration:none;box-shadow:0 10px 24px -10px rgba(94,24,52,.7);transition:background 200ms ease,gap 300ms cubic-bezier(.16,1,.3,1)}.ds-btn-action:hover{background:#7d2347;gap:1rem}.ds-btn-action:focus-visible{outline:2px solid #6d1d3c;outline-offset:3px}"
+    },
+    {
+      "name": "Lead Card Button",
+      "kind": "button",
+      "refersTo": "button-lead",
+      "description": "Cloth pill with foil-cream ink on the bone lead card.",
+      "html": "<a class=\"ds-btn-lead\" href=\"#\">พลิกไพ่ · อ่านต่อ <svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn-lead{display:inline-flex;align-items:center;gap:.75rem;min-height:3.25rem;padding:0 1.75rem;border-radius:999px;background:#2a0f1f;color:#f5e3b3;font-family:'Noto Sans Thai',sans-serif;font-weight:700;text-decoration:none;transition:background 200ms ease,gap 300ms cubic-bezier(.16,1,.3,1)}.ds-btn-lead:hover{background:#7d1f45;gap:1rem}.ds-btn-lead:focus-visible{outline:2px solid #ecd08a;outline-offset:3px}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Transparent pill with a foil-line border.",
+      "html": "<a class=\"ds-btn-quiet\" href=\"#\">อ่านคลังตำนาน</a>",
+      "css": ".ds-btn-quiet{display:inline-flex;align-items:center;min-height:3rem;padding:0 1.75rem;border-radius:999px;border:1px solid var(--foil-line, rgba(224,185,95,.42));color:var(--foreground, #f5ecf1);background:transparent;font-family:'Noto Sans Thai',sans-serif;font-weight:600;text-decoration:none;transition:background 200ms ease}.ds-btn-quiet:hover{background:rgba(224,185,95,.1)}.ds-btn-quiet:focus-visible{outline:2px solid var(--focus, #ecd08a);outline-offset:3px}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Pill links; active link turns foil-cream with the lozenge suit mark.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link is-active\"><svg viewBox=\"0 0 24 24\" width=\"10\" height=\"10\"><path d=\"M12 3.5 18.5 12 12 20.5 5.5 12Z\" fill=\"currentColor\"/></svg>หน้าหลัก</a><a href=\"#\" class=\"ds-nav-link\">หนังสือ</a><a href=\"#\" class=\"ds-nav-link\">ตัวละคร</a><a href=\"#\" class=\"ds-nav-link\">ตระกูล</a></nav>",
+      "css": ".ds-nav{display:flex;gap:.25rem;padding:.5rem;background:rgba(22,10,18,.9);border-bottom:1px solid rgba(224,185,95,.16)}.ds-nav-link{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1rem;border-radius:999px;font-family:'Noto Sans Thai',sans-serif;font-size:15px;font-weight:600;color:#d6c1cd;text-decoration:none;transition:color 200ms ease}.ds-nav-link:hover{color:#f5ecf1}.ds-nav-link.is-active{color:#f5e3b3}.ds-nav-link.is-active svg{color:#e0b95f}.ds-nav-link:focus-visible{outline:2px solid #ecd08a;outline-offset:3px}"
+    },
+    {
+      "name": "Stock Card",
+      "kind": "card",
+      "refersTo": "card-stock",
+      "description": "Default card stock with foil inner frame and the card lift.",
+      "html": "<a class=\"ds-stock\" href=\"#\"><h3>Aurelion</h3><p>เมืองหลวงแห่งแสงอรุณ</p></a>",
+      "css": ".ds-stock{position:relative;display:block;padding:1.5rem;border-radius:1.5rem;background:var(--stock, #331a2a);border:1px solid var(--stock-edge, #4a2639);color:#f5ecf1;text-decoration:none;box-shadow:0 18px 40px -12px rgba(8,2,6,.7),0 4px 10px rgba(8,2,6,.35);transition:transform 420ms cubic-bezier(.16,1,.3,1),box-shadow 420ms cubic-bezier(.16,1,.3,1),border-color 200ms ease}.ds-stock::after{content:'';position:absolute;inset:7px;border:1px solid rgba(224,185,95,.42);border-radius:inherit;opacity:.55;pointer-events:none}.ds-stock h3{margin:0;font-family:'Noto Serif Thai',serif;color:#f5e3b3}.ds-stock p{margin:.25rem 0 0;color:#b89fae;font-family:'Noto Sans Thai',sans-serif;font-size:.875rem}.ds-stock:hover,.ds-stock:focus-visible{transform:translateY(-6px) rotate(-.6deg);border-color:rgba(224,185,95,.42);box-shadow:0 30px 50px -18px rgba(8,2,6,.7),0 8px 16px rgba(8,2,6,.3)}"
+    },
+    {
+      "name": "Lead Card",
+      "kind": "custom",
+      "refersTo": "card-lead",
+      "description": "Card 0: tilted bone card with double printed frame, mirrored indices and foot band.",
+      "html": "<article class=\"ds-lead\"><span class=\"ds-lead-corner\">0</span><h1>บัลลังก์ว่างเปล่า</h1><p>ในคืนที่วงแหวนแตก ไม่มีใครได้ยินเสียงมงกุฎตกกระทบพื้น</p><p class=\"ds-lead-band\">0 · THE EMPTY THRONE</p></article>",
+      "css": ".ds-lead{position:relative;width:min(100%,22rem);padding:2.5rem 2rem 2rem;border-radius:1.4rem;background:#f4ebe2;color:#24141d;transform:rotate(-1.6deg);box-shadow:0 50px 80px -30px rgba(8,2,6,.8),0 12px 24px rgba(8,2,6,.35)}.ds-lead::before,.ds-lead::after{content:'';position:absolute;border-radius:.9rem;pointer-events:none}.ds-lead::before{inset:12px;border:1.5px solid #b98a2e}.ds-lead::after{inset:17px;border:1px solid rgba(185,138,46,.45)}.ds-lead-corner{position:absolute;top:1.7rem;left:1.8rem;font-family:Chonburi,serif;letter-spacing:.16em;color:#8a2a3c}.ds-lead h1{margin:1.25rem 0 1rem;font-family:Chonburi,'Noto Serif Thai',serif;font-weight:400;font-size:2.25rem;line-height:1.12}.ds-lead p{font-family:'Noto Serif Thai',serif;font-size:1.15rem;line-height:1.9;color:#3b2731}.ds-lead .ds-lead-band{margin:1.5rem 1.5rem 0;padding-top:1rem;border-top:1px solid rgba(185,138,46,.45);text-align:center;font-family:Chonburi,serif;font-size:.78rem;letter-spacing:.16em;color:#6d1d3c}"
+    },
+    {
+      "name": "Arcana Card",
+      "kind": "custom",
+      "refersTo": "card-arcana-face",
+      "description": "5:8 House card: crosshatched back turns to the House field face on hover/focus.",
+      "html": "<a class=\"ds-arcana\" href=\"#\" style=\"--field:#b3233c;--on-field:#fbf3ec\"><span class=\"ds-arcana-back\"><svg viewBox=\"0 0 24 24\" width=\"28\" height=\"28\" fill=\"none\" stroke=\"#e0b95f\" stroke-width=\"1.6\"><path d=\"M4 18.5h16M5 18.5 3.5 8l5 4L12 5l3.5 7 5-4L19 18.5\"/></svg></span><span class=\"ds-arcana-face\"><span class=\"ds-idx\">VI</span><svg viewBox=\"0 0 24 24\" width=\"40\" height=\"40\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M12 3.5 18.5 12 12 20.5 5.5 12Z\"/></svg><span class=\"ds-name\">Royal Flush</span></span></a>",
+      "css": ".ds-arcana{position:relative;display:block;width:8.5rem;aspect-ratio:5/8;perspective:900px;border-radius:.8rem;transition:transform 520ms cubic-bezier(.16,1,.3,1)}.ds-arcana-back,.ds-arcana-face{position:absolute;inset:0;display:grid;border-radius:inherit;backface-visibility:hidden;box-shadow:0 18px 26px -14px rgba(8,2,6,.75),0 3px 6px rgba(8,2,6,.35);transition:transform 620ms cubic-bezier(.16,1,.3,1)}.ds-arcana-back{place-items:center;background:repeating-linear-gradient(45deg,transparent 0 9px,rgba(224,185,95,.1) 9px 10px),repeating-linear-gradient(-45deg,transparent 0 9px,rgba(224,185,95,.1) 9px 10px),color-mix(in srgb,var(--field) 62%,#1d0915);outline:1px solid rgba(224,185,95,.55);outline-offset:-7px}.ds-arcana-face{grid-template-rows:auto 1fr auto;justify-items:center;align-items:center;padding:.7rem .5rem .8rem;background:var(--field);color:var(--on-field);outline:1px solid color-mix(in srgb,var(--on-field) 45%,transparent);outline-offset:-6px;transform:rotateY(180deg)}.ds-idx{font-family:Chonburi,serif;font-size:.72rem;letter-spacing:.16em}.ds-name{font-family:Chonburi,serif;font-size:.72rem;text-align:center}.ds-arcana:hover,.ds-arcana:focus-visible{transform:translateY(-1.5rem) scale(1.08)}.ds-arcana:hover .ds-arcana-back,.ds-arcana:focus-visible .ds-arcana-back{transform:rotateY(-180deg)}.ds-arcana:hover .ds-arcana-face,.ds-arcana:focus-visible .ds-arcana-face{transform:rotateY(0)}.ds-arcana:focus-visible{outline:2px solid #ecd08a;outline-offset:6px}@media (prefers-reduced-motion:reduce){.ds-arcana-back{display:none}.ds-arcana-face{transform:none}}"
+    },
+    {
+      "name": "Chapter Card",
+      "kind": "card",
+      "refersTo": "card-chapter",
+      "description": "Bone chapter card with the order in a foot band; latest gets a foil outline.",
+      "html": "<a class=\"ds-chapter\" href=\"#\" data-latest><h3>บทนำ: บัลลังก์ว่างเปล่า</h3><p>คืนที่มงกุฎตกลงสู่พื้นหินอ่อน วงแหวนแห่งแปดตระกูลก็เริ่มแตกร้าว</p><span class=\"ds-band\">PROLOGUE</span></a>",
+      "css": ".ds-chapter{position:relative;display:flex;flex-direction:column;width:13rem;min-height:17rem;padding:1.6rem 1.5rem 1.25rem;border-radius:1.1rem;background:#f4ebe2;color:#24141d;text-decoration:none;box-shadow:0 18px 40px -12px rgba(8,2,6,.7),0 4px 10px rgba(8,2,6,.35);transition:transform 420ms cubic-bezier(.16,1,.3,1),box-shadow 420ms cubic-bezier(.16,1,.3,1)}.ds-chapter::after{content:'';position:absolute;inset:8px;border:1px solid rgba(185,138,46,.45);border-radius:.75rem;pointer-events:none}.ds-chapter[data-latest]{outline:2px solid #e0b95f;outline-offset:4px}.ds-chapter h3{margin:0;font-family:'Noto Serif Thai',serif;font-size:1.15rem;line-height:1.45}.ds-chapter p{margin:.75rem 0 0;font-family:'Noto Sans Thai',sans-serif;font-size:.9rem;line-height:1.8;color:#4a3540}.ds-band{margin-top:auto;padding-top:.9rem;border-top:1px solid rgba(185,138,46,.4);text-align:center;font-family:Chonburi,serif;font-size:.72rem;letter-spacing:.16em;color:#6d1d3c}.ds-chapter:hover,.ds-chapter:focus-visible{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 30px 50px -18px rgba(8,2,6,.7),0 8px 16px rgba(8,2,6,.3)}"
+    },
+    {
+      "name": "Portrait Card",
+      "kind": "card",
+      "refersTo": "card-portrait",
+      "description": "Character printed on their House field; label below the name.",
+      "html": "<a class=\"ds-portrait\" href=\"#\" style=\"--field:#1d5e45;--on-field:#fbf3ec\"><span class=\"ds-art\"></span><span class=\"ds-body\"><strong>Abigail</strong><span>ผู้พิทักษ์ม่านพิษ</span><small>HOUSE VENOM-VEIL</small></span></a>",
+      "css": ".ds-portrait{position:relative;display:flex;flex-direction:column;width:14rem;padding:.6rem;border-radius:1.2rem;background:var(--field);color:var(--on-field);text-decoration:none;box-shadow:0 18px 40px -12px rgba(8,2,6,.7),0 4px 10px rgba(8,2,6,.35);transition:transform 420ms cubic-bezier(.16,1,.3,1)}.ds-portrait::after{content:'';position:absolute;inset:5px;border:1px solid color-mix(in srgb,var(--on-field) 35%,transparent);border-radius:.95rem;pointer-events:none}.ds-art{display:block;aspect-ratio:4/5;border-radius:.8rem;background:rgba(0,0,0,.25)}.ds-body{display:flex;flex-direction:column;padding:1.1rem .7rem .9rem}.ds-body strong{font-family:Chonburi,serif;font-weight:400;font-size:1.2rem;line-height:1.3}.ds-body span{margin-top:.3rem;font-family:'Noto Sans Thai',sans-serif;font-size:.9rem;opacity:.9}.ds-body small{margin-top:.5rem;font-family:'Noto Sans Thai',sans-serif;font-size:.75rem;letter-spacing:.14em;opacity:.85}.ds-portrait:hover,.ds-portrait:focus-visible{transform:translateY(-6px) rotate(-.6deg)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Ring Deck",
+    "overview": "Every page is a card reading. The ground is a wine-velvet reading cloth, and everything that carries content is a printed card laid on it. The prologue is card 0, The Empty Throne, a large bone-stock card set at a slight tilt. The eight imperial Houses are eight major arcana fanned in a broken ring beside it. Night-Fall's card has slipped out of the ring, because its throne is the empty one. Characters are portrait arcana printed on their House's colour field, chapters are bone cards with their order set in a foot band, and the reader is one printed card. The admin and every legacy utility inherit the same cloth because the Tailwind neutral and amber scales are re-cut to the world's own tones.\n\nThe density is that of a table spread, not a dashboard. A few large cards with generous cloth between them. Ornament comes from the cards' own furniture: thin gold-foil inner frames, mirrored Roman-numeral corner indices, crosshatched card backs. The colour comes from the House fields. Gold foil appears only as a line or as ink, and it is never a fill or a gradient. The world rejects the default fantasy-site template of a dark hero with gold serif type above a row of equal cards.\n\nThe only imagery is real artwork. That means the House crests, the character portraits, the Unity Crown webmark on card backs, and the painted empire map at `public/images/empire/empire-map.webp`, which the user supplied. Icons are a small authored SVG set drawn in a 1.6 stroke, and the world's content symbols are drawn as SVG paths rather than font glyphs.",
+    "keyCharacteristics": [
+      "Wine cloth ground in dark (#2a0f1f) and lilac linen in light (#ece6ee), with a faint fractal-noise weave and a wine glow at the top",
+      "Every surface is card stock with a 1px gold-foil inner frame set 5 to 12px in from the edge",
+      "Eight House colour fields keyed by `data-house`, each printed full-bleed on its arcana",
+      "Chonburi, a looped Thai display face, for titles and indices. Noto Serif Thai for reading. Noto Sans Thai for interface text.",
+      "Roman-numeral indices, with labels set below titles or in card foot bands, never above",
+      "One authored motion: a card lifts, or turns over, on ease-out-expo"
+    ],
+    "rules": [
+      {
+        "name": "The Foil Is a Line Rule",
+        "body": "Gold foil is a stroke or an ink colour: a frame, a rule, an outline, an index, a hatch line. It is never a background fill, a gradient or a glow. If foil covers an area, the card is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Re-cut Scale Rule",
+        "body": "Tailwind's `slate-50…950` and `amber-50…500` are redefined in `@theme` as wine-tinted neutrals and foil tones. In light theme, `text-slate-*`, `text-amber-*`, `border-white/*` and `bg-white/5` are re-inked to the cloth's own inks. Utility classes therefore stay in-world, including in the admin. New code should use these scales rather than raw Tailwind greys or new hex values.",
+        "section": "colors"
+      },
+      {
+        "name": "The House Field Rule",
+        "body": "A House colour is used only as a full field (`var(--field)`) on that House's own card, with `var(--on-field)` text and an inner frame drawn from on-field at 35 to 45%. House colours are not used as accents on cloth.",
+        "section": "colors"
+      },
+      {
+        "name": "The Label Below Rule",
+        "body": "No eyebrow or kicker line sits above a heading. A category, House, emblem or order label goes under the title or into the card's foot band (`lead-card-band`, `chapter-card-band`). The `.section-kicker` class is kept only to hide any leftover markup (`display: none`).",
+        "section": "typography"
+      },
+      {
+        "name": "The Roman Index Rule",
+        "body": "Order is shown as an arcana index: a Roman numeral (I–XII) or 0 for the prologue, set in Chonburi with 0.16em tracking. Arabic counters are not used in their place.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Lift Rule",
+        "body": "The world has one authored motion. A card lifts off the cloth: translateY(-6px), rotate(-0.6deg), a deeper shadow and a foil-line edge, over 420ms on ease-out-expo `cubic-bezier(0.16, 1, 0.3, 1)`. An arcana card lifts 2.25rem, scales to 1.08 and turns over in 620ms to show its crest. Colour changes take 200ms ease. Nothing else animates. Under `prefers-reduced-motion`, card backs are removed so faces show flat, the lead card loses its tilt, and every transition collapses to 0.01ms.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Inner Frame Rule",
+        "body": "A surface is a card only if it has a foil (or on-field) inner frame line. A bare rounded box with a border is not part of this world.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** put every piece of content on a card: wine stock or bone stock with a 1px foil-line inner frame inset 5 to 12px.",
+      "**Do** colour a House's card with its full field from `data-house` (`var(--field)` / `var(--on-field)`) and nowhere else.",
+      "**Do** use the re-cut `slate-*` and `amber-*` utilities, or the `--cloth`, `--stock`, `--foil`, `--foil-line`, `--bone` variables, so light theme re-inks automatically.",
+      "**Do** mark order with a Roman-numeral arcana index in Chonburi (0.16em tracking), and put labels under titles or in a foot band.",
+      "**Do** use only the one lift-or-turn motion on `cubic-bezier(0.16, 1, 0.3, 1)`, and make sure the reduced-motion path shows card faces flat and untilted.",
+      "**Do** use real artwork only: the House crests, character portraits, the Unity Crown webmark and the painted empire map (`public/images/empire/empire-map.webp`).",
+      "**Do** keep reading text in Noto Serif Thai at line-height 1.9 or more, and keep spectacle off the reading card."
+    ],
+    "donts": [
+      "**Don't** fill, gradient or glow with gold foil. Foil is a line or an ink.",
+      "**Don't** set an eyebrow or kicker label above a heading.",
+      "**Don't** use raw Tailwind greys, blue-black navy grounds, or new hex values that bypass the cloth tokens.",
+      "**Don't** use a House colour as an accent on cloth, or a non-House colour as a card field.",
+      "**Don't** add a second motion vocabulary (springs, parallax, scroll-triggered reveals, looping animation).",
+      "**Don't** invent illustrations, placeholder art or font-glyph icons. Draw marks in SVG and use the supplied artwork.",
+      "**Don't** lay out a row of identical equal cards under a dark gold-serif hero. Spreads should feel laid by hand (tilts, drops, a broken ring)."
+    ]
+  }
+}

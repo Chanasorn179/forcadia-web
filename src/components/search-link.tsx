@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SearchIcon } from "@/components/icons";
 
 export function SearchLink() {
   return (
@@ -6,9 +7,9 @@ export function SearchLink() {
       href="/search"
       aria-label="ค้นหาในเว็บไซต์"
       title="ค้นหา"
-      className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 text-lg text-slate-300 transition hover:border-amber-200/30 hover:bg-amber-200/10 hover:text-amber-100"
+      className="theme-toggle grid h-11 w-11 shrink-0 place-items-center rounded-full border transition"
     >
-      <span aria-hidden="true">⌕</span>
+      <SearchIcon className="h-[18px] w-[18px]" />
     </Link>
   );
 }

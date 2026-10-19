@@ -8,6 +8,7 @@ import {
   useState,
   type CSSProperties,
 } from "react";
+import { ArrowIcon, CloseIcon } from "@/components/icons";
 
 type ChapterNav = {
   slug: string;
@@ -45,11 +46,11 @@ export const defaultReaderSettings: ReaderSettings = {
 
 const themeClasses: Record<ReaderTheme, string> = {
   night:
-    "bg-[#10131d] text-[#e6dfd1] border-white/10",
+    "bg-[#1d0f19] text-[#ecdfe6] border-[#4a2639]",
   paper:
-    "bg-[#eee5d2] text-[#2a2119] border-[#5d4933]/20",
+    "bg-[#f4ebe2] text-[#24141d] border-[#d7c2b4]",
   black:
-    "bg-black text-[#d9d9d9] border-white/10",
+    "bg-black text-[#ddd3d8] border-[#2a1f25]",
 };
 
 const widthClasses: Record<ReaderWidth, string> = {
@@ -234,7 +235,7 @@ export function NovelReader({
         aria-hidden="true"
       >
         <div
-          className="h-full bg-amber-300 transition-[width] duration-150"
+          className="h-full bg-[var(--foil)] transition-[width] duration-150"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -354,7 +355,7 @@ export function NovelReader({
                       width: event.target.value as ReaderWidth,
                     }))
                   }
-                  className="mt-2 w-full rounded-lg border border-white/10 bg-[#0d101b] px-3 py-2 text-sm text-slate-300"
+                  className="mt-2 w-full rounded-lg border border-white/10 bg-[var(--cloth-deep)] px-3 py-2 text-sm text-slate-300"
                 >
                   <option value="narrow">แคบ</option>
                   <option value="medium">มาตรฐาน</option>
@@ -414,17 +415,17 @@ export function NovelReader({
 
       <article
         className={[
-          "mx-auto mt-4 mb-24 rounded-3xl border px-6 py-12 shadow-2xl transition-colors md:mb-0 md:px-14 md:py-16",
+          "reader-card mx-auto mt-4 mb-24 rounded-3xl border px-6 py-12 transition-colors md:mb-0 md:px-14 md:py-16",
           themeClasses[settings.theme],
           widthClasses[settings.width],
         ].join(" ")}
+        data-reader-theme={settings.theme}
       >
         <header className="text-center">
-          <p className="section-kicker">{chapterOrder}</p>
-
-          <h1 className="gold-text mt-5 text-4xl font-semibold md:text-6xl">
+          <h1 className="reader-title text-4xl md:text-6xl">
             {chapterTitle}
           </h1>
+          <p className="arcana-index mt-4 text-sm uppercase text-amber-200">{chapterOrder}</p>
         </header>
 
         <div className="crack-line my-10" />
@@ -453,7 +454,7 @@ export function NovelReader({
               className="rounded-2xl border border-current/10 p-4 transition hover:bg-white/5"
             >
               <span className="text-xs opacity-60">ตอนก่อนหน้า</span>
-              <p className="mt-1 text-amber-300">← {previousChapter.title}</p>
+              <p className="mt-1 text-amber-300">{previousChapter.title}</p>
             </Link>
           ) : (
             <div />
@@ -465,7 +466,7 @@ export function NovelReader({
               className="rounded-2xl border border-current/10 p-4 text-right transition hover:bg-white/5"
             >
               <span className="text-xs opacity-60">ตอนถัดไป</span>
-              <p className="mt-1 text-amber-300">{nextChapter.title} →</p>
+              <p className="mt-1 text-amber-300">{nextChapter.title}</p>
             </Link>
           )}
         </nav>
@@ -476,20 +477,20 @@ export function NovelReader({
           type="button"
           onClick={goToTop}
           aria-label="กลับขึ้นด้านบน"
-          className="grid h-12 w-12 place-items-center rounded-full border border-amber-200/30 bg-[#0b0e17]/95 text-amber-100 shadow-xl backdrop-blur transition hover:-translate-y-1 hover:bg-amber-200/10"
+          className="grid h-12 w-12 place-items-center rounded-full border border-amber-200/30 bg-[var(--cloth-deep)] text-amber-100 shadow-xl transition hover:-translate-y-1"
         >
-          ↑
+          <ArrowIcon className="h-5 w-5 -rotate-90" />
         </button>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#080a11]/95 px-3 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-10px_35px_rgba(0,0,0,0.3)] backdrop-blur-xl md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[var(--cloth-deep)] px-3 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-10px_35px_rgba(0,0,0,0.3)] backdrop-blur-xl md:hidden">
         <div className="mx-auto grid max-w-xl grid-cols-2 gap-3">
           {previousChapter ? (
             <Link
               href={`/read/${previousChapter.slug}`}
               className="truncate rounded-xl border border-white/10 px-3 py-2 text-sm text-slate-300"
             >
-              ← {previousChapter.title}
+              {previousChapter.title}
             </Link>
           ) : (
             <span />
@@ -500,7 +501,7 @@ export function NovelReader({
               href={`/read/${nextChapter.slug}`}
               className="truncate rounded-xl border border-white/10 px-3 py-2 text-right text-sm text-amber-200"
             >
-              {nextChapter.title} →
+              {nextChapter.title}
             </Link>
           )}
         </div>
@@ -521,10 +522,9 @@ export function NovelReader({
             className="absolute inset-0"
           />
 
-          <aside className="absolute right-0 top-0 h-full w-full max-w-md overflow-y-auto border-l border-white/10 bg-[#0a0d16] p-6 shadow-2xl">
+          <aside className="absolute right-0 top-0 h-full w-full max-w-md overflow-y-auto border-l border-white/10 bg-[var(--cloth-deep)] p-6 shadow-2xl">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="section-kicker">Book I</p>
                 <h2 className="mt-2 text-2xl font-semibold text-amber-100">
                   สารบัญ
                 </h2>
@@ -535,9 +535,9 @@ export function NovelReader({
                 autoFocus
                 aria-label="ปิดสารบัญ"
                 onClick={() => setShowContents(false)}
-                className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-300 hover:bg-white/5"
+                className="grid h-11 w-11 place-items-center rounded-full border border-white/10 text-slate-300 hover:bg-white/5"
               >
-                ×
+                <CloseIcon className="h-5 w-5" />
               </button>
             </div>
 

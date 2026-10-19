@@ -9,8 +9,6 @@ export const metadata: Metadata = {
 export default function LibraryPage() {
   return (
     <main className="container-page py-16 md:py-24">
-      <p className="section-kicker">Personal Archive</p>
-
       <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
         ชั้นหนังสือของฉัน
       </h1>

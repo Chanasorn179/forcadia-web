@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CharacterLoreFields } from "@/components/admin/character-lore-fields";
 import { requireAdmin } from "@/lib/admin-auth";
 
 type Props = {
@@ -22,7 +23,6 @@ export default async function NewCharacterPage({
         ← กลับไปรายการตัวละคร
       </Link>
 
-      <p className="section-kicker mt-8">Create Character</p>
       <h1 className="mt-3 text-4xl font-semibold">
         เพิ่มตัวละครใหม่
       </h1>
@@ -74,17 +74,18 @@ function CharacterForm({ action }: { action: string }) {
             className="min-h-12 rounded-2xl border border-white/10 bg-[#0d101b] px-4 text-lg text-slate-100 outline-none focus:border-amber-200/40"
           >
             <option value="✦">✦ ดาวจักรวรรดิ</option>
-            <option value="⚔">⚔ ดาบไขว้ — Saint-Cross</option>
-            <option value="🦢">🦢 หงส์ — ParadiseSwan</option>
-            <option value="🐍">🐍 อสรพิษ — Venom-Veil</option>
-            <option value="⌛">⌛ นาฬิกาทราย — Void-Requiem</option>
-            <option value="🌊">🌊 คลื่นทะเล — Azure-Song</option>
-            <option value="🎲">🎲 ลูกเต๋า — Royal-Flush</option>
-            <option value="🐺">🐺 หมาป่าเหล็ก — Iron-Bastion</option>
-            <option value="🌑">🌑 จันทรคราส — Night-Fall</option>
             <option value="☀">☀ ดวงอาทิตย์</option>
-            <option value="★">★ ดวงดาว</option>
+            <option value="⌛">⌛ นาฬิกาทราย</option>
+            <option value="≋">≋ คลื่น</option>
+            <option value="♛">♛ มงกุฎ</option>
+            <option value="♜">♜ หอคอย</option>
+            <option value="⚿">⚿ กุญแจ</option>
+            <option value="⬢">⬢ หกเหลี่ยม</option>
+            <option value="◉">◉ เนตร</option>
+            <option value="◯">◯ วงแหวน</option>
             <option value="◆">◆ อัญมณี</option>
+            <option value="◇">◇ อัญมณีโปร่ง</option>
+            <option value="♢">♢ ข้าวหลามตัด</option>
           </select>
         </label>
       </div>
@@ -110,6 +111,8 @@ function CharacterForm({ action }: { action: string }) {
           className="rounded-2xl border border-white/10 bg-black/20 p-4 leading-7 text-slate-100 outline-none focus:border-amber-200/40"
         />
       </label>
+
+      <CharacterLoreFields />
 
       <div className="flex flex-wrap gap-3">
         <button

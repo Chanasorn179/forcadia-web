@@ -12,8 +12,6 @@ const links = [
 export function AdminNav() {
   return (
     <aside className="glass-panel h-fit rounded-3xl p-5 lg:sticky lg:top-24">
-      <p className="section-kicker">Admin Console</p>
-
       <nav className="mt-5 grid gap-2" aria-label="เมนูผู้ดูแล">
         {links.map((item) => (
           <Link

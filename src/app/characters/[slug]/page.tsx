@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCharacterArtwork } from "@/data/media";
+import { CharacterLoreSection } from "@/components/character-lore";
 import { HouseEmblem } from "@/components/house-emblem";
 import { RelationCard } from "@/components/relation-card";
 import {
@@ -10,6 +11,7 @@ import {
   getHouseByCharacterSlug,
 } from "@/lib/forcadia-relations";
 import { getPublicCharacterBySlug } from "@/lib/public-content";
+import { SuitIcon, SymbolIcon } from "@/components/icons";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -59,7 +61,7 @@ export default async function CharacterDetailPage({
         href="/characters"
         className="text-sm text-amber-200 transition hover:text-amber-100"
       >
-        ← กลับไปหน้าตัวละคร
+        กลับไปหน้าตัวละคร
       </Link>
 
       <section className="mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
@@ -67,7 +69,7 @@ export default async function CharacterDetailPage({
           className="glass-panel relative min-h-120 overflow-hidden rounded-3xl"
           style={{
             background:
-              `radial-gradient(circle at center, ${character.accent}22, rgba(7,9,18,0.98) 70%)`,
+              `radial-gradient(circle at center, ${character.accent}22, #1d0915 70%)`,
           }}
         >
           <Image
@@ -78,7 +80,7 @@ export default async function CharacterDetailPage({
             className="object-cover object-top"
             sizes="(max-width: 1024px) 100vw, 40vw"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-[#070912] via-transparent to-black/10" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#1d0915] via-transparent to-black/10" />
           <div className="absolute inset-x-0 bottom-0 p-7 text-center">
             <p className="text-sm uppercase tracking-[0.22em] text-slate-300">
               {character.keyName}
@@ -87,8 +89,6 @@ export default async function CharacterDetailPage({
         </div>
 
         <article className="glass-panel rounded-3xl p-7 md:p-10">
-          <p className="section-kicker">Imperial Sovereign</p>
-
           <h1 className="gold-text mt-4 text-4xl font-semibold md:text-6xl">
             {character.name}
           </h1>
@@ -156,9 +156,16 @@ export default async function CharacterDetailPage({
         </article>
       </section>
 
-      <section className="mt-12">
-        <p className="section-kicker">Abilities</p>
+      <CharacterLoreSection
+        lore={character}
+        keyName={character.keyName}
+        eye={character.eye}
+        domain={character.domain}
+        army={character.army}
+        houseSlug={house?.slug}
+      />
 
+      <section className="mt-12">
         <h2 className="mt-3 text-3xl font-semibold">
           พลังเด่น
         </h2>
@@ -172,15 +179,12 @@ export default async function CharacterDetailPage({
               <span
                 aria-hidden="true"
                 className="grid h-10 w-10 shrink-0 place-items-center rounded-full border text-sm font-semibold"
-                style={{ borderColor: `${character.accent}66`, color: character.accent }}
+                data-accent-ink style={{ borderColor: `${character.accent}66`, color: character.accent }}
               >
-                {String(index + 1).padStart(2, "0")}
+                <SuitIcon className="h-3 w-3" />
               </span>
               <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">
-                  Sovereign Ability
-                </p>
-                <h3 className="mt-1 text-lg text-amber-100">{power}</h3>
+                <h3 className="text-lg text-amber-100">{power}</h3>
               </div>
             </article>
           ))}
@@ -189,7 +193,6 @@ export default async function CharacterDetailPage({
 
       {(house || city) && (
         <section className="mt-16">
-          <p className="section-kicker">Realm &amp; Allegiance</p>
           <h2 className="mt-3 text-3xl font-semibold md:text-4xl">
             สายอำนาจและดินแดน
           </h2>
@@ -209,17 +212,14 @@ export default async function CharacterDetailPage({
                     size="md"
                   />
                   <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
-                      Imperial House
-                    </p>
-                    <h3 className="mt-2 text-2xl text-amber-100">{house.name}</h3>
+                    <h3 className="text-2xl text-amber-100">{house.name}</h3>
                     <p className="mt-1 text-sm text-slate-400">{house.thaiName}</p>
                   </div>
                 </div>
 
                 <blockquote
-                  className="mt-6 border-l-2 pl-5 text-lg italic leading-8"
-                  style={{ borderColor: house.accent, color: house.accent }}
+                  className="mt-6 border-l pl-5 text-lg italic leading-8"
+                  data-accent-ink style={{ borderColor: house.accent, color: house.accent }}
                 >
                   “{house.motto}”
                 </blockquote>
@@ -229,23 +229,20 @@ export default async function CharacterDetailPage({
                   href={`/houses/${house.slug}`}
                   className="mt-6 inline-flex text-sm font-semibold text-amber-200 transition hover:translate-x-1"
                 >
-                  เปิดบันทึกตระกูล →
+                  เปิดบันทึกตระกูล
                 </Link>
               </article>
             )}
 
             {city && (
               <article className="glass-panel rounded-3xl p-6 md:p-8">
-                <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
-                  Sovereign Capital
-                </p>
-                <div className="mt-3 flex items-start gap-4">
+                <div className="flex items-start gap-4">
                   <span
                     aria-hidden="true"
                     className="grid h-12 w-12 shrink-0 place-items-center rounded-full border text-xl"
-                    style={{ borderColor: `${city.accent}66`, color: city.accent }}
+                    data-accent-ink style={{ borderColor: `${city.accent}66`, color: city.accent }}
                   >
-                    {city.symbol}
+                    <SymbolIcon symbol={city.symbol} className="h-6 w-6" />
                   </span>
                   <div>
                     <h3 className="text-2xl text-amber-100">{city.name}</h3>
@@ -275,7 +272,7 @@ export default async function CharacterDetailPage({
                   href={`/world/${city.slug}`}
                   className="mt-6 inline-flex text-sm font-semibold text-amber-200 transition hover:translate-x-1"
                 >
-                  สำรวจนครแห่งนี้ →
+                  สำรวจนครแห่งนี้
                 </Link>
               </article>
             )}

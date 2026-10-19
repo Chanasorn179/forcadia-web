@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const developmentScriptPolicy = process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : "";
+
 const nextConfig: NextConfig = {
   agentRules: false,
   poweredByHeader: false,
@@ -26,7 +28,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: blob:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://*.neon.tech; upgrade-insecure-requests",
+            value: `default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; img-src 'self' data: blob:; font-src 'self' data: https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; media-src 'self' https://strvid.nyc3.cdn.digitaloceanspaces.com; script-src 'self' 'unsafe-inline'${developmentScriptPolicy}; connect-src 'self' https://*.neon.tech; upgrade-insecure-requests`,
           },
         ],
       },
@@ -35,3 +37,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+

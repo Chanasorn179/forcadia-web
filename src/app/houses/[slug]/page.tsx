@@ -9,6 +9,7 @@ import {
   getCharacterByHouseSlug,
   getCityByHouseSlug,
 } from "@/lib/forcadia-relations";
+import { ArrowIcon } from "@/components/icons";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -55,7 +56,7 @@ export default async function HouseDetailPage({ params }: Props) {
         href="/houses"
         className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
       >
-        <span aria-hidden="true">←</span>
+        <ArrowIcon className="h-4 w-4 rotate-180" />
         กลับไปหน้าตระกูล
       </Link>
 
@@ -68,17 +69,18 @@ export default async function HouseDetailPage({ params }: Props) {
         />
 
         <article className="glass-panel rounded-3xl p-7 md:p-10">
-          <p className="section-kicker">{house.emblemName}</p>
-
-          <h1 className="gold-text mt-4 text-4xl font-semibold md:text-6xl">
+          <h1 className="gold-text text-4xl font-semibold md:text-6xl">
             {house.name}
           </h1>
 
-          <p className="mt-3 text-xl text-slate-300">{house.thaiName}</p>
+          <p className="mt-3 text-xl text-slate-300">
+            {house.thaiName}
+            <span className="ml-3 text-base text-amber-200">· {house.emblemName}</span>
+          </p>
 
           <blockquote
-            className="mt-6 border-l-2 pl-5 text-xl italic"
-            style={{
+            className="mt-6 border-l pl-5 text-xl italic"
+            data-accent-ink style={{
               borderColor: house.accent,
               color: house.accent,
             }}
@@ -126,8 +128,6 @@ export default async function HouseDetailPage({ params }: Props) {
 
       {(ruler || city) && (
         <section className="mt-10">
-          <p className="section-kicker">House Connections</p>
-
           <h2 className="mt-3 text-2xl font-semibold md:text-4xl">
             ผู้ปกครองและดินแดน
           </h2>

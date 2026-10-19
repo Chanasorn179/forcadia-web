@@ -19,8 +19,6 @@ export default async function AdminLoginPage({
   return (
     <main className="container-page grid min-h-[75vh] place-items-center py-16">
       <section className="glass-panel w-full max-w-md rounded-3xl p-7 md:p-9">
-        <p className="section-kicker">Restricted Archive</p>
-
         <h1 className="mt-4 text-3xl font-semibold text-amber-100">
           เข้าสู่ระบบผู้ดูแล
         </h1>

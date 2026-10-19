@@ -35,8 +35,7 @@ export default async function AdminDashboardPage() {
 
   return (
     <>
-      <p className="section-kicker">Phase 10</p>
-
+      
       <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-4xl font-semibold md:text-5xl">
@@ -69,8 +68,6 @@ export default async function AdminDashboardPage() {
       </section>
 
       <section className="glass-panel mt-8 rounded-3xl p-6 md:p-8">
-        <p className="section-kicker">Current Scope</p>
-
         <h2 className="mt-3 text-2xl font-semibold">
           ระบบจัดการตอนนิยาย
         </h2>

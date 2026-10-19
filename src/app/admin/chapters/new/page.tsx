@@ -46,8 +46,6 @@ export default async function NewChapterPage({
         ← กลับไปรายการตอน
       </Link>
 
-      <p className="section-kicker mt-8">Create Chapter</p>
-
       <h1 className="mt-3 text-4xl font-semibold">
         เพิ่มตอนใหม่
       </h1>

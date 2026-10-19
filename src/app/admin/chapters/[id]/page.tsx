@@ -53,8 +53,6 @@ export default async function EditChapterPage({
         ← กลับไปรายการตอน
       </Link>
 
-      <p className="section-kicker mt-8">Edit Chapter</p>
-
       <h1 className="mt-3 text-4xl font-semibold">{chapter.title}</h1>
 
       <p className="mt-2 text-slate-500">{chapter.book.title}</p>

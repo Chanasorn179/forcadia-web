@@ -33,8 +33,6 @@ export function ContinueReadingCard() {
         className="glass-panel card-hover group flex flex-col gap-4 rounded-3xl p-6 md:flex-row md:items-center md:justify-between"
       >
         <div>
-          <p className="section-kicker">Continue Reading</p>
-
           <h2 className="mt-2 text-xl text-amber-100">
             {record.title}
           </h2>
@@ -45,7 +43,7 @@ export function ContinueReadingCard() {
         </div>
 
         <span className="shrink-0 text-sm text-amber-200 transition group-hover:translate-x-1">
-          อ่านต่อ →
+          อ่านต่อ
         </span>
       </Link>
     </section>

@@ -50,22 +50,36 @@ model Chapter {
 }
 
 model Character {
-  id        String   @id @default(cuid())
-  slug      String   @unique
-  name      String
-  thaiName  String
-  title     String
-  summary   String   @db.Text
-  keyName   String
-  eye       String
-  domain    String
-  army      String
-  powers    Json
-  accent    String
-  symbol    String
-  house     House?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  name           String
+  thaiName       String
+  title          String
+  summary        String   @db.Text
+  keyName        String
+  eye            String
+  domain         String
+  army           String
+  powers         Json
+  accent         String
+  symbol         String
+  history        String?  @db.Text
+  personality    String?  @db.Text
+  weakness       String?  @db.Text
+  keyDetail      String?  @db.Text
+  eyeDetail      String?  @db.Text
+  magicName      String?  @db.Text
+  magicDetail    String?  @db.Text
+  creationName   String?  @db.Text
+  creationDetail String?  @db.Text
+  domainThai     String?  @db.Text
+  domainDetail   String?  @db.Text
+  demigodPowers  String?  @db.Text
+  throne         String?  @db.Text
+  followers      String?  @db.Text
+  house          House?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model House {
@@ -137,11 +151,11 @@ model LoreEntry {
 }
 
 model AdminLoginAttempt {
-  fingerprint  String   @id
-  failures     Int      @default(0)
+  fingerprint  String    @id
+  failures     Int       @default(0)
   blockedUntil DateTime?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
   @@index([updatedAt])
 }

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { SearchLink } from "@/components/search-link";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ChevronIcon, SuitIcon } from "@/components/icons";
 
 type NavItem = {
   href: string;
@@ -91,7 +92,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="site-header sticky top-0 z-60 border-b shadow-[0_10px_40px_rgba(0,0,0,0.22)] backdrop-blur-xl">
+    <header className="site-header sticky top-0 z-60 border-b backdrop-blur-md">
       <div className="container-page">
         <div className="flex min-h-18 items-center justify-between gap-4">
           {/* Logo */}
@@ -101,7 +102,7 @@ export function SiteHeader() {
             aria-label="Forcadia Imperial Archive"
             className="flex min-w-0 items-center gap-3"
           >
-            <span className="relative grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full border border-amber-200/30 bg-amber-200/5 p-1.5 shadow-[inset_0_0_16px_rgba(217,184,108,0.08)]">
+            <span className="relative grid h-10 w-10 shrink-0 place-items-center">
               <Image
                 src="/images/logos/unity-crown-webmark-gold.svg"
                 alt=""
@@ -112,11 +113,11 @@ export function SiteHeader() {
             </span>
 
             <span className="min-w-0">
-              <span className="block truncate font-serif text-lg font-semibold tracking-[0.12em] text-amber-100">
+              <span className="card-title block truncate text-base tracking-[0.08em] text-amber-100 sm:text-lg sm:tracking-[0.14em]">
                 FOURCADIR
               </span>
 
-              <span className="hidden text-[10px] uppercase tracking-[0.25em] text-slate-400 sm:block">
+              <span className="hidden text-[11px] uppercase tracking-[0.22em] text-slate-400 sm:block">
                 Imperial Archive
               </span>
             </span>
@@ -137,20 +138,14 @@ export function SiteHeader() {
                   onClick={closeMenus}
                   aria-current={active ? "page" : undefined}
                   className={[
-                    "relative rounded-full px-4 py-3 text-sm font-semibold transition",
+                    "relative inline-flex items-center gap-2 rounded-full px-4 py-3 text-[15px] font-semibold transition",
                     active
-                      ? "bg-amber-100/10 text-amber-50"
-                      : "text-slate-300 hover:bg-white/5 hover:text-white",
+                      ? "text-amber-100"
+                      : "text-slate-300 hover:text-slate-100",
                   ].join(" ")}
                 >
+                  {active && <SuitIcon className="h-2.5 w-2.5 text-amber-300" />}
                   {item.label}
-
-                  {active && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-x-4 -bottom-1 h-px bg-amber-300"
-                    />
-                  )}
                 </Link>
               );
             })}
@@ -163,34 +158,26 @@ export function SiteHeader() {
                 aria-haspopup="menu"
                 onClick={toggleMoreMenu}
                 className={[
-                  "relative inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold transition",
+                  "relative inline-flex items-center gap-2 rounded-full px-4 py-3 text-[15px] font-semibold transition",
                   secondaryActive || moreOpen
-                    ? "bg-amber-100/10 text-amber-50"
-                    : "text-slate-300 hover:bg-white/5 hover:text-white",
+                    ? "text-amber-100"
+                    : "text-slate-300 hover:text-slate-100",
                 ].join(" ")}
               >
+                {secondaryActive && <SuitIcon className="h-2.5 w-2.5 text-amber-300" />}
                 เพิ่มเติม
-                <span
-                  aria-hidden="true"
+                <ChevronIcon
                   className={[
-                    "text-xs transition-transform",
+                    "h-3.5 w-3.5 transition-transform",
                     moreOpen ? "rotate-180" : "",
                   ].join(" ")}
-                >
-                  ▾
-                </span>
-                {secondaryActive && (
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-4 -bottom-1 h-px bg-amber-300"
-                  />
-                )}
+                />
               </button>
 
               {moreOpen && (
                 <div
                   role="menu"
-                  className="more-menu absolute right-0 top-[calc(100%+0.75rem)] w-56 overflow-hidden rounded-2xl border p-2 shadow-2xl backdrop-blur-xl"
+                  className="more-menu absolute right-0 top-[calc(100%+0.75rem)] w-56 overflow-hidden rounded-2xl border p-2"
                 >
                   {secondaryItems.map((item) => {
                     const active = isActivePath(pathname, item.href);
@@ -205,13 +192,13 @@ export function SiteHeader() {
                         className={[
                           "more-menu-link flex items-center justify-between rounded-xl px-4 py-3 text-sm transition",
                           active
-                            ? "bg-amber-200/10 text-amber-100"
-                            : "text-slate-300 hover:bg-white/5 hover:text-white",
+                            ? "text-amber-100"
+                            : "text-slate-300 hover:bg-white/5 hover:text-slate-100",
                         ].join(" ")}
                       >
                         {item.label}
 
-                        {active && <span aria-hidden="true">✦</span>}
+                        {active && <SuitIcon className="h-2.5 w-2.5 text-amber-300" />}
                       </Link>
                     );
                   })}
@@ -228,7 +215,7 @@ export function SiteHeader() {
             <Link
               href="/read"
               onClick={closeMenus}
-              className="hidden rounded-full border border-amber-200/30 px-5 py-2.5 text-sm font-semibold text-amber-100 transition hover:bg-amber-200/10 sm:inline-flex"
+              className="btn-action hidden min-h-11 items-center rounded-full px-5 text-sm font-bold transition sm:inline-flex"
             >
               เริ่มอ่าน
             </Link>
@@ -239,7 +226,7 @@ export function SiteHeader() {
               aria-expanded={mobileOpen}
               aria-controls="mobile-navigation"
               onClick={toggleMobileMenu}
-              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-slate-300 transition hover:bg-white/5 hover:text-white xl:hidden"
+              className="theme-toggle grid h-11 w-11 place-items-center rounded-full border transition xl:hidden"
             >
               <span className="relative block h-4 w-5" aria-hidden="true">
                 <span
@@ -287,13 +274,13 @@ export function SiteHeader() {
                     className={[
                       "flex items-center justify-between rounded-2xl border px-4 py-3 text-sm transition",
                       active
-                        ? "border-amber-200/30 bg-amber-200/10 text-amber-100"
+                        ? "border-amber-200/40 text-amber-100"
                         : "border-white/10 text-slate-300 hover:bg-white/5",
                     ].join(" ")}
                   >
                     {item.label}
 
-                    {active && <span aria-hidden="true">✦</span>}
+                    {active && <SuitIcon className="h-2.5 w-2.5 text-amber-300" />}
                   </Link>
                 );
               })}
@@ -302,7 +289,7 @@ export function SiteHeader() {
             <Link
               href="/read"
               onClick={closeMenus}
-              className="mt-3 flex w-full items-center justify-center rounded-2xl border border-amber-200/30 bg-amber-200/10 px-5 py-3 font-semibold text-amber-100 sm:hidden"
+              className="btn-action mt-3 flex min-h-12 w-full items-center justify-center rounded-2xl px-5 font-bold sm:hidden"
             >
               เริ่มอ่าน
             </Link>

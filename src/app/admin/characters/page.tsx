@@ -33,7 +33,6 @@ export default async function AdminCharactersPage({
     <>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="section-kicker">Codex Management</p>
           <h1 className="mt-3 text-4xl font-semibold">
             จัดการตัวละคร
           </h1>

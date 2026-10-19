@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { eras } from "@/data/forcadia";
 import { getPublicEraBySlug } from "@/lib/public-content";
+import { ArrowIcon, SuitIcon, SymbolIcon } from "@/components/icons";
 
 type Props = {
   params: Promise<{
@@ -46,26 +47,20 @@ export default async function EraDetailPage({ params }: Props) {
         href="/timeline"
         className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
       >
-        <span aria-hidden="true">←</span>
+        <ArrowIcon className="h-4 w-4 rotate-180" />
         กลับไปเส้นเวลา
       </Link>
 
       <section className="mt-8 grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
         <div
-          className="glass-panel relative grid min-h-105 place-items-center overflow-hidden rounded-3xl border"
+          className="always-dark glass-panel relative grid min-h-105 place-items-center overflow-hidden rounded-3xl border"
           style={{
             borderColor: `${era.accent}55`,
-            background: `radial-gradient(circle, ${era.accent}28, rgba(7,9,18,0.82) 62%)`,
+            background: `radial-gradient(circle at 50% 42%, ${era.accent}30, #1d0915 64%)`,
           }}
         >
-          <span
-            className="text-8xl"
-            style={{
-              color: era.accent,
-              filter: `drop-shadow(0 0 28px ${era.accent}66)`,
-            }}
-          >
-            {era.symbol}
+          <span className="era-seal" style={{ color: era.accent }}>
+            <SymbolIcon symbol={era.symbol} className="h-24 w-24 md:h-32 md:w-32" strokeWidth={1.1} />
           </span>
 
           <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent p-7 text-center">
@@ -75,15 +70,13 @@ export default async function EraDetailPage({ params }: Props) {
         </div>
 
         <article className="glass-panel rounded-3xl p-7 md:p-10">
-          <p className="section-kicker">Chronicle Entry</p>
-
           <h1 className="gold-text mt-4 text-4xl font-semibold md:text-6xl">
             {era.name}
           </h1>
 
           <p className="mt-3 text-xl text-slate-300">{era.thaiName}</p>
 
-          <p className="mt-6 text-2xl" style={{ color: era.accent }}>
+          <p className="mt-6 text-2xl" data-accent-ink style={{ color: era.accent }}>
             {era.detail}
           </p>
 
@@ -120,7 +113,7 @@ export default async function EraDetailPage({ params }: Props) {
                   key={event}
                   className="flex gap-3 rounded-2xl border border-white/10 bg-white/3 p-4 text-slate-300"
                 >
-                  <span style={{ color: era.accent }}>✦</span>
+                  <SuitIcon className="h-3 w-3" data-accent-ink style={{ color: era.accent }} />
                   <span>{event}</span>
                 </li>
               ))}

@@ -35,8 +35,6 @@ export default async function NewBookPage({
         ← กลับไปรายการหนังสือ
       </Link>
 
-      <p className="section-kicker mt-8">Create Book</p>
-
       <h1 className="mt-3 text-4xl font-semibold">
         เพิ่มหนังสือใหม่
       </h1>

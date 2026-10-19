@@ -16,8 +16,6 @@ export default async function CharactersPage() {
 
   return (
     <main className="container-page py-16 md:py-24">
-      <p className="section-kicker">Dramatis Personae</p>
-
       <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
         ผู้ครองอำนาจทั้งแปด
       </h1>
@@ -71,7 +69,7 @@ export default async function CharactersPage() {
               </span>
 
               <span className="text-sm text-amber-200 transition group-hover:translate-x-1">
-                ดูรายละเอียด →
+                ดูรายละเอียด
               </span>
             </div>
           </Link>

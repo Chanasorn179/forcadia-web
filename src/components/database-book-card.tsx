@@ -30,16 +30,16 @@ export function DatabaseBookCard({
       href={`/books/${slug}`}
       className="glass-panel card-hover group overflow-hidden rounded-3xl"
     >
-      <div className="relative min-h-72 overflow-hidden border-b border-white/10 bg-[radial-gradient(circle_at_center,rgba(217,184,108,0.2),rgba(7,9,18,0.96)_70%)]">
+      <div className="book-cover relative min-h-72 overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 grid place-items-center p-8">
-          <div className="w-full max-w-xs rounded-3xl border border-amber-200/20 bg-black/30 p-8 text-center shadow-2xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-amber-200">
-              {subtitle}
-            </p>
-            <h2 className="gold-text mt-5 text-3xl font-semibold">
+          <div className="w-full max-w-xs rounded-3xl border border-[#d9b86c]/30 bg-black/30 p-8 text-center shadow-2xl">
+            <h2 className="gold-text text-3xl font-semibold">
               {title}
             </h2>
-            <p className="mt-3 text-sm text-slate-400">
+            <p className="book-cover-kicker mt-4 text-xs uppercase tracking-[0.2em]">
+              {subtitle}
+            </p>
+            <p className="book-cover-sub mt-2 text-sm">
               {thaiTitle}
             </p>
           </div>
@@ -61,7 +61,7 @@ export function DatabaseBookCard({
         </p>
 
         <span className="mt-5 inline-flex text-sm text-amber-200 transition group-hover:translate-x-1">
-          เปิดหนังสือ →
+          เปิดหนังสือ
         </span>
       </div>
     </Link>

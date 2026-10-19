@@ -41,8 +41,6 @@ export default async function AdminBooksPage({
     <>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="section-kicker">Book Management</p>
-
           <h1 className="mt-3 text-4xl font-semibold">
             จัดการหนังสือ
           </h1>

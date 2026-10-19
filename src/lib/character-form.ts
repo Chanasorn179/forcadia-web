@@ -1,3 +1,5 @@
+import { characterLoreFields, type CharacterLoreField } from "@/data/character-lore";
+
 export type ParsedCharacterForm = {
   slug: string;
   name: string;
@@ -11,7 +13,7 @@ export type ParsedCharacterForm = {
   powers: string[];
   accent: string;
   symbol: string;
-};
+} & Record<CharacterLoreField, string | null>;
 
 export function slugifyCharacter(value: string) {
   return value
@@ -70,7 +72,16 @@ export function parseCharacterForm(
     return null;
   }
 
+  /* Extended lore is optional: a blank field is stored as null. */
+  const lore = Object.fromEntries(
+    characterLoreFields.map(({ name: field }) => {
+      const value = String(formData.get(field) ?? "").trim();
+      return [field, value || null];
+    }),
+  ) as Record<CharacterLoreField, string | null>;
+
   return {
+    ...lore,
     slug,
     name,
     thaiName,

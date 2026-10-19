@@ -41,8 +41,6 @@ export default async function SearchPage({ searchParams }: Props) {
 
   return (
     <main className="container-page py-16 md:py-24">
-      <p className="section-kicker">Search the Imperial Archive</p>
-
       <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
         ค้นหาในจักรวรรดิ
       </h1>
@@ -112,7 +110,6 @@ export default async function SearchPage({ searchParams }: Props) {
         <section className="mt-12">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="section-kicker">Search Results</p>
               <h2 className="mt-3 text-2xl font-semibold md:text-4xl">
                 ผลการค้นหา “{query}”
               </h2>
@@ -155,7 +152,7 @@ export default async function SearchPage({ searchParams }: Props) {
                   </p>
 
                   <span className="mt-5 inline-flex text-sm text-amber-200 transition group-hover:translate-x-1">
-                    เปิดบันทึก →
+                    เปิดบันทึก
                   </span>
                 </Link>
               ))}

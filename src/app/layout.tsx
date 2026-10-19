@@ -6,6 +6,7 @@ import "@fontsource/noto-sans-thai/700.css";
 import "@fontsource/noto-serif-thai/400.css";
 import "@fontsource/noto-serif-thai/600.css";
 import "@fontsource/noto-serif-thai/700.css";
+import "@fontsource/chonburi/400.css";
 import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";

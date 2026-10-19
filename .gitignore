@@ -41,3 +41,8 @@ next-env.d.ts
 *.db-journal
 .vercel
 .env*
+
+# Impeccable working files (screenshots, decision rounds, caches)
+/.impeccable/review/
+/.impeccable/questions/
+/.impeccable/hook.cache.json

@@ -10,6 +10,7 @@ import {
   getCharacterByCitySlug,
   getHouseByCitySlug,
 } from "@/lib/forcadia-relations";
+import { ArrowIcon, SymbolIcon } from "@/components/icons";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -69,7 +70,7 @@ export default async function CityDetailPage({ params }: Props) {
         href="/world"
         className="inline-flex items-center gap-2 text-sm text-amber-200 transition hover:text-amber-100"
       >
-        <span aria-hidden="true">←</span>
+        <ArrowIcon className="h-4 w-4 rotate-180" />
         กลับไปแผนที่จักรวรรดิ
       </Link>
 
@@ -78,7 +79,7 @@ export default async function CityDetailPage({ params }: Props) {
           className="glass-panel relative min-h-120 overflow-hidden rounded-3xl border"
           style={{
             borderColor: `${city.accent}55`,
-            background: `radial-gradient(circle at center, ${city.accent}18, rgba(7, 9, 18, 0.92) 68%)`,
+            background: `radial-gradient(circle at center, ${city.accent}18, #1d0915 68%)`,
           }}
         >
           {crestImage ? (
@@ -93,13 +94,13 @@ export default async function CityDetailPage({ params }: Props) {
           ) : (
             <div
               className="grid h-full min-h-120 place-items-center text-8xl"
-              style={{ color: city.accent }}
+              data-accent-ink style={{ color: city.accent }}
             >
-              {city.symbol}
+              <SymbolIcon symbol={city.symbol} className="h-[0.8em] w-[0.8em]" />
             </div>
           )}
 
-          <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent px-7 pb-7 pt-24 text-center">
+          <div className="always-dark absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/60 to-transparent px-7 pb-7 pt-24 text-center">
             <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
               {crestSubtitle}
             </p>
@@ -111,17 +112,16 @@ export default async function CityDetailPage({ params }: Props) {
         </div>
 
         <article className="glass-panel rounded-3xl p-7 md:p-10">
-          <p className="section-kicker">{city.faction}</p>
-
-          <h1 className="gold-text mt-4 text-4xl font-semibold md:text-6xl">
+          <h1 className="gold-text text-4xl font-semibold md:text-6xl">
             {city.name}
           </h1>
 
           <p className="mt-3 text-xl text-slate-300">
             {city.thaiName}
+            <span className="ml-3 text-base text-amber-200">· {city.faction}</span>
           </p>
 
-          <p className="mt-6 text-2xl" style={{ color: city.accent }}>
+          <p className="mt-6 text-2xl" data-accent-ink style={{ color: city.accent }}>
             {city.title}
           </p>
 
@@ -176,8 +176,6 @@ export default async function CityDetailPage({ params }: Props) {
       </section>
 
       <section className="mt-10">
-        <p className="section-kicker">Connected Records</p>
-
         <h2 className="mt-3 text-2xl font-semibold md:text-4xl">
           บันทึกที่เชื่อมโยง
         </h2>

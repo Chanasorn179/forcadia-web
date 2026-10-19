@@ -51,8 +51,6 @@ export function LibraryDashboard() {
   return (
     <>
       <section className="mt-10">
-        <p className="section-kicker">Continue Reading</p>
-
         <h2 className="mt-3 text-2xl font-semibold md:text-4xl">
           อ่านต่อจากครั้งล่าสุด
         </h2>
@@ -78,7 +76,7 @@ export function LibraryDashboard() {
               </div>
 
               <span className="shrink-0 text-sm text-amber-200 transition group-hover:translate-x-1">
-                อ่านต่อ →
+                อ่านต่อ
               </span>
             </div>
 
@@ -102,7 +100,7 @@ export function LibraryDashboard() {
               href="/books"
               className="mt-4 inline-flex text-sm text-amber-200 hover:underline"
             >
-              เปิดห้องสมุด →
+              เปิดห้องสมุด
             </Link>
           </div>
         )}
@@ -111,8 +109,6 @@ export function LibraryDashboard() {
       <section className="mt-14">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="section-kicker">Saved Chapters</p>
-
             <h2 className="mt-3 text-2xl font-semibold md:text-4xl">
               ตอนที่บันทึกไว้
             </h2>

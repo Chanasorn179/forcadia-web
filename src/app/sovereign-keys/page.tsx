@@ -21,10 +21,9 @@ export default async function SovereignKeysPage() {
   return (
     <main className="container-page py-16 md:py-24">
       <Link href="/lore/sovereign-key" className="text-sm text-amber-200 transition hover:text-amber-100">
-        ← กลับไปตำนานกุญแจราชันย์
+        กลับไปตำนานกุญแจราชันย์
       </Link>
 
-      <p className="section-kicker mt-8">The Eight Sovereign Keys</p>
       <h1 className="mt-4 text-4xl font-semibold md:text-6xl">กุญแจราชันย์ทั้งแปด</h1>
       <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
         เศษอำนาจของปฐมจักรพรรดิที่ผูกพันกับผู้ถือครองทั้งแปด
@@ -32,7 +31,7 @@ export default async function SovereignKeysPage() {
       </p>
 
       <div className="mt-12 grid gap-6 md:grid-cols-2">
-        {houses.map((house, index) => {
+        {houses.map((house) => {
           const holder = characters.find((item) => item.slug === house.rulerSlug);
 
           return (
@@ -40,10 +39,7 @@ export default async function SovereignKeysPage() {
               <div className="grid gap-6 sm:grid-cols-[7rem_1fr] sm:items-center">
                 <HouseEmblem src={house.emblem} alt={`ตรา ${house.name}`} accent={house.accent} size="md" />
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-500">
-                    Key {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <h2 className="mt-2 text-2xl text-amber-100">{house.key}</h2>
+                  <h2 className="text-2xl text-amber-100">{house.key}</h2>
                   <p className="mt-2 text-sm text-slate-400">{house.name} · {house.thaiName}</p>
                 </div>
               </div>
@@ -75,11 +71,11 @@ export default async function SovereignKeysPage() {
               <div className="mt-6 flex flex-wrap gap-3">
                 {holder && (
                   <Link href={`/characters/${holder.slug}`} className="rounded-full border border-amber-200/25 px-4 py-2 text-sm text-amber-100 transition hover:bg-amber-200/10">
-                    ผู้ถือครอง →
+                    ผู้ถือครอง
                   </Link>
                 )}
                 <Link href={`/houses/${house.slug}`} className="rounded-full border border-white/10 px-4 py-2 text-sm text-slate-300 transition hover:bg-white/5">
-                  ตระกูล →
+                  ตระกูล
                 </Link>
               </div>
             </article>

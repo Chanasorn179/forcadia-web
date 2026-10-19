@@ -35,8 +35,6 @@ export default async function AdminChaptersPage({
     <>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="section-kicker">Content Management</p>
-
           <h1 className="mt-3 text-4xl font-semibold">
             จัดการตอนนิยาย
           </h1>

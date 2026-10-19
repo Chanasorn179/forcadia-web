@@ -37,7 +37,6 @@ export default async function NewHousePage({
         ← กลับไปรายการตระกูล
       </Link>
 
-      <p className="section-kicker mt-8">Create House</p>
       <h1 className="mt-3 text-4xl font-semibold">
         เพิ่มตระกูลใหม่
       </h1>

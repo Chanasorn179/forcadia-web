@@ -16,7 +16,6 @@ export default function ErrorPage({ error, reset }: ErrorPageProps) {
   return (
     <main className="container-page grid min-h-[65vh] place-items-center py-20">
       <section className="glass-panel w-full max-w-2xl rounded-3xl p-8 text-center md:p-12">
-        <p className="section-kicker">Archive Interrupted</p>
         <h1 className="mt-4 text-3xl font-semibold text-amber-100 md:text-5xl">
           เปิดบันทึกนี้ไม่สำเร็จ
         </h1>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getPublicLoreEntries } from "@/lib/public-content";
+import { SymbolIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "คลังตำนาน",
@@ -14,8 +15,6 @@ export default async function LorePage() {
 
   return (
     <main className="container-page py-16 md:py-24">
-      <p className="section-kicker">Imperial Codex</p>
-
       <h1 className="mt-4 text-4xl font-semibold md:text-6xl">
         คลังตำนานจักรวรรดิ
       </h1>
@@ -30,13 +29,12 @@ export default async function LorePage() {
           href="/glossary"
           className="glass-panel card-hover group rounded-3xl p-7"
         >
-          <p className="section-kicker">Glossary Index</p>
           <h2 className="mt-3 text-2xl text-amber-100">ดัชนีคำศัพท์</h2>
           <p className="mt-3 leading-7 text-slate-400">
             ค้นความหมาย ชื่อภาษาไทย ประเภท ต้นกำเนิด และคำที่เกี่ยวข้อง
           </p>
           <span className="mt-5 inline-flex text-sm text-amber-200 transition group-hover:translate-x-1">
-            เปิดดัชนีคำศัพท์ →
+            เปิดดัชนีคำศัพท์
           </span>
         </Link>
 
@@ -44,13 +42,12 @@ export default async function LorePage() {
           href="/sovereign-keys"
           className="glass-panel card-hover group rounded-3xl p-7"
         >
-          <p className="section-kicker">The Eight Keys</p>
           <h2 className="mt-3 text-2xl text-amber-100">สารบบกุญแจราชันย์</h2>
           <p className="mt-3 leading-7 text-slate-400">
             สำรวจกุญแจทั้งแปด ผู้ถือครอง ตระกูล และเขตแดนอาคม
           </p>
           <span className="mt-5 inline-flex text-sm text-amber-200 transition group-hover:translate-x-1">
-            เปิดสารบบกุญแจ →
+            เปิดสารบบกุญแจ
           </span>
         </Link>
       </section>
@@ -75,23 +72,19 @@ export default async function LorePage() {
           >
             <div className="flex items-start justify-between gap-5">
               <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-slate-500">
-                  Codex Entry {String(index + 1).padStart(2, "0")}
-                </p>
-
-                <h2 className="mt-3 text-2xl text-amber-100">{item.term}</h2>
+                <h2 className="text-2xl text-amber-100">{item.term}</h2>
                 <p className="mt-1 text-sm text-slate-400">{item.thaiName}</p>
               </div>
 
               <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-amber-200/25 bg-amber-200/5 text-xl text-amber-200">
-                {item.symbol}
+                <SymbolIcon symbol={item.symbol} className="h-6 w-6" />
               </span>
             </div>
 
             <p className="mt-4 leading-8 text-slate-400">{item.meaning}</p>
 
             <span className="mt-5 inline-flex text-sm text-amber-200 transition group-hover:translate-x-1">
-              เปิดข้อมูลฉบับเต็ม →
+              เปิดข้อมูลฉบับเต็ม
             </span>
           </Link>
         ))}

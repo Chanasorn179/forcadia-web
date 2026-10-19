@@ -135,7 +135,7 @@ export function GalleryGrid({ items }: Props) {
                 href={item.href}
                 className="inline-flex min-h-11 items-center text-sm text-amber-200 transition hover:translate-x-1"
               >
-                เปิดบันทึกที่เกี่ยวข้อง →
+                เปิดบันทึกที่เกี่ยวข้อง
               </Link>
             </div>
           </article>

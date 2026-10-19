@@ -63,7 +63,6 @@ export default async function EditHousePage({
         ← กลับไปรายการตระกูล
       </Link>
 
-      <p className="section-kicker mt-8">Edit House</p>
       <h1 className="mt-3 text-4xl font-semibold">
         {house.name}
       </h1>

@@ -1,4 +1,5 @@
 import { PrismaPg } from "@prisma/adapter-pg";
+import { databasePoolConfig } from "./database-config";
 import { PrismaClient } from "@/generated/prisma/client";
 
 const globalForPrisma = globalThis as unknown as {
@@ -13,9 +14,7 @@ function createPrismaClient() {
     process.env.DATABASE_URL ??
     "postgresql://unconfigured:unconfigured@127.0.0.1:5432/unconfigured";
 
-  const adapter = new PrismaPg({
-    connectionString,
-  });
+  const adapter = new PrismaPg(databasePoolConfig(connectionString));
 
   return new PrismaClient({
     adapter,
@@ -28,3 +27,4 @@ export const prisma =
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.prisma = prisma;
 }
+

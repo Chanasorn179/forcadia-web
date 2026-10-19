@@ -264,12 +264,22 @@ const emptyLore = Object.fromEntries(
   characterLoreFields.map(({ name }) => [name, null]),
 ) as Record<(typeof characterLoreFields)[number]["name"], string | null>;
 
+/* Canonical order from the Fourcadir record: Michael, Astraea, Abigail, Last,
+   Remuria, Fortuna, Remus, Erebos. Entries added later follow alphabetically. */
+function byCanonicalOrder<T extends { slug: string; name: string }>(order: { slug: string }[]) {
+  const rank = (slug: string) => {
+    const index = order.findIndex((item) => item.slug === slug);
+    return index === -1 ? order.length : index;
+  };
+  return (a: T, b: T) => rank(a.slug) - rank(b.slug) || a.name.localeCompare(b.name);
+}
+
 export async function getPublicCharacters() {
   try {
-    return await prisma.character.findMany({
-      orderBy: { name: "asc" },
+    const characters = await prisma.character.findMany({
       include: { house: { select: { name: true, slug: true } } },
     });
+    return characters.sort(byCanonicalOrder(staticCharacters));
   } catch (error) {
     reportFallback("characters", error);
     return staticCharacters
@@ -286,7 +296,7 @@ export async function getPublicCharacters() {
           house: house ? { name: house.name, slug: house.slug } : null,
         };
       })
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .sort(byCanonicalOrder(staticCharacters));
   }
 }
 
@@ -388,6 +398,8 @@ export async function getPublicCities(): Promise<typeof staticCities> {
         },
       },
     });
+
+    cities.sort(byCanonicalOrder(staticCities));
 
     return cities.map((city) => {
       const presentation = staticCities.find((item) => item.slug === city.slug);

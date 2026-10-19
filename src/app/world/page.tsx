@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { empire, empireCharter } from "@/data/empire";
 import { getPublicCities } from "@/lib/public-content";
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default async function WorldPage() {
   return (
     <main className="container-page py-16 md:py-24">
       <h1 className="text-4xl md:text-6xl">
-        แผนที่จักรวรรดิ Forcadia
+        แผนที่จักรวรรดิ Fourcadir
       </h1>
 
       <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
@@ -35,7 +36,35 @@ export default async function WorldPage() {
         วัฒนธรรม และความลับของตนเอง
       </p>
 
-      <figure className="empire-map mt-12">
+      <section aria-labelledby="empire-heading" className="empire-charter mt-12">
+        <div className="empire-charter-crest">
+          <Image
+            src={empire.crest}
+            alt="ตรา Unity Crown แห่งจักรวรรดิโฟร์คาเดียร์"
+            fill
+            sizes="(max-width: 1024px) 60vw, 280px"
+            className="object-cover"
+          />
+        </div>
+        <div>
+          <h2 id="empire-heading" className="text-3xl md:text-4xl">
+            {empire.thaiName}
+          </h2>
+          <p className="mt-4 text-lg leading-8 text-slate-300">{empireCharter.overview}</p>
+          <dl className="empire-charter-facts mt-8">
+            <div>
+              <dt className="card-title text-xl text-amber-100">ตรา Unity Crown</dt>
+              <dd className="mt-2 leading-8 text-slate-300">{empireCharter.crestMeaning}</dd>
+            </div>
+            <div>
+              <dt className="card-title text-xl text-amber-100">สถานการณ์ปัจจุบัน</dt>
+              <dd className="mt-2 leading-8 text-slate-300">{empireCharter.currentSituation}</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <figure className="empire-map mt-16">
         <div className="empire-map-scroll">
         <div className="empire-map-frame">
           <Image

@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     siteName: "Forcadia",
     title: "Forcadia: The Shattered Ring",
     description:
-      "คลังนิยายและสารานุกรมโลกแฟนตาซีแห่งจักรวรรดิ Forcadia",
+      "คลังนิยายและสารานุกรมโลกแฟนตาซีแห่งจักรวรรดิ Fourcadir",
   },
   twitter: {
     card: "summary_large_image",
     title: "Forcadia: The Shattered Ring",
     description:
-      "คลังนิยายและสารานุกรมโลกแฟนตาซีแห่งจักรวรรดิ Forcadia",
+      "คลังนิยายและสารานุกรมโลกแฟนตาซีแห่งจักรวรรดิ Fourcadir",
   },
 };
 

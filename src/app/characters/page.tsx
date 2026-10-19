@@ -6,7 +6,7 @@ import { getPublicCharacters } from "@/lib/public-content";
 
 export const metadata: Metadata = {
   title: "ตัวละคร",
-  description: "ผู้ครองอำนาจแห่งจักรวรรดิ Forcadia",
+  description: "ผู้ครองอำนาจแห่งจักรวรรดิ Fourcadir",
 };
 
 export const dynamic = "force-dynamic";

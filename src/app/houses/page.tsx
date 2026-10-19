@@ -20,7 +20,7 @@ export default async function HousesPage() {
 
       <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
         ตราประจำตระกูลทั้งแปดคือสัญลักษณ์แห่งอำนาจ หน้าที่
-        และคำปฏิญาณที่ค้ำจุนจักรวรรดิ Forcadia
+        และคำปฏิญาณที่ค้ำจุนจักรวรรดิ Fourcadir
       </p>
 
       <ul className="house-arcana mt-14">

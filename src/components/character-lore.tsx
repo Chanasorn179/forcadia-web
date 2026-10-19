@@ -34,8 +34,8 @@ export function CharacterLoreSection({ lore, keyName, eye, domain, army, houseSl
   }
 
   const arcana = [
-    { label: "กุญแจราชันย์", name: keyName, detail: lore.keyDetail },
-    { label: "เนตรราชันย์", name: eye, detail: lore.eyeDetail },
+    { label: "กุญแจราชันย์", name: keyName, thai: lore.keyThai, detail: lore.keyDetail },
+    { label: "เนตรราชันย์", name: eye, thai: lore.eyeThai, detail: lore.eyeDetail },
     { label: "เวทมนตร์ประจำตัว", name: lore.magicName, detail: lore.magicDetail },
     { label: "Unique Creation", name: lore.creationName, detail: lore.creationDetail },
     {
@@ -47,10 +47,10 @@ export function CharacterLoreSection({ lore, keyName, eye, domain, army, houseSl
 
   const facts = [
     { label: "พลังครึ่งเทพ", value: lore.demigodPowers },
-    { label: "บัลลังก์", value: lore.throne },
-    { label: "กองทัพ", value: army },
+    { label: "บัลลังก์", value: lore.throne, detail: lore.throneDetail },
+    { label: "กองทัพ", value: army, detail: lore.armyDetail },
     { label: "ผู้ติดตาม", value: lore.followers },
-  ].filter((item): item is { label: string; value: string } => Boolean(item.value));
+  ].filter((item): item is { label: string; value: string; detail?: string | null } => Boolean(item.value));
 
   return (
     <section aria-labelledby="lore-heading" className="mt-16">
@@ -87,6 +87,7 @@ export function CharacterLoreSection({ lore, keyName, eye, domain, army, houseSl
               {numerals[index]}
             </span>
             <h4 className="power-arcanum-name">{item.name}</h4>
+            {"thai" in item && item.thai && <p className="power-arcanum-thai">{item.thai}</p>}
             {item.detail && <p className="power-arcanum-text">{item.detail}</p>}
             <span className="power-arcanum-band">{item.label}</span>
           </li>
@@ -98,7 +99,12 @@ export function CharacterLoreSection({ lore, keyName, eye, domain, army, houseSl
           {facts.map((fact) => (
             <div key={fact.label} className="flex flex-col-reverse">
               <dt className="mt-1 text-sm text-slate-400">{fact.label}</dt>
-              <dd className="text-lg text-amber-100">{fact.value}</dd>
+              <dd className="text-lg text-amber-100">
+                {fact.value}
+                {fact.detail && (
+                  <span className="mt-1 block text-sm leading-6 text-slate-300">{fact.detail}</span>
+                )}
+              </dd>
             </div>
           ))}
         </dl>

@@ -1,31 +1,22 @@
-/* Extended sovereign lore, from the Forcadia brand kit (The Seven Sovereigns).
-   Erebos Night-Fall has no entry: the throne of night stands empty. */
+/* Extended sovereign lore. Source of truth: the Forcadia brand kit (The Seven
+   Sovereigns); fields the kit lacks come from Fourcadir.pdf, including all of
+   Erebos's record. Every field is optional: a missing one is simply not shown. */
 
-export type CharacterLore = {
-  history: string;
-  personality: string;
-  weakness: string;
-  keyDetail: string;
-  eyeDetail: string;
-  magicName: string;
-  magicDetail: string;
-  creationName: string;
-  creationDetail: string;
-  domainThai: string;
-  domainDetail: string;
-  demigodPowers: string;
-  throne: string;
-  followers: string;
-};
+export const characterLoreFieldNames = ["titleThai","history","personality","weakness","keyThai","keyDetail","eyeThai","eyeDetail","magicName","magicDetail","creationName","creationDetail","domainThai","domainDetail","demigodPowers","throne","throneDetail","armyDetail","followers"] as const;
 
-export type CharacterLoreField = keyof CharacterLore;
+export type CharacterLoreField = (typeof characterLoreFieldNames)[number];
+
+export type CharacterLore = Partial<Record<CharacterLoreField, string>>;
 
 /* Field order and labels shared by the admin forms. rows > 0 renders a textarea. */
 export const characterLoreFields: { name: CharacterLoreField; label: string; rows: number }[] = [
+  { name: "titleThai", label: "ฉายา (ภาษาไทย)", rows: 0 },
   { name: "history", label: "ประวัติ", rows: 5 },
   { name: "personality", label: "บุคลิก", rows: 3 },
   { name: "weakness", label: "จุดอ่อน", rows: 3 },
+  { name: "keyThai", label: "ชื่อกุญแจราชันย์ (ภาษาไทย)", rows: 0 },
   { name: "keyDetail", label: "คำอธิบายกุญแจราชันย์", rows: 3 },
+  { name: "eyeThai", label: "ชื่อเนตรราชันย์ (ภาษาไทย)", rows: 0 },
   { name: "eyeDetail", label: "คำอธิบายเนตรราชันย์", rows: 3 },
   { name: "magicName", label: "เวทมนตร์ประจำตัว", rows: 0 },
   { name: "magicDetail", label: "คำอธิบายเวทมนตร์ประจำตัว", rows: 3 },
@@ -35,15 +26,20 @@ export const characterLoreFields: { name: CharacterLoreField; label: string; row
   { name: "domainDetail", label: "คำอธิบายเขตแดนอาคม", rows: 3 },
   { name: "demigodPowers", label: "พลังครึ่งเทพ", rows: 0 },
   { name: "throne", label: "บัลลังก์", rows: 0 },
+  { name: "throneDetail", label: "คำบรรยายบัลลังก์", rows: 2 },
+  { name: "armyDetail", label: "คำบรรยายกองทัพ", rows: 2 },
   { name: "followers", label: "ผู้ติดตาม", rows: 0 },
 ];
 
 export const characterLore: Record<string, CharacterLore> = {
   "michael-saint-cross": {
+    titleThai: "ดวงตะวันเดินดิน",
     history: "ผู้ถือกฎและคำสัตย์ของจักรวรรดิ Michael เติบโตใน Lux Aeternum ท่ามกลางคริสตัลศักดิ์สิทธิ์และคำสอนว่าผู้แข็งแกร่งต้องรับภาระแทนผู้อื่น เขายึดวัฏจักร 250 ปีเป็นกฎสูงสุด แม้กฎนั้นจะบังคับให้เขาต้องหันดาบเข้าหาอดีตสหายก็ตาม",
     personality: "สุขุม สุภาพ เด็ดขาด ไม่ชอบคำโกหก และไม่ให้อภัยตัวเองง่าย ๆ",
     weakness: "ยึดมั่นกฎมากจนบางครั้งไม่ยอมรับว่ากฎเองก็อาจผิด",
+    keyThai: "กุญแจแห่งสิทธิ์ขาด",
     keyDetail: "เศษอำนาจของปฐมจักรพรรดิที่สัมพันธ์กับสิทธิ์ขาดและการบังคับให้เจตจำนงกลายเป็นข้อกำหนดของสนามรบ",
+    eyeThai: "เนตรสุริยันพิพากษา",
     eyeDetail: "เผาผลาญคำลวง มองทะลุภาพมายา และทำให้การปกปิดเจตนาต่อหน้าเขาเป็นเรื่องยากอย่างยิ่ง",
     magicName: "Solaris Divinity",
     magicDetail: "เวทแสงและพลาสมาความร้อนสูง สามารถก่อรูปแสงเป็นอาวุธ เกราะ หรือเปลวสุริยัน",
@@ -53,13 +49,18 @@ export const characterLore: Record<string, CharacterLore> = {
     domainDetail: "รุ่งอรุณชั่วนิรันดร์ลบเงาทุกชนิด ศัตรูถูกแสงเผาผลาญต่อเนื่อง ขณะที่ฝ่ายเดียวกันได้รับการฟื้นฟู",
     demigodPowers: "Solar Aura / Heaven’s Fall",
     throne: "บัลลังก์แห่งรุ่งอรุณ",
-    followers: "Gabriel • Uriel",
+    throneDetail: "ทองคำและหินอ่อน มีแสงสว่างแผ่ออกมาเผาผลาญคนชั่ว",
+    armyDetail: "อัศวินเกราะทองคำ ทรงพลังและมีวินัยสูงสุด",
+    followers: "Gabriel (โล่แสง) • Uriel (ผู้คุมกฎเพลิง)",
   },
   "astraea-paradiseswan": {
+    titleThai: "ผู้ถักทอจักรวาล",
     history: "Astraea มองเห็นเส้นทางความเป็นไปได้นับพันตั้งแต่วัยเยาว์ เขาเปลี่ยน Astra Caelum ให้เป็นศูนย์กลางแห่งดาราศาสตร์ เวทมิติ และการเดินทางผ่าน Dimension Hub สิ่งที่ทำให้เขาหวาดกลัวไม่ใช่การไม่รู้อนาคต แต่คือการมองเห็นอนาคตมากเกินไปและพบว่าหลายเส้นทางจบลงด้วยสงคราม",
     personality: "เยือกเย็น ฉลาด ลึกซึ้ง และเห็นคุณค่าของชีวิตมากกว่าที่สีหน้าของเขาแสดงออก",
     weakness: "การมองเห็นความเป็นไปได้จำนวนมหาศาลทำให้เขาลังเลเมื่อทุกทางเลือกต้องแลกด้วยชีวิต",
+    keyThai: "กุญแจแห่งมิติและกาลเวลา",
     keyDetail: "กุญแจที่สัมผัสโครงสร้างของมิติ เวลา ระยะทาง และความสัมพันธ์ระหว่างจุดต่าง ๆ ของจักรวาล",
+    eyeThai: "เนตรดารารังสรรค์",
     eyeDetail: "มองเห็นโครงสร้างจักรวาล จุดกำเนิดพลังงาน และสถาปัตยกรรมของเวทมนตร์ในระดับที่ผู้ใช้เวททั่วไปมองไม่เห็น",
     magicName: "Star Magic",
     magicDetail: "ควบคุมแรงโน้มถ่วง แสงดาว วงโคจร และสนามพลังที่เลียนแบบปรากฏการณ์ท้องฟ้า",
@@ -69,13 +70,18 @@ export const characterLore: Record<string, CharacterLore> = {
     domainDetail: "เปลี่ยนพื้นที่เป็นอวกาศไร้น้ำหนัก เรียกฝนอุกกาบาต บิดแรงโน้มถ่วง และชะลอการไหลของเวลา",
     demigodPowers: "Timeless Body / Starfall Genesis",
     throne: "บัลลังก์แห่งดาราสวรรค์",
-    followers: "Sebastian • Barbatos",
+    throneDetail: "คริสตัลใสลอยตัวได้ (Anti-gravity) สลักรูปปีกหงส์",
+    armyDetail: "ทหารบินได้ เน้นความเร็วและแม่นยำ",
+    followers: "Sebastian (พ่อบ้านลวดเนบิวลา) • Barbatos (พลซุ่มยิงวายุ)",
   },
   "abigail-venom-veil": {
+    titleThai: "สถาปนิกชีวะ",
     history: "Abigail มองร่างกายเป็นโครงสร้าง จิตใจเป็นกลไก และพันธุกรรมเป็นภาษา เขาคือผู้สร้างทั้งยารักษาและพิษที่อันตรายที่สุดของ Floraven Mortis สำหรับเขา คำถามเรื่องศีลธรรมมักมาทีหลังคำถามว่า “มันช่วยชีวิตได้กี่คน”",
     personality: "สุภาพ มีอารมณ์ขัน นุ่มนวล แต่ตัดสินใจเรื่องโหดร้ายได้โดยไม่สั่นคลอนหากเห็นว่าจำเป็น",
     weakness: "มองมนุษย์เป็นระบบที่แก้ไขได้ จึงเสี่ยงข้ามเส้นที่คนอื่นมองว่าไม่ควรถูกแตะต้อง",
+    keyThai: "กุญแจแห่งจิตวิญญาณ",
     keyDetail: "เชื่อมกับจิต จิตสำนึก ความกลัว ความทรงจำ และเส้นแบ่งระหว่างร่างกายกับวิญญาณ",
+    eyeThai: "เนตรมารอสรพิษ",
     eyeDetail: "สะกดจิตและมองเห็นความกลัวที่ซ่อนอยู่ ทำให้เขาอ่านจุดแตกหักทางจิตใจของคู่ต่อสู้ได้",
     magicName: "Bio-Hazard Alchemy",
     magicDetail: "ควบคุมพิษ เชื้อโรค สารชีวภาพ และการตอบสนองของร่างกายด้วยเวทเล่นแร่แปรธาตุชีวภาพ",
@@ -85,13 +91,18 @@ export const characterLore: Record<string, CharacterLore> = {
     domainDetail: "สวนพิษและภาพลวงตาที่บิดเบือนประสาทสัมผัส ทำให้การรับรู้ของผู้บุกรุกไม่น่าเชื่อถือ",
     demigodPowers: "Panacea Blood / Neural Override",
     throne: "บัลลังก์แห่งม่านมายา",
-    followers: "Medusa • Basilisk",
+    throneDetail: "ไม้ดำฝังมรกต รูปงูเลื้อย มีกลิ่นดอกไม้และพิษ",
+    armyDetail: "หน่วยลอบสังหารและสงครามจิตวิทยา",
+    followers: "Medusa (เนตรสาปหิน) • Basilisk (นักปรุงยาพิษ)",
   },
   "last-void-requiem": {
+    titleThai: "มัจจุราชไร้เสียง",
     history: "Last เติบโตท่ามกลางวิหารวิญญาณของ Silentharrow และเรียนรู้ว่าทุกสิ่งต้องมีจุดจบ เขาไม่มองความตายเป็นศัตรูของชีวิต แต่เป็นเงื่อนไขที่ทำให้ชีวิตมีความหมาย ความเงียบของเขาจึงไม่ใช่ความว่างเปล่า แต่คือการยอมรับสิ่งที่ผู้อื่นไม่กล้ามอง",
     personality: "นิ่ง สุขุม พูดน้อย และทำให้ห้องทั้งห้องเงียบได้โดยไม่ต้องออกคำสั่ง",
     weakness: "ยอมรับจุดจบได้ง่ายเกินไป จนอาจเลือกปล่อยสิ่งที่คนอื่นยังต้องการรักษา",
+    keyThai: "กุญแจแห่งการสูญสิ้น",
     keyDetail: "อำนาจแห่งการสูญสิ้น ความเสื่อมสลาย และการกลับคืนของสิ่งต่าง ๆ สู่จุดจบ",
+    eyeThai: "เนตรมรณะนิรันดร์",
     eyeDetail: "มองเห็นเส้นความตายและอายุขัย ทำให้เขารับรู้จุดสิ้นสุดของชีวิตหรือโครงสร้างบางอย่างได้",
     magicName: "Entropy Arts",
     magicDetail: "เร่งความเสื่อมสลายของวัตถุ พลัง และโครงสร้างจนกระทั่งสิ่งนั้นไม่สามารถคงสภาพเดิมได้",
@@ -101,13 +112,18 @@ export const characterLore: Record<string, CharacterLore> = {
     domainDetail: "โลกขาวดำไร้เสียงที่ขัดขวางการร่ายเวทและดูดกลืนพลังชีวิตของผู้บุกรุก",
     demigodPowers: "Death’s Presence / The Final Hour",
     throne: "บัลลังก์แห่งความเงียบงัน",
-    followers: "Charon • Thanatos",
+    throneDetail: "หินสีเทาด้าน รูปนาฬิกาทรายที่หยุดเดิน ดูดซับเสียง",
+    armyDetail: "ทหารไร้เสียง สวมหน้ากากปิดปาก",
+    followers: "Charon (ยมทูตเคียว) • Thanatos (แพทย์สนามมรณะ)",
   },
   "remuria-azure-song": {
+    titleThai: "อวตารแห่งมหาสมุทร",
     history: "Remuria เติบโตมากับเสียงของกระแสน้ำ แรงดัน และสิ่งมีชีวิตแห่ง Thalassara เขามองมหาสมุทรเป็นสิ่งมีชีวิตขนาดมหึมา ไม่ใช่ทรัพยากร ภายใต้การปกครองของเขา Azure Armada กลายเป็นกองเรือสำคัญของจักรวรรดิ แต่หน้าที่หลักยังคงเป็นการปกป้องเส้นทางเดินเรือและประชาชน",
     personality: "สงบ อ่อนโยน อดทน และน่ากลัวอย่างยิ่งเมื่อผู้คนของเขาถูกคุกคาม",
     weakness: "มักเลือกแบกรับความเสียหายแทนผู้อื่น ทำให้ตัดสินใจช้าหากชัยชนะต้องแลกด้วยความสูญเสียจำนวนมาก",
+    keyThai: "กุญแจแห่งธาตุธรรมชาติ",
     keyDetail: "เชื่อมกับการไหลเวียนของธาตุธรรมชาติและปรากฏการณ์ที่เกิดจากการผสมกันของธาตุ",
+    eyeThai: "เนตรกระแสสรรพธาตุ",
     eyeDetail: "มองเห็นการไหลเวียนของมานา กระแสอากาศ กระแสน้ำ และความเปลี่ยนแปลงของสภาพอากาศ",
     magicName: "Abyssal Resonance",
     magicDetail: "สร้างคลื่นเสียงโซนาร์ ใบมีดน้ำ และแรงสั่นสะเทือนจากมวลน้ำเพื่อโจมตีหรือค้นหาเป้าหมาย",
@@ -117,13 +133,18 @@ export const characterLore: Record<string, CharacterLore> = {
     domainDetail: "ทำให้พื้นที่ตกอยู่ภายใต้สภาพมหาสมุทรลึก แรงดันน้ำบดขยี้ศัตรูและเสียงเพลงรบกวนจิตใจ",
     demigodPowers: "Hydro-Form / Deluge of the Deep",
     throne: "บัลลังก์แห่งเกลียวคลื่น",
-    followers: "Lorelei • Triton",
+    throneDetail: "ปะการังและไข่มุก มีเสียงคลื่นทะเล",
+    armyDetail: "กองเรือและสัตว์อสูรทะเล",
+    followers: "Lorelei (ไซเรนเสียงมรณะ) • Triton (แม่ทัพจ้าวสมุทร)",
   },
   "fortuna-royal-flush": {
+    titleThai: "บั๊กของความเป็นจริง",
     history: "Fortuna โตมากับตัวเลข ความเสี่ยง และการเดิมพัน ก่อนจะทำให้ Aurea Fortuna กลายเป็นศูนย์กลางเศรษฐกิจของจักรวรรดิ เขาไม่เพียงมองเห็นเปอร์เซ็นต์ของผลลัพธ์ แต่สามารถซื้อขายและบิดความน่าจะเป็นของเหตุการณ์เหล่านั้นได้",
     personality: "เจ้าเสน่ห์ ชอบเดิมพัน ดูเหมือนไม่จริงจัง แต่คำนวณทุกคำพูดและทุกความเสี่ยงอยู่ตลอดเวลา",
     weakness: "เชื่อว่าทุกสิ่งมีราคา ซึ่งอาจทำให้เขาประเมินสิ่งที่ไม่สามารถซื้อขายได้ต่ำเกินไป",
+    keyThai: "กุญแจแห่งความเป็นไปได้",
     keyDetail: "แตะต้องความสัมพันธ์ของเหตุและผล ทำให้สิ่งที่ควรเกิดหรือไม่ควรเกิดสามารถถูกต่อรองได้",
+    eyeThai: "เนตรลิขิตชะตา",
     eyeDetail: "มองเห็นเปอร์เซ็นต์ความสำเร็จ ความเสี่ยง และมูลค่าของตัวเลือกต่าง ๆ",
     magicName: "Probability Transaction",
     magicDetail: "ซื้อขายความน่าจะเป็น เปลี่ยนโอกาสโดน โอกาสหลบ หรือความเป็นไปได้ของเหตุการณ์ด้วยเงื่อนไขแลกเปลี่ยน",
@@ -133,13 +154,18 @@ export const characterLore: Record<string, CharacterLore> = {
     domainDetail: "ทุกการต่อสู้กลายเป็นการเดิมพัน กฎของพื้นที่สามารถกำหนดราคา ความเสี่ยง และผลตอบแทนของการกระทำ",
     demigodPowers: "Devil’s Luck / Equivalent Exchange",
     throne: "บัลลังก์แห่งโชคลาภ",
-    followers: "Jackpot • Dealer",
+    throneDetail: "ทองคำขาวฝังเพชร รูปวงล้อรูเล็ตต์หมุนได้",
+    armyDetail: "ทหารรับจ้างและหุ่นยนต์รบไฮเทค",
+    followers: "Jackpot (มือปืนไซบอร์ก) • Dealer (จอมเวทไพ่)",
   },
   "remus-iron-bastion": {
+    titleThai: "เทพผู้ไม่แตกหัก",
     history: "Remus ไม่เคยเป็นนักเรียนที่เร็วที่สุดหรือผู้ใช้เวทที่โดดเด่นที่สุด แต่เขาเป็นคนที่ไม่ยอมล้ม Ferrum Vanguard จึงถูกสร้างขึ้นตามตัวตนของเขา—กำแพงหลายชั้น โรงหลอม และระบบป้องกันที่ออกแบบมาเพื่อให้เมืองยังยืนอยู่แม้โลกทั้งใบจะกลายเป็นศัตรู",
     personality: "ตรงไปตรงมา พูดน้อย เกลียดการเมือง และเชื่อในการแก้ปัญหาด้วยการลงมือทำ",
     weakness: "แบกหน้าที่ปกป้องทุกคนไว้กับตัวเองจนแทบไม่ยอมรับว่าบางครั้งเขาเองก็ต้องการความช่วยเหลือ",
+    keyThai: "กุญแจแห่งสสาร",
     keyDetail: "เชื่อมกับโครงสร้างของสสารและคุณสมบัติทางกายภาพของสิ่งต่าง ๆ",
+    eyeThai: "เนตรศาสตราวิเคราะห์",
     eyeDetail: "มองทะลุโครงสร้าง จุดเชื่อม รอยแตกร้าว แร่ธาตุ และจุดอ่อนของสิ่งก่อสร้างหรืออาวุธ",
     magicName: "Ferro-Forge",
     magicDetail: "ควบคุมโลหะทุกชนิด หลอม เปลี่ยนรูป หรือดึงโลหะออกจากสภาพแวดล้อมเพื่อสร้างอาวุธและการป้องกัน",
@@ -149,6 +175,24 @@ export const characterLore: Record<string, CharacterLore> = {
     domainDetail: "โลกแห่งฟันเฟือง โรงหลอม และอาวุธนับไม่ถ้วน ซึ่ง Remus สามารถยึดการควบคุมอาวุธของศัตรูได้",
     demigodPowers: "Adamantine Skin / Matter Reconstruction",
     throne: "บัลลังก์แห่งเหล็กกล้า",
-    followers: "Romulus • Fenrir",
+    throneDetail: "เหล็กกล้าดำ รูปหัวหมาป่าอ้าปาก",
+    armyDetail: "กองพันหมาป่าเหล็กไหล เกราะหนาที่สุดในโลก",
+    followers: "Romulus (โล่ยักษ์) • Fenrir (นักรบคลั่ง)",
+  },
+  "erebos-night-fall": {
+    titleThai: "ผู้ท่องความว่างเปล่า",
+    keyThai: "กุญแจแห่งความโกลาหล",
+    eyeThai: "เนตรอนธการกลืนกิน",
+    eyeDetail: "เบ้าตาที่เป็นหลุมดำ ทำให้คนมองเสียสติ",
+    magicName: "Void Dimension",
+    magicDetail: "ใช้พลังจากความว่างเปล่า",
+    creationName: "Void Construction — รังสรรค์ความขัดแย้ง",
+    creationDetail: "สร้างสิ่งที่ \"ไม่มีอยู่จริง\" (Non-existent) ให้ปรากฏผล",
+    domainThai: "ขอบฟ้าแห่งความว่างเปล่า",
+    domainDetail: "พื้นที่ที่ลบความทรงจำและตัวตน กฎฟิสิกส์วิบัติ",
+    demigodPowers: "Existence Eater (ลบตัวตน) / Dimension Rifts (ฉีกมิติ)",
+    throne: "บัลลังก์นิรันดร์กาล",
+    throneDetail: "หินอ็อบซิเดียน รูปสุริยคราส (ถูกคลุมผ้าไว้)",
+    armyDetail: "สาบสูญ",
   },
 };

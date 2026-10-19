@@ -2288,3 +2288,59 @@ textarea {
 .nameplate-core {
   white-space: nowrap;
 }
+
+.power-arcanum-thai {
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* Empire charter (/world) and capital districts. */
+.empire-charter {
+  display: grid;
+  grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.empire-charter-crest {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #07070a;
+  box-shadow: 0 0 0 1px rgba(224, 185, 95, 0.45), var(--shadow-card);
+}
+
+.empire-charter-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2.5rem;
+  margin: 0;
+}
+
+.empire-charter-facts dd {
+  margin: 0;
+}
+
+.capital-districts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.capital-districts dd {
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  .empire-charter,
+  .empire-charter-facts,
+  .capital-districts {
+    grid-template-columns: 1fr;
+  }
+
+  .empire-charter-crest {
+    max-width: 16rem;
+  }
+}

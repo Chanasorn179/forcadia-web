@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { RelationCard } from "@/components/relation-card";
 import { cities } from "@/data/forcadia";
 import { getPublicCityBySlug } from "@/lib/public-content";
-import { empire } from "@/data/empire";
+import { capitalDistricts, empire } from "@/data/empire";
 import {
   getCharacterByCitySlug,
   getHouseByCitySlug,
@@ -174,6 +174,31 @@ export default async function CityDetailPage({ params }: Props) {
           </div>
         </article>
       </section>
+
+      {city.slug === "fourcadir-central-capital" && (
+        <section aria-labelledby="districts-heading" className="mt-16">
+          <h2 id="districts-heading" className="text-3xl md:text-4xl">เขตต่าง ๆ ในนครหลวง</h2>
+          <div className="capital-districts mt-8">
+            {capitalDistricts.map((district) => (
+              <article key={district.name} className="glass-panel rounded-3xl p-6 md:p-8">
+                <h3 className="card-title text-2xl text-amber-100">{district.thaiName}</h3>
+                <p className="mt-1 text-sm text-slate-400">
+                  {district.name} · {district.zone}
+                </p>
+                <p className="mt-4 leading-8 text-slate-300">{district.summary}</p>
+                <dl className="mt-5 space-y-4">
+                  {district.places.map((place) => (
+                    <div key={place.name}>
+                      <dt className="font-semibold text-amber-200">{place.name}</dt>
+                      <dd className="mt-1 text-sm leading-7 text-slate-300">{place.detail}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="mt-10">
         <h2 className="mt-3 text-2xl font-semibold md:text-4xl">

@@ -77,6 +77,11 @@ model Character {
   demigodPowers  String?  @db.Text
   throne         String?  @db.Text
   followers      String?  @db.Text
+  titleThai      String?  @db.Text
+  keyThai        String?  @db.Text
+  eyeThai        String?  @db.Text
+  throneDetail   String?  @db.Text
+  armyDetail     String?  @db.Text
   house          House?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt

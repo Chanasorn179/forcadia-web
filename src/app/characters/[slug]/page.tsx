@@ -99,6 +99,9 @@ export default async function CharacterDetailPage({
 
           <p className="mt-4 text-lg text-amber-200">
             {character.title}
+            {character.titleThai && (
+              <span className="ml-2 text-base text-slate-300">· {character.titleThai}</span>
+            )}
           </p>
 
           <p className="mt-6 leading-8 text-slate-400">

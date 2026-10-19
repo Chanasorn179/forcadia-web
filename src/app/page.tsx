@@ -49,7 +49,7 @@ export default async function HomePage() {
 
   /* The Seven Sovereigns: the rulers whose lore is on record. Erebos's
      throne stands empty, so he is not counted among them. */
-  const sovereigns = characters.filter((character) => characterLore[character.slug]);
+  const sovereigns = characters.filter((character) => characterLore[character.slug]?.history);
   const prologue = chapters[0];
   const openingLines = prologue ? parseChapterContent(prologue.content).slice(0, 2) : [];
   const arcanumName = prologue?.book.title.replace(/^Book [IVXLC]+:\s*/, "") ?? "The Empty Throne";
